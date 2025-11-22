@@ -198,7 +198,7 @@ func (x *VMConfig) GetMachineType() string {
 
 type VirtualMachine struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Uuid          string                 `protobuf:"bytes,3,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	State         VMState                `protobuf:"varint,4,opt,name=state,proto3,enum=VMState" json:"state,omitempty"`
@@ -246,11 +246,11 @@ func (*VirtualMachine) Descriptor() ([]byte, []int) {
 	return file_proto_easyvirt_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *VirtualMachine) GetId() string {
+func (x *VirtualMachine) GetId() uint32 {
 	if x != nil {
 		return x.Id
 	}
-	return ""
+	return 0
 }
 
 func (x *VirtualMachine) GetName() string {
@@ -458,7 +458,7 @@ func (x *CreateVMResponse) GetVm() *VirtualMachine {
 
 type GetVMRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Uuid          string                 `protobuf:"bytes,3,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -495,11 +495,11 @@ func (*GetVMRequest) Descriptor() ([]byte, []int) {
 	return file_proto_easyvirt_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *GetVMRequest) GetId() string {
+func (x *GetVMRequest) GetId() uint32 {
 	if x != nil {
 		return x.Id
 	}
-	return ""
+	return 0
 }
 
 func (x *GetVMRequest) GetName() string {
@@ -682,7 +682,7 @@ func (x *ListVMsResponse) GetVms() []*VirtualMachine {
 
 type StartVMRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Uuid          string                 `protobuf:"bytes,3,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -719,11 +719,11 @@ func (*StartVMRequest) Descriptor() ([]byte, []int) {
 	return file_proto_easyvirt_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *StartVMRequest) GetId() string {
+func (x *StartVMRequest) GetId() uint32 {
 	if x != nil {
 		return x.Id
 	}
-	return ""
+	return 0
 }
 
 func (x *StartVMRequest) GetName() string {
@@ -794,7 +794,7 @@ func (x *StartVMResponse) GetMessage() string {
 
 type StopVMRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Uuid          string                 `protobuf:"bytes,3,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	Force         bool                   `protobuf:"varint,4,opt,name=force,proto3" json:"force,omitempty"`
@@ -832,11 +832,11 @@ func (*StopVMRequest) Descriptor() ([]byte, []int) {
 	return file_proto_easyvirt_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *StopVMRequest) GetId() string {
+func (x *StopVMRequest) GetId() uint32 {
 	if x != nil {
 		return x.Id
 	}
-	return ""
+	return 0
 }
 
 func (x *StopVMRequest) GetName() string {
@@ -914,7 +914,7 @@ func (x *StopVMResponse) GetMessage() string {
 
 type RestartVMRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Uuid          string                 `protobuf:"bytes,3,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	Force         bool                   `protobuf:"varint,4,opt,name=force,proto3" json:"force,omitempty"`
@@ -952,11 +952,11 @@ func (*RestartVMRequest) Descriptor() ([]byte, []int) {
 	return file_proto_easyvirt_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *RestartVMRequest) GetId() string {
+func (x *RestartVMRequest) GetId() uint32 {
 	if x != nil {
 		return x.Id
 	}
-	return ""
+	return 0
 }
 
 func (x *RestartVMRequest) GetName() string {
@@ -1034,7 +1034,7 @@ func (x *RestartVMResponse) GetMessage() string {
 
 type PauseVMRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Uuid          string                 `protobuf:"bytes,3,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -1071,11 +1071,11 @@ func (*PauseVMRequest) Descriptor() ([]byte, []int) {
 	return file_proto_easyvirt_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *PauseVMRequest) GetId() string {
+func (x *PauseVMRequest) GetId() uint32 {
 	if x != nil {
 		return x.Id
 	}
-	return ""
+	return 0
 }
 
 func (x *PauseVMRequest) GetName() string {
@@ -1146,7 +1146,7 @@ func (x *PauseVMResponse) GetMessage() string {
 
 type ResumeVMRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Uuid          string                 `protobuf:"bytes,3,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -1183,11 +1183,11 @@ func (*ResumeVMRequest) Descriptor() ([]byte, []int) {
 	return file_proto_easyvirt_proto_rawDescGZIP(), []int{16}
 }
 
-func (x *ResumeVMRequest) GetId() string {
+func (x *ResumeVMRequest) GetId() uint32 {
 	if x != nil {
 		return x.Id
 	}
-	return ""
+	return 0
 }
 
 func (x *ResumeVMRequest) GetName() string {
@@ -1258,7 +1258,7 @@ func (x *ResumeVMResponse) GetMessage() string {
 
 type DeleteVMRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Uuid          string                 `protobuf:"bytes,3,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	DeleteDisks   bool                   `protobuf:"varint,4,opt,name=delete_disks,json=deleteDisks,proto3" json:"delete_disks,omitempty"`
@@ -1296,11 +1296,11 @@ func (*DeleteVMRequest) Descriptor() ([]byte, []int) {
 	return file_proto_easyvirt_proto_rawDescGZIP(), []int{18}
 }
 
-func (x *DeleteVMRequest) GetId() string {
+func (x *DeleteVMRequest) GetId() uint32 {
 	if x != nil {
 		return x.Id
 	}
-	return ""
+	return 0
 }
 
 func (x *DeleteVMRequest) GetName() string {
@@ -1378,7 +1378,7 @@ func (x *DeleteVMResponse) GetMessage() string {
 
 type GetVMStatsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Uuid          string                 `protobuf:"bytes,3,opt,name=uuid,proto3" json:"uuid,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -1415,11 +1415,11 @@ func (*GetVMStatsRequest) Descriptor() ([]byte, []int) {
 	return file_proto_easyvirt_proto_rawDescGZIP(), []int{20}
 }
 
-func (x *GetVMStatsRequest) GetId() string {
+func (x *GetVMStatsRequest) GetId() uint32 {
 	if x != nil {
 		return x.Id
 	}
-	return ""
+	return 0
 }
 
 func (x *GetVMStatsRequest) GetName() string {
@@ -1725,7 +1725,7 @@ const file_proto_easyvirt_proto_rawDesc = "" +
 	"\x04arch\x18\b \x01(\tR\x04arch\x12!\n" +
 	"\fmachine_type\x18\t \x01(\tR\vmachineType\"\x9d\x03\n" +
 	"\x0eVirtualMachine\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x02id\x18\x01 \x01(\rR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
 	"\x04uuid\x18\x03 \x01(\tR\x04uuid\x12\x1e\n" +
 	"\x05state\x18\x04 \x01(\x0e2\b.VMStateR\x05state\x12\x1b\n" +
@@ -1752,7 +1752,7 @@ const file_proto_easyvirt_proto_rawDesc = "" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1f\n" +
 	"\x02vm\x18\x03 \x01(\v2\x0f.VirtualMachineR\x02vm\"F\n" +
 	"\fGetVMRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x02id\x18\x01 \x01(\rR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
 	"\x04uuid\x18\x03 \x01(\tR\x04uuid\"d\n" +
 	"\rGetVMResponse\x12\x18\n" +
@@ -1766,14 +1766,14 @@ const file_proto_easyvirt_proto_rawDesc = "" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12!\n" +
 	"\x03vms\x18\x03 \x03(\v2\x0f.VirtualMachineR\x03vms\"H\n" +
 	"\x0eStartVMRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x02id\x18\x01 \x01(\rR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
 	"\x04uuid\x18\x03 \x01(\tR\x04uuid\"E\n" +
 	"\x0fStartVMResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"]\n" +
 	"\rStopVMRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x02id\x18\x01 \x01(\rR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
 	"\x04uuid\x18\x03 \x01(\tR\x04uuid\x12\x14\n" +
 	"\x05force\x18\x04 \x01(\bR\x05force\"D\n" +
@@ -1781,7 +1781,7 @@ const file_proto_easyvirt_proto_rawDesc = "" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"`\n" +
 	"\x10RestartVMRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x02id\x18\x01 \x01(\rR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
 	"\x04uuid\x18\x03 \x01(\tR\x04uuid\x12\x14\n" +
 	"\x05force\x18\x04 \x01(\bR\x05force\"G\n" +
@@ -1789,21 +1789,21 @@ const file_proto_easyvirt_proto_rawDesc = "" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"H\n" +
 	"\x0ePauseVMRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x02id\x18\x01 \x01(\rR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
 	"\x04uuid\x18\x03 \x01(\tR\x04uuid\"E\n" +
 	"\x0fPauseVMResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"I\n" +
 	"\x0fResumeVMRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x02id\x18\x01 \x01(\rR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
 	"\x04uuid\x18\x03 \x01(\tR\x04uuid\"F\n" +
 	"\x10ResumeVMResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"l\n" +
 	"\x0fDeleteVMRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x02id\x18\x01 \x01(\rR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
 	"\x04uuid\x18\x03 \x01(\tR\x04uuid\x12!\n" +
 	"\fdelete_disks\x18\x04 \x01(\bR\vdeleteDisks\"F\n" +
@@ -1811,7 +1811,7 @@ const file_proto_easyvirt_proto_rawDesc = "" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"K\n" +
 	"\x11GetVMStatsRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x02id\x18\x01 \x01(\rR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
 	"\x04uuid\x18\x03 \x01(\tR\x04uuid\"\xe3\x02\n" +
 	"\aVMStats\x12*\n" +

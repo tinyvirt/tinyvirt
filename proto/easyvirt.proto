@@ -27,7 +27,7 @@ message VMConfig {
 }
 
 message VirtualMachine {
-  string id = 1;
+  uint32 id = 1;
   string name = 2;
   string uuid = 3;
   VMState state = 4;
@@ -55,7 +55,7 @@ message CreateVMResponse {
 }
 
 message GetVMRequest {
-  string id = 1;
+  uint32 id = 1;
   string name = 2;
   string uuid = 3;
 }
@@ -77,7 +77,7 @@ message ListVMsResponse {
 }
 
 message StartVMRequest {
-  string id = 1;
+  uint32 id = 1;
   string name = 2;
   string uuid = 3;
 }
@@ -88,7 +88,7 @@ message StartVMResponse {
 }
 
 message StopVMRequest {
-  string id = 1;
+  uint32 id = 1;
   string name = 2;
   string uuid = 3;
   bool force = 4;
@@ -100,7 +100,7 @@ message StopVMResponse {
 }
 
 message RestartVMRequest {
-  string id = 1;
+  uint32 id = 1;
   string name = 2;
   string uuid = 3;
   bool force = 4;
@@ -112,7 +112,7 @@ message RestartVMResponse {
 }
 
 message PauseVMRequest {
-  string id = 1;
+  uint32 id = 1;
   string name = 2;
   string uuid = 3;
 }
@@ -123,7 +123,7 @@ message PauseVMResponse {
 }
 
 message ResumeVMRequest {
-  string id = 1;
+  uint32 id = 1;
   string name = 2;
   string uuid = 3;
 }
@@ -134,7 +134,7 @@ message ResumeVMResponse {
 }
 
 message DeleteVMRequest {
-  string id = 1;
+  uint32 id = 1;
   string name = 2;
   string uuid = 3;
   bool delete_disks = 4;
@@ -146,7 +146,7 @@ message DeleteVMResponse {
 }
 
 message GetVMStatsRequest {
-  string id = 1;
+  uint32 id = 1;
   string name = 2;
   string uuid = 3;
 }
