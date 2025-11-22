@@ -3,6 +3,7 @@ module github.com/fanyang89/easyvirt
 go 1.25.4
 
 require (
+	github.com/libvirt/libvirt-go v7.4.0+incompatible
 	github.com/phsym/console-slog v0.3.1
 	github.com/urfave/cli/v3 v3.6.1
 	google.golang.org/grpc v1.77.0
