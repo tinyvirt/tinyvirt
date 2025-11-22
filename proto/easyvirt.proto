@@ -168,7 +168,7 @@ message GetVMStatsResponse {
   VMStats stats = 3;
 }
 
-message EmptyRequest {}
+message Void {}
 
 message ConnectionInfoResponse {
   bool success = 1;
@@ -179,9 +179,6 @@ message ConnectionInfoResponse {
 }
 
 service EasyVirt {
-  rpc Connect(EmptyRequest) returns (ConnectionInfoResponse) {}
-  rpc Disconnect(EmptyRequest) returns (ConnectionInfoResponse) {}
-
   rpc CreateVM(CreateVMRequest) returns (CreateVMResponse) {}
   rpc GetVM(GetVMRequest) returns (GetVMResponse) {}
   rpc ListVMs(ListVMsRequest) returns (ListVMsResponse) {}

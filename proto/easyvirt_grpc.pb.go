@@ -19,8 +19,6 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	EasyVirt_Connect_FullMethodName    = "/EasyVirt/Connect"
-	EasyVirt_Disconnect_FullMethodName = "/EasyVirt/Disconnect"
 	EasyVirt_CreateVM_FullMethodName   = "/EasyVirt/CreateVM"
 	EasyVirt_GetVM_FullMethodName      = "/EasyVirt/GetVM"
 	EasyVirt_ListVMs_FullMethodName    = "/EasyVirt/ListVMs"
@@ -37,8 +35,6 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type EasyVirtClient interface {
-	Connect(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*ConnectionInfoResponse, error)
-	Disconnect(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*ConnectionInfoResponse, error)
 	CreateVM(ctx context.Context, in *CreateVMRequest, opts ...grpc.CallOption) (*CreateVMResponse, error)
 	GetVM(ctx context.Context, in *GetVMRequest, opts ...grpc.CallOption) (*GetVMResponse, error)
 	ListVMs(ctx context.Context, in *ListVMsRequest, opts ...grpc.CallOption) (*ListVMsResponse, error)
@@ -57,26 +53,6 @@ type easyVirtClient struct {
 
 func NewEasyVirtClient(cc grpc.ClientConnInterface) EasyVirtClient {
 	return &easyVirtClient{cc}
-}
-
-func (c *easyVirtClient) Connect(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*ConnectionInfoResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ConnectionInfoResponse)
-	err := c.cc.Invoke(ctx, EasyVirt_Connect_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *easyVirtClient) Disconnect(ctx context.Context, in *EmptyRequest, opts ...grpc.CallOption) (*ConnectionInfoResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ConnectionInfoResponse)
-	err := c.cc.Invoke(ctx, EasyVirt_Disconnect_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *easyVirtClient) CreateVM(ctx context.Context, in *CreateVMRequest, opts ...grpc.CallOption) (*CreateVMResponse, error) {
@@ -183,8 +159,6 @@ func (c *easyVirtClient) GetVMStats(ctx context.Context, in *GetVMStatsRequest, 
 // All implementations must embed UnimplementedEasyVirtServer
 // for forward compatibility.
 type EasyVirtServer interface {
-	Connect(context.Context, *EmptyRequest) (*ConnectionInfoResponse, error)
-	Disconnect(context.Context, *EmptyRequest) (*ConnectionInfoResponse, error)
 	CreateVM(context.Context, *CreateVMRequest) (*CreateVMResponse, error)
 	GetVM(context.Context, *GetVMRequest) (*GetVMResponse, error)
 	ListVMs(context.Context, *ListVMsRequest) (*ListVMsResponse, error)
@@ -205,12 +179,6 @@ type EasyVirtServer interface {
 // pointer dereference when methods are called.
 type UnimplementedEasyVirtServer struct{}
 
-func (UnimplementedEasyVirtServer) Connect(context.Context, *EmptyRequest) (*ConnectionInfoResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Connect not implemented")
-}
-func (UnimplementedEasyVirtServer) Disconnect(context.Context, *EmptyRequest) (*ConnectionInfoResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Disconnect not implemented")
-}
 func (UnimplementedEasyVirtServer) CreateVM(context.Context, *CreateVMRequest) (*CreateVMResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateVM not implemented")
 }
@@ -260,42 +228,6 @@ func RegisterEasyVirtServer(s grpc.ServiceRegistrar, srv EasyVirtServer) {
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&EasyVirt_ServiceDesc, srv)
-}
-
-func _EasyVirt_Connect_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EmptyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EasyVirtServer).Connect(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: EasyVirt_Connect_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EasyVirtServer).Connect(ctx, req.(*EmptyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _EasyVirt_Disconnect_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(EmptyRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EasyVirtServer).Disconnect(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: EasyVirt_Disconnect_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EasyVirtServer).Disconnect(ctx, req.(*EmptyRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _EasyVirt_CreateVM_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -485,14 +417,6 @@ var EasyVirt_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "EasyVirt",
 	HandlerType: (*EasyVirtServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "Connect",
-			Handler:    _EasyVirt_Connect_Handler,
-		},
-		{
-			MethodName: "Disconnect",
-			Handler:    _EasyVirt_Disconnect_Handler,
-		},
 		{
 			MethodName: "CreateVM",
 			Handler:    _EasyVirt_CreateVM_Handler,

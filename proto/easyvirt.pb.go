@@ -1596,26 +1596,26 @@ func (x *GetVMStatsResponse) GetStats() *VMStats {
 	return nil
 }
 
-type EmptyRequest struct {
+type Void struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *EmptyRequest) Reset() {
-	*x = EmptyRequest{}
+func (x *Void) Reset() {
+	*x = Void{}
 	mi := &file_proto_easyvirt_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *EmptyRequest) String() string {
+func (x *Void) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*EmptyRequest) ProtoMessage() {}
+func (*Void) ProtoMessage() {}
 
-func (x *EmptyRequest) ProtoReflect() protoreflect.Message {
+func (x *Void) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_easyvirt_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -1627,8 +1627,8 @@ func (x *EmptyRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use EmptyRequest.ProtoReflect.Descriptor instead.
-func (*EmptyRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use Void.ProtoReflect.Descriptor instead.
+func (*Void) Descriptor() ([]byte, []int) {
 	return file_proto_easyvirt_proto_rawDescGZIP(), []int{23}
 }
 
@@ -1826,8 +1826,8 @@ const file_proto_easyvirt_proto_rawDesc = "" +
 	"\x12GetVMStatsResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1e\n" +
-	"\x05stats\x18\x03 \x01(\v2\b.VMStatsR\x05stats\"\x0e\n" +
-	"\fEmptyRequest\"\xba\x01\n" +
+	"\x05stats\x18\x03 \x01(\v2\b.VMStatsR\x05stats\"\x06\n" +
+	"\x04Void\"\xba\x01\n" +
 	"\x16ConnectionInfoResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1a\n" +
@@ -1843,11 +1843,8 @@ const file_proto_easyvirt_proto_rawDesc = "" +
 	"\x11VM_STATE_SHUTDOWN\x10\x05\x12\x14\n" +
 	"\x10VM_STATE_SHUTOFF\x10\x06\x12\x14\n" +
 	"\x10VM_STATE_CRASHED\x10\a\x12\x18\n" +
-	"\x14VM_STATE_PMSUSPENDED\x10\b2\xe6\x04\n" +
-	"\bEasyVirt\x123\n" +
-	"\aConnect\x12\r.EmptyRequest\x1a\x17.ConnectionInfoResponse\"\x00\x126\n" +
-	"\n" +
-	"Disconnect\x12\r.EmptyRequest\x1a\x17.ConnectionInfoResponse\"\x00\x121\n" +
+	"\x14VM_STATE_PMSUSPENDED\x10\b2\xf9\x03\n" +
+	"\bEasyVirt\x121\n" +
 	"\bCreateVM\x12\x10.CreateVMRequest\x1a\x11.CreateVMResponse\"\x00\x12(\n" +
 	"\x05GetVM\x12\r.GetVMRequest\x1a\x0e.GetVMResponse\"\x00\x12.\n" +
 	"\aListVMs\x12\x0f.ListVMsRequest\x1a\x10.ListVMsResponse\"\x00\x121\n" +
@@ -1899,7 +1896,7 @@ var file_proto_easyvirt_proto_goTypes = []any{
 	(*GetVMStatsRequest)(nil),      // 21: GetVMStatsRequest
 	(*VMStats)(nil),                // 22: VMStats
 	(*GetVMStatsResponse)(nil),     // 23: GetVMStatsResponse
-	(*EmptyRequest)(nil),           // 24: EmptyRequest
+	(*Void)(nil),                   // 24: Void
 	(*ConnectionInfoResponse)(nil), // 25: ConnectionInfoResponse
 }
 var file_proto_easyvirt_proto_depIdxs = []int32{
@@ -1909,32 +1906,28 @@ var file_proto_easyvirt_proto_depIdxs = []int32{
 	2,  // 3: GetVMResponse.vm:type_name -> VirtualMachine
 	2,  // 4: ListVMsResponse.vms:type_name -> VirtualMachine
 	22, // 5: GetVMStatsResponse.stats:type_name -> VMStats
-	24, // 6: EasyVirt.Connect:input_type -> EmptyRequest
-	24, // 7: EasyVirt.Disconnect:input_type -> EmptyRequest
-	3,  // 8: EasyVirt.CreateVM:input_type -> CreateVMRequest
-	5,  // 9: EasyVirt.GetVM:input_type -> GetVMRequest
-	7,  // 10: EasyVirt.ListVMs:input_type -> ListVMsRequest
-	19, // 11: EasyVirt.DeleteVM:input_type -> DeleteVMRequest
-	9,  // 12: EasyVirt.StartVM:input_type -> StartVMRequest
-	11, // 13: EasyVirt.StopVM:input_type -> StopVMRequest
-	13, // 14: EasyVirt.RestartVM:input_type -> RestartVMRequest
-	15, // 15: EasyVirt.PauseVM:input_type -> PauseVMRequest
-	17, // 16: EasyVirt.ResumeVM:input_type -> ResumeVMRequest
-	21, // 17: EasyVirt.GetVMStats:input_type -> GetVMStatsRequest
-	25, // 18: EasyVirt.Connect:output_type -> ConnectionInfoResponse
-	25, // 19: EasyVirt.Disconnect:output_type -> ConnectionInfoResponse
-	4,  // 20: EasyVirt.CreateVM:output_type -> CreateVMResponse
-	6,  // 21: EasyVirt.GetVM:output_type -> GetVMResponse
-	8,  // 22: EasyVirt.ListVMs:output_type -> ListVMsResponse
-	20, // 23: EasyVirt.DeleteVM:output_type -> DeleteVMResponse
-	10, // 24: EasyVirt.StartVM:output_type -> StartVMResponse
-	12, // 25: EasyVirt.StopVM:output_type -> StopVMResponse
-	14, // 26: EasyVirt.RestartVM:output_type -> RestartVMResponse
-	16, // 27: EasyVirt.PauseVM:output_type -> PauseVMResponse
-	18, // 28: EasyVirt.ResumeVM:output_type -> ResumeVMResponse
-	23, // 29: EasyVirt.GetVMStats:output_type -> GetVMStatsResponse
-	18, // [18:30] is the sub-list for method output_type
-	6,  // [6:18] is the sub-list for method input_type
+	3,  // 6: EasyVirt.CreateVM:input_type -> CreateVMRequest
+	5,  // 7: EasyVirt.GetVM:input_type -> GetVMRequest
+	7,  // 8: EasyVirt.ListVMs:input_type -> ListVMsRequest
+	19, // 9: EasyVirt.DeleteVM:input_type -> DeleteVMRequest
+	9,  // 10: EasyVirt.StartVM:input_type -> StartVMRequest
+	11, // 11: EasyVirt.StopVM:input_type -> StopVMRequest
+	13, // 12: EasyVirt.RestartVM:input_type -> RestartVMRequest
+	15, // 13: EasyVirt.PauseVM:input_type -> PauseVMRequest
+	17, // 14: EasyVirt.ResumeVM:input_type -> ResumeVMRequest
+	21, // 15: EasyVirt.GetVMStats:input_type -> GetVMStatsRequest
+	4,  // 16: EasyVirt.CreateVM:output_type -> CreateVMResponse
+	6,  // 17: EasyVirt.GetVM:output_type -> GetVMResponse
+	8,  // 18: EasyVirt.ListVMs:output_type -> ListVMsResponse
+	20, // 19: EasyVirt.DeleteVM:output_type -> DeleteVMResponse
+	10, // 20: EasyVirt.StartVM:output_type -> StartVMResponse
+	12, // 21: EasyVirt.StopVM:output_type -> StopVMResponse
+	14, // 22: EasyVirt.RestartVM:output_type -> RestartVMResponse
+	16, // 23: EasyVirt.PauseVM:output_type -> PauseVMResponse
+	18, // 24: EasyVirt.ResumeVM:output_type -> ResumeVMResponse
+	23, // 25: EasyVirt.GetVMStats:output_type -> GetVMStatsResponse
+	16, // [16:26] is the sub-list for method output_type
+	6,  // [6:16] is the sub-list for method input_type
 	6,  // [6:6] is the sub-list for extension type_name
 	6,  // [6:6] is the sub-list for extension extendee
 	0,  // [0:6] is the sub-list for field type_name
