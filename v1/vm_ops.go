@@ -2,6 +2,7 @@ package ev
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/fanyang89/easyvirt/proto"
 	"github.com/libvirt/libvirt-go"
@@ -106,6 +107,10 @@ func (s *EasyVirtServer) DeleteVM(ctx context.Context, req *proto.DeleteVMReques
 	domain, err = s.findDomain(NewFindDomainParam(req.Domain))
 	if err != nil {
 		return nil, err
+	}
+
+	if req.DeleteDisks {
+		return nil, fmt.Errorf("not impl")
 	}
 
 	return VOID, domain.Undefine()
