@@ -1,0 +1,197 @@
+syntax = "proto3";
+
+option go_package = "github.com/fanyang89/easyvirt/proto";
+
+enum VMState {
+  VM_STATE_UNDEFINED = 0;
+  VM_STATE_NOSTATE = 1;
+  VM_STATE_RUNNING = 2;
+  VM_STATE_BLOCKED = 3;
+  VM_STATE_PAUSED = 4;
+  VM_STATE_SHUTDOWN = 5;
+  VM_STATE_SHUTOFF = 6;
+  VM_STATE_CRASHED = 7;
+  VM_STATE_PMSUSPENDED = 8;
+}
+
+message VMConfig {
+  string name = 1;
+  string uuid = 2;
+  int32 memory_mb = 3;
+  int32 vcpu_count = 4;
+  repeated string disks = 5;
+  repeated string networks = 6;
+  string os_type = 7;
+  string arch = 8;
+  string machine_type = 9;
+}
+
+message VirtualMachine {
+  string id = 1;
+  string name = 2;
+  string uuid = 3;
+  VMState state = 4;
+  int32 memory_mb = 5;
+  int32 vcpu_count = 6;
+  int64 cpu_time_ns = 7;
+  int64 max_memory_kb = 8;
+  int64 used_memory_kb = 9;
+  repeated string networks = 10;
+  repeated string disks = 11;
+  string xml_config = 12;
+  int64 created_at = 13;
+  int64 updated_at = 14;
+}
+
+message CreateVMRequest {
+  VMConfig config = 1;
+  string xml_template = 2;
+}
+
+message CreateVMResponse {
+  bool success = 1;
+  string message = 2;
+  VirtualMachine vm = 3;
+}
+
+message GetVMRequest {
+  string id = 1;
+  string name = 2;
+  string uuid = 3;
+}
+
+message GetVMResponse {
+  bool success = 1;
+  string message = 2;
+  VirtualMachine vm = 3;
+}
+
+message ListVMsRequest {
+  bool all = 1;
+}
+
+message ListVMsResponse {
+  bool success = 1;
+  string message = 2;
+  repeated VirtualMachine vms = 3;
+}
+
+message StartVMRequest {
+  string id = 1;
+  string name = 2;
+  string uuid = 3;
+}
+
+message StartVMResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message StopVMRequest {
+  string id = 1;
+  string name = 2;
+  string uuid = 3;
+  bool force = 4;
+}
+
+message StopVMResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message RestartVMRequest {
+  string id = 1;
+  string name = 2;
+  string uuid = 3;
+  bool force = 4;
+}
+
+message RestartVMResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message PauseVMRequest {
+  string id = 1;
+  string name = 2;
+  string uuid = 3;
+}
+
+message PauseVMResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message ResumeVMRequest {
+  string id = 1;
+  string name = 2;
+  string uuid = 3;
+}
+
+message ResumeVMResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message DeleteVMRequest {
+  string id = 1;
+  string name = 2;
+  string uuid = 3;
+  bool delete_disks = 4;
+}
+
+message DeleteVMResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message GetVMStatsRequest {
+  string id = 1;
+  string name = 2;
+  string uuid = 3;
+}
+
+message VMStats {
+  double cpu_usage_percent = 1;
+  int64 memory_used_kb = 2;
+  int64 memory_available_kb = 3;
+  double memory_usage_percent = 4;
+  int64 disk_read_bytes = 5;
+  int64 disk_write_bytes = 6;
+  int64 network_rx_bytes = 7;
+  int64 network_tx_bytes = 8;
+}
+
+message GetVMStatsResponse {
+  bool success = 1;
+  string message = 2;
+  VMStats stats = 3;
+}
+
+message EmptyRequest {}
+
+message ConnectionInfoResponse {
+  bool success = 1;
+  string message = 2;
+  string hostname = 3;
+  string libvirt_version = 4;
+  string hypervisor_type = 5;
+}
+
+service EasyVirt {
+  rpc Connect(EmptyRequest) returns (ConnectionInfoResponse) {}
+  rpc Disconnect(EmptyRequest) returns (ConnectionInfoResponse) {}
+
+  rpc CreateVM(CreateVMRequest) returns (CreateVMResponse) {}
+  rpc GetVM(GetVMRequest) returns (GetVMResponse) {}
+  rpc ListVMs(ListVMsRequest) returns (ListVMsResponse) {}
+  rpc DeleteVM(DeleteVMRequest) returns (DeleteVMResponse) {}
+
+  rpc StartVM(StartVMRequest) returns (StartVMResponse) {}
+  rpc StopVM(StopVMRequest) returns (StopVMResponse) {}
+  rpc RestartVM(RestartVMRequest) returns (RestartVMResponse) {}
+  rpc PauseVM(PauseVMRequest) returns (PauseVMResponse) {}
+  rpc ResumeVM(ResumeVMRequest) returns (ResumeVMResponse) {}
+
+  rpc GetVMStats(GetVMStatsRequest) returns (GetVMStatsResponse) {}
+}

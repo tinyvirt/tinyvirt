@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.10
 // 	protoc        v3.19.6
-// source: easyvirt.proto
+// source: proto/easyvirt.proto
 
 package proto
 
@@ -21,137 +21,1946 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type Point struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
+type VMState int32
 
-func (x *Point) Reset() {
-	*x = Point{}
-	mi := &file_easyvirt_proto_msgTypes[0]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Point) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Point) ProtoMessage() {}
-
-func (x *Point) ProtoReflect() protoreflect.Message {
-	mi := &file_easyvirt_proto_msgTypes[0]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Point.ProtoReflect.Descriptor instead.
-func (*Point) Descriptor() ([]byte, []int) {
-	return file_easyvirt_proto_rawDescGZIP(), []int{0}
-}
-
-type Feature struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Feature) Reset() {
-	*x = Feature{}
-	mi := &file_easyvirt_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Feature) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Feature) ProtoMessage() {}
-
-func (x *Feature) ProtoReflect() protoreflect.Message {
-	mi := &file_easyvirt_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Feature.ProtoReflect.Descriptor instead.
-func (*Feature) Descriptor() ([]byte, []int) {
-	return file_easyvirt_proto_rawDescGZIP(), []int{1}
-}
-
-var File_easyvirt_proto protoreflect.FileDescriptor
-
-const file_easyvirt_proto_rawDesc = "" +
-	"\n" +
-	"\x0eeasyvirt.proto\"\a\n" +
-	"\x05Point\"\t\n" +
-	"\aFeature2.\n" +
-	"\n" +
-	"RouteGuide\x12 \n" +
-	"\n" +
-	"GetFeature\x12\x06.Point\x1a\b.Feature\"\x00B%Z#github.com/fanyang89/easyvirt/protob\x06proto3"
-
-var (
-	file_easyvirt_proto_rawDescOnce sync.Once
-	file_easyvirt_proto_rawDescData []byte
+const (
+	VMState_VM_STATE_UNDEFINED   VMState = 0
+	VMState_VM_STATE_NOSTATE     VMState = 1
+	VMState_VM_STATE_RUNNING     VMState = 2
+	VMState_VM_STATE_BLOCKED     VMState = 3
+	VMState_VM_STATE_PAUSED      VMState = 4
+	VMState_VM_STATE_SHUTDOWN    VMState = 5
+	VMState_VM_STATE_SHUTOFF     VMState = 6
+	VMState_VM_STATE_CRASHED     VMState = 7
+	VMState_VM_STATE_PMSUSPENDED VMState = 8
 )
 
-func file_easyvirt_proto_rawDescGZIP() []byte {
-	file_easyvirt_proto_rawDescOnce.Do(func() {
-		file_easyvirt_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_easyvirt_proto_rawDesc), len(file_easyvirt_proto_rawDesc)))
+// Enum value maps for VMState.
+var (
+	VMState_name = map[int32]string{
+		0: "VM_STATE_UNDEFINED",
+		1: "VM_STATE_NOSTATE",
+		2: "VM_STATE_RUNNING",
+		3: "VM_STATE_BLOCKED",
+		4: "VM_STATE_PAUSED",
+		5: "VM_STATE_SHUTDOWN",
+		6: "VM_STATE_SHUTOFF",
+		7: "VM_STATE_CRASHED",
+		8: "VM_STATE_PMSUSPENDED",
+	}
+	VMState_value = map[string]int32{
+		"VM_STATE_UNDEFINED":   0,
+		"VM_STATE_NOSTATE":     1,
+		"VM_STATE_RUNNING":     2,
+		"VM_STATE_BLOCKED":     3,
+		"VM_STATE_PAUSED":      4,
+		"VM_STATE_SHUTDOWN":    5,
+		"VM_STATE_SHUTOFF":     6,
+		"VM_STATE_CRASHED":     7,
+		"VM_STATE_PMSUSPENDED": 8,
+	}
+)
+
+func (x VMState) Enum() *VMState {
+	p := new(VMState)
+	*p = x
+	return p
+}
+
+func (x VMState) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (VMState) Descriptor() protoreflect.EnumDescriptor {
+	return file_proto_easyvirt_proto_enumTypes[0].Descriptor()
+}
+
+func (VMState) Type() protoreflect.EnumType {
+	return &file_proto_easyvirt_proto_enumTypes[0]
+}
+
+func (x VMState) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use VMState.Descriptor instead.
+func (VMState) EnumDescriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{0}
+}
+
+type VMConfig struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Uuid          string                 `protobuf:"bytes,2,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	MemoryMb      int32                  `protobuf:"varint,3,opt,name=memory_mb,json=memoryMb,proto3" json:"memory_mb,omitempty"`
+	VcpuCount     int32                  `protobuf:"varint,4,opt,name=vcpu_count,json=vcpuCount,proto3" json:"vcpu_count,omitempty"`
+	Disks         []string               `protobuf:"bytes,5,rep,name=disks,proto3" json:"disks,omitempty"`
+	Networks      []string               `protobuf:"bytes,6,rep,name=networks,proto3" json:"networks,omitempty"`
+	OsType        string                 `protobuf:"bytes,7,opt,name=os_type,json=osType,proto3" json:"os_type,omitempty"`
+	Arch          string                 `protobuf:"bytes,8,opt,name=arch,proto3" json:"arch,omitempty"`
+	MachineType   string                 `protobuf:"bytes,9,opt,name=machine_type,json=machineType,proto3" json:"machine_type,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VMConfig) Reset() {
+	*x = VMConfig{}
+	mi := &file_proto_easyvirt_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VMConfig) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VMConfig) ProtoMessage() {}
+
+func (x *VMConfig) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VMConfig.ProtoReflect.Descriptor instead.
+func (*VMConfig) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *VMConfig) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *VMConfig) GetUuid() string {
+	if x != nil {
+		return x.Uuid
+	}
+	return ""
+}
+
+func (x *VMConfig) GetMemoryMb() int32 {
+	if x != nil {
+		return x.MemoryMb
+	}
+	return 0
+}
+
+func (x *VMConfig) GetVcpuCount() int32 {
+	if x != nil {
+		return x.VcpuCount
+	}
+	return 0
+}
+
+func (x *VMConfig) GetDisks() []string {
+	if x != nil {
+		return x.Disks
+	}
+	return nil
+}
+
+func (x *VMConfig) GetNetworks() []string {
+	if x != nil {
+		return x.Networks
+	}
+	return nil
+}
+
+func (x *VMConfig) GetOsType() string {
+	if x != nil {
+		return x.OsType
+	}
+	return ""
+}
+
+func (x *VMConfig) GetArch() string {
+	if x != nil {
+		return x.Arch
+	}
+	return ""
+}
+
+func (x *VMConfig) GetMachineType() string {
+	if x != nil {
+		return x.MachineType
+	}
+	return ""
+}
+
+type VirtualMachine struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Uuid          string                 `protobuf:"bytes,3,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	State         VMState                `protobuf:"varint,4,opt,name=state,proto3,enum=VMState" json:"state,omitempty"`
+	MemoryMb      int32                  `protobuf:"varint,5,opt,name=memory_mb,json=memoryMb,proto3" json:"memory_mb,omitempty"`
+	VcpuCount     int32                  `protobuf:"varint,6,opt,name=vcpu_count,json=vcpuCount,proto3" json:"vcpu_count,omitempty"`
+	CpuTimeNs     int64                  `protobuf:"varint,7,opt,name=cpu_time_ns,json=cpuTimeNs,proto3" json:"cpu_time_ns,omitempty"`
+	MaxMemoryKb   int64                  `protobuf:"varint,8,opt,name=max_memory_kb,json=maxMemoryKb,proto3" json:"max_memory_kb,omitempty"`
+	UsedMemoryKb  int64                  `protobuf:"varint,9,opt,name=used_memory_kb,json=usedMemoryKb,proto3" json:"used_memory_kb,omitempty"`
+	Networks      []string               `protobuf:"bytes,10,rep,name=networks,proto3" json:"networks,omitempty"`
+	Disks         []string               `protobuf:"bytes,11,rep,name=disks,proto3" json:"disks,omitempty"`
+	XmlConfig     string                 `protobuf:"bytes,12,opt,name=xml_config,json=xmlConfig,proto3" json:"xml_config,omitempty"`
+	CreatedAt     int64                  `protobuf:"varint,13,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt     int64                  `protobuf:"varint,14,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *VirtualMachine) Reset() {
+	*x = VirtualMachine{}
+	mi := &file_proto_easyvirt_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VirtualMachine) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VirtualMachine) ProtoMessage() {}
+
+func (x *VirtualMachine) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VirtualMachine.ProtoReflect.Descriptor instead.
+func (*VirtualMachine) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *VirtualMachine) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *VirtualMachine) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *VirtualMachine) GetUuid() string {
+	if x != nil {
+		return x.Uuid
+	}
+	return ""
+}
+
+func (x *VirtualMachine) GetState() VMState {
+	if x != nil {
+		return x.State
+	}
+	return VMState_VM_STATE_UNDEFINED
+}
+
+func (x *VirtualMachine) GetMemoryMb() int32 {
+	if x != nil {
+		return x.MemoryMb
+	}
+	return 0
+}
+
+func (x *VirtualMachine) GetVcpuCount() int32 {
+	if x != nil {
+		return x.VcpuCount
+	}
+	return 0
+}
+
+func (x *VirtualMachine) GetCpuTimeNs() int64 {
+	if x != nil {
+		return x.CpuTimeNs
+	}
+	return 0
+}
+
+func (x *VirtualMachine) GetMaxMemoryKb() int64 {
+	if x != nil {
+		return x.MaxMemoryKb
+	}
+	return 0
+}
+
+func (x *VirtualMachine) GetUsedMemoryKb() int64 {
+	if x != nil {
+		return x.UsedMemoryKb
+	}
+	return 0
+}
+
+func (x *VirtualMachine) GetNetworks() []string {
+	if x != nil {
+		return x.Networks
+	}
+	return nil
+}
+
+func (x *VirtualMachine) GetDisks() []string {
+	if x != nil {
+		return x.Disks
+	}
+	return nil
+}
+
+func (x *VirtualMachine) GetXmlConfig() string {
+	if x != nil {
+		return x.XmlConfig
+	}
+	return ""
+}
+
+func (x *VirtualMachine) GetCreatedAt() int64 {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return 0
+}
+
+func (x *VirtualMachine) GetUpdatedAt() int64 {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return 0
+}
+
+type CreateVMRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Config        *VMConfig              `protobuf:"bytes,1,opt,name=config,proto3" json:"config,omitempty"`
+	XmlTemplate   string                 `protobuf:"bytes,2,opt,name=xml_template,json=xmlTemplate,proto3" json:"xml_template,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateVMRequest) Reset() {
+	*x = CreateVMRequest{}
+	mi := &file_proto_easyvirt_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateVMRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateVMRequest) ProtoMessage() {}
+
+func (x *CreateVMRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateVMRequest.ProtoReflect.Descriptor instead.
+func (*CreateVMRequest) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *CreateVMRequest) GetConfig() *VMConfig {
+	if x != nil {
+		return x.Config
+	}
+	return nil
+}
+
+func (x *CreateVMRequest) GetXmlTemplate() string {
+	if x != nil {
+		return x.XmlTemplate
+	}
+	return ""
+}
+
+type CreateVMResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Vm            *VirtualMachine        `protobuf:"bytes,3,opt,name=vm,proto3" json:"vm,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateVMResponse) Reset() {
+	*x = CreateVMResponse{}
+	mi := &file_proto_easyvirt_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateVMResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateVMResponse) ProtoMessage() {}
+
+func (x *CreateVMResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateVMResponse.ProtoReflect.Descriptor instead.
+func (*CreateVMResponse) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *CreateVMResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *CreateVMResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *CreateVMResponse) GetVm() *VirtualMachine {
+	if x != nil {
+		return x.Vm
+	}
+	return nil
+}
+
+type GetVMRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Uuid          string                 `protobuf:"bytes,3,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetVMRequest) Reset() {
+	*x = GetVMRequest{}
+	mi := &file_proto_easyvirt_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetVMRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetVMRequest) ProtoMessage() {}
+
+func (x *GetVMRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetVMRequest.ProtoReflect.Descriptor instead.
+func (*GetVMRequest) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *GetVMRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *GetVMRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *GetVMRequest) GetUuid() string {
+	if x != nil {
+		return x.Uuid
+	}
+	return ""
+}
+
+type GetVMResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Vm            *VirtualMachine        `protobuf:"bytes,3,opt,name=vm,proto3" json:"vm,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetVMResponse) Reset() {
+	*x = GetVMResponse{}
+	mi := &file_proto_easyvirt_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetVMResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetVMResponse) ProtoMessage() {}
+
+func (x *GetVMResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetVMResponse.ProtoReflect.Descriptor instead.
+func (*GetVMResponse) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetVMResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *GetVMResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *GetVMResponse) GetVm() *VirtualMachine {
+	if x != nil {
+		return x.Vm
+	}
+	return nil
+}
+
+type ListVMsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	All           bool                   `protobuf:"varint,1,opt,name=all,proto3" json:"all,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListVMsRequest) Reset() {
+	*x = ListVMsRequest{}
+	mi := &file_proto_easyvirt_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListVMsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListVMsRequest) ProtoMessage() {}
+
+func (x *ListVMsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListVMsRequest.ProtoReflect.Descriptor instead.
+func (*ListVMsRequest) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *ListVMsRequest) GetAll() bool {
+	if x != nil {
+		return x.All
+	}
+	return false
+}
+
+type ListVMsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Vms           []*VirtualMachine      `protobuf:"bytes,3,rep,name=vms,proto3" json:"vms,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ListVMsResponse) Reset() {
+	*x = ListVMsResponse{}
+	mi := &file_proto_easyvirt_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ListVMsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ListVMsResponse) ProtoMessage() {}
+
+func (x *ListVMsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ListVMsResponse.ProtoReflect.Descriptor instead.
+func (*ListVMsResponse) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *ListVMsResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *ListVMsResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *ListVMsResponse) GetVms() []*VirtualMachine {
+	if x != nil {
+		return x.Vms
+	}
+	return nil
+}
+
+type StartVMRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Uuid          string                 `protobuf:"bytes,3,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StartVMRequest) Reset() {
+	*x = StartVMRequest{}
+	mi := &file_proto_easyvirt_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StartVMRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StartVMRequest) ProtoMessage() {}
+
+func (x *StartVMRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StartVMRequest.ProtoReflect.Descriptor instead.
+func (*StartVMRequest) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *StartVMRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *StartVMRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *StartVMRequest) GetUuid() string {
+	if x != nil {
+		return x.Uuid
+	}
+	return ""
+}
+
+type StartVMResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StartVMResponse) Reset() {
+	*x = StartVMResponse{}
+	mi := &file_proto_easyvirt_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StartVMResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StartVMResponse) ProtoMessage() {}
+
+func (x *StartVMResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StartVMResponse.ProtoReflect.Descriptor instead.
+func (*StartVMResponse) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *StartVMResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *StartVMResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type StopVMRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Uuid          string                 `protobuf:"bytes,3,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	Force         bool                   `protobuf:"varint,4,opt,name=force,proto3" json:"force,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StopVMRequest) Reset() {
+	*x = StopVMRequest{}
+	mi := &file_proto_easyvirt_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StopVMRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StopVMRequest) ProtoMessage() {}
+
+func (x *StopVMRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StopVMRequest.ProtoReflect.Descriptor instead.
+func (*StopVMRequest) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *StopVMRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *StopVMRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *StopVMRequest) GetUuid() string {
+	if x != nil {
+		return x.Uuid
+	}
+	return ""
+}
+
+func (x *StopVMRequest) GetForce() bool {
+	if x != nil {
+		return x.Force
+	}
+	return false
+}
+
+type StopVMResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StopVMResponse) Reset() {
+	*x = StopVMResponse{}
+	mi := &file_proto_easyvirt_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StopVMResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StopVMResponse) ProtoMessage() {}
+
+func (x *StopVMResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StopVMResponse.ProtoReflect.Descriptor instead.
+func (*StopVMResponse) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *StopVMResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *StopVMResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type RestartVMRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Uuid          string                 `protobuf:"bytes,3,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	Force         bool                   `protobuf:"varint,4,opt,name=force,proto3" json:"force,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RestartVMRequest) Reset() {
+	*x = RestartVMRequest{}
+	mi := &file_proto_easyvirt_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RestartVMRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RestartVMRequest) ProtoMessage() {}
+
+func (x *RestartVMRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RestartVMRequest.ProtoReflect.Descriptor instead.
+func (*RestartVMRequest) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *RestartVMRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *RestartVMRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *RestartVMRequest) GetUuid() string {
+	if x != nil {
+		return x.Uuid
+	}
+	return ""
+}
+
+func (x *RestartVMRequest) GetForce() bool {
+	if x != nil {
+		return x.Force
+	}
+	return false
+}
+
+type RestartVMResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RestartVMResponse) Reset() {
+	*x = RestartVMResponse{}
+	mi := &file_proto_easyvirt_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RestartVMResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RestartVMResponse) ProtoMessage() {}
+
+func (x *RestartVMResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RestartVMResponse.ProtoReflect.Descriptor instead.
+func (*RestartVMResponse) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *RestartVMResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *RestartVMResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type PauseVMRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Uuid          string                 `protobuf:"bytes,3,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PauseVMRequest) Reset() {
+	*x = PauseVMRequest{}
+	mi := &file_proto_easyvirt_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PauseVMRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PauseVMRequest) ProtoMessage() {}
+
+func (x *PauseVMRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PauseVMRequest.ProtoReflect.Descriptor instead.
+func (*PauseVMRequest) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *PauseVMRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *PauseVMRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *PauseVMRequest) GetUuid() string {
+	if x != nil {
+		return x.Uuid
+	}
+	return ""
+}
+
+type PauseVMResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PauseVMResponse) Reset() {
+	*x = PauseVMResponse{}
+	mi := &file_proto_easyvirt_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PauseVMResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PauseVMResponse) ProtoMessage() {}
+
+func (x *PauseVMResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PauseVMResponse.ProtoReflect.Descriptor instead.
+func (*PauseVMResponse) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *PauseVMResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *PauseVMResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type ResumeVMRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Uuid          string                 `protobuf:"bytes,3,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ResumeVMRequest) Reset() {
+	*x = ResumeVMRequest{}
+	mi := &file_proto_easyvirt_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ResumeVMRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResumeVMRequest) ProtoMessage() {}
+
+func (x *ResumeVMRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResumeVMRequest.ProtoReflect.Descriptor instead.
+func (*ResumeVMRequest) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *ResumeVMRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *ResumeVMRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ResumeVMRequest) GetUuid() string {
+	if x != nil {
+		return x.Uuid
+	}
+	return ""
+}
+
+type ResumeVMResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ResumeVMResponse) Reset() {
+	*x = ResumeVMResponse{}
+	mi := &file_proto_easyvirt_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ResumeVMResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ResumeVMResponse) ProtoMessage() {}
+
+func (x *ResumeVMResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ResumeVMResponse.ProtoReflect.Descriptor instead.
+func (*ResumeVMResponse) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *ResumeVMResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *ResumeVMResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type DeleteVMRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Uuid          string                 `protobuf:"bytes,3,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	DeleteDisks   bool                   `protobuf:"varint,4,opt,name=delete_disks,json=deleteDisks,proto3" json:"delete_disks,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteVMRequest) Reset() {
+	*x = DeleteVMRequest{}
+	mi := &file_proto_easyvirt_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteVMRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteVMRequest) ProtoMessage() {}
+
+func (x *DeleteVMRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteVMRequest.ProtoReflect.Descriptor instead.
+func (*DeleteVMRequest) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *DeleteVMRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *DeleteVMRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *DeleteVMRequest) GetUuid() string {
+	if x != nil {
+		return x.Uuid
+	}
+	return ""
+}
+
+func (x *DeleteVMRequest) GetDeleteDisks() bool {
+	if x != nil {
+		return x.DeleteDisks
+	}
+	return false
+}
+
+type DeleteVMResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteVMResponse) Reset() {
+	*x = DeleteVMResponse{}
+	mi := &file_proto_easyvirt_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteVMResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteVMResponse) ProtoMessage() {}
+
+func (x *DeleteVMResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteVMResponse.ProtoReflect.Descriptor instead.
+func (*DeleteVMResponse) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *DeleteVMResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *DeleteVMResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+type GetVMStatsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Uuid          string                 `protobuf:"bytes,3,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetVMStatsRequest) Reset() {
+	*x = GetVMStatsRequest{}
+	mi := &file_proto_easyvirt_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetVMStatsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetVMStatsRequest) ProtoMessage() {}
+
+func (x *GetVMStatsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetVMStatsRequest.ProtoReflect.Descriptor instead.
+func (*GetVMStatsRequest) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *GetVMStatsRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *GetVMStatsRequest) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *GetVMStatsRequest) GetUuid() string {
+	if x != nil {
+		return x.Uuid
+	}
+	return ""
+}
+
+type VMStats struct {
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	CpuUsagePercent    float64                `protobuf:"fixed64,1,opt,name=cpu_usage_percent,json=cpuUsagePercent,proto3" json:"cpu_usage_percent,omitempty"`
+	MemoryUsedKb       int64                  `protobuf:"varint,2,opt,name=memory_used_kb,json=memoryUsedKb,proto3" json:"memory_used_kb,omitempty"`
+	MemoryAvailableKb  int64                  `protobuf:"varint,3,opt,name=memory_available_kb,json=memoryAvailableKb,proto3" json:"memory_available_kb,omitempty"`
+	MemoryUsagePercent float64                `protobuf:"fixed64,4,opt,name=memory_usage_percent,json=memoryUsagePercent,proto3" json:"memory_usage_percent,omitempty"`
+	DiskReadBytes      int64                  `protobuf:"varint,5,opt,name=disk_read_bytes,json=diskReadBytes,proto3" json:"disk_read_bytes,omitempty"`
+	DiskWriteBytes     int64                  `protobuf:"varint,6,opt,name=disk_write_bytes,json=diskWriteBytes,proto3" json:"disk_write_bytes,omitempty"`
+	NetworkRxBytes     int64                  `protobuf:"varint,7,opt,name=network_rx_bytes,json=networkRxBytes,proto3" json:"network_rx_bytes,omitempty"`
+	NetworkTxBytes     int64                  `protobuf:"varint,8,opt,name=network_tx_bytes,json=networkTxBytes,proto3" json:"network_tx_bytes,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
+}
+
+func (x *VMStats) Reset() {
+	*x = VMStats{}
+	mi := &file_proto_easyvirt_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *VMStats) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*VMStats) ProtoMessage() {}
+
+func (x *VMStats) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use VMStats.ProtoReflect.Descriptor instead.
+func (*VMStats) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *VMStats) GetCpuUsagePercent() float64 {
+	if x != nil {
+		return x.CpuUsagePercent
+	}
+	return 0
+}
+
+func (x *VMStats) GetMemoryUsedKb() int64 {
+	if x != nil {
+		return x.MemoryUsedKb
+	}
+	return 0
+}
+
+func (x *VMStats) GetMemoryAvailableKb() int64 {
+	if x != nil {
+		return x.MemoryAvailableKb
+	}
+	return 0
+}
+
+func (x *VMStats) GetMemoryUsagePercent() float64 {
+	if x != nil {
+		return x.MemoryUsagePercent
+	}
+	return 0
+}
+
+func (x *VMStats) GetDiskReadBytes() int64 {
+	if x != nil {
+		return x.DiskReadBytes
+	}
+	return 0
+}
+
+func (x *VMStats) GetDiskWriteBytes() int64 {
+	if x != nil {
+		return x.DiskWriteBytes
+	}
+	return 0
+}
+
+func (x *VMStats) GetNetworkRxBytes() int64 {
+	if x != nil {
+		return x.NetworkRxBytes
+	}
+	return 0
+}
+
+func (x *VMStats) GetNetworkTxBytes() int64 {
+	if x != nil {
+		return x.NetworkTxBytes
+	}
+	return 0
+}
+
+type GetVMStatsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Stats         *VMStats               `protobuf:"bytes,3,opt,name=stats,proto3" json:"stats,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetVMStatsResponse) Reset() {
+	*x = GetVMStatsResponse{}
+	mi := &file_proto_easyvirt_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetVMStatsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetVMStatsResponse) ProtoMessage() {}
+
+func (x *GetVMStatsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetVMStatsResponse.ProtoReflect.Descriptor instead.
+func (*GetVMStatsResponse) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *GetVMStatsResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *GetVMStatsResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *GetVMStatsResponse) GetStats() *VMStats {
+	if x != nil {
+		return x.Stats
+	}
+	return nil
+}
+
+type EmptyRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EmptyRequest) Reset() {
+	*x = EmptyRequest{}
+	mi := &file_proto_easyvirt_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EmptyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EmptyRequest) ProtoMessage() {}
+
+func (x *EmptyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EmptyRequest.ProtoReflect.Descriptor instead.
+func (*EmptyRequest) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{23}
+}
+
+type ConnectionInfoResponse struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	Success        bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Message        string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Hostname       string                 `protobuf:"bytes,3,opt,name=hostname,proto3" json:"hostname,omitempty"`
+	LibvirtVersion string                 `protobuf:"bytes,4,opt,name=libvirt_version,json=libvirtVersion,proto3" json:"libvirt_version,omitempty"`
+	HypervisorType string                 `protobuf:"bytes,5,opt,name=hypervisor_type,json=hypervisorType,proto3" json:"hypervisor_type,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *ConnectionInfoResponse) Reset() {
+	*x = ConnectionInfoResponse{}
+	mi := &file_proto_easyvirt_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ConnectionInfoResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ConnectionInfoResponse) ProtoMessage() {}
+
+func (x *ConnectionInfoResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ConnectionInfoResponse.ProtoReflect.Descriptor instead.
+func (*ConnectionInfoResponse) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *ConnectionInfoResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *ConnectionInfoResponse) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *ConnectionInfoResponse) GetHostname() string {
+	if x != nil {
+		return x.Hostname
+	}
+	return ""
+}
+
+func (x *ConnectionInfoResponse) GetLibvirtVersion() string {
+	if x != nil {
+		return x.LibvirtVersion
+	}
+	return ""
+}
+
+func (x *ConnectionInfoResponse) GetHypervisorType() string {
+	if x != nil {
+		return x.HypervisorType
+	}
+	return ""
+}
+
+var File_proto_easyvirt_proto protoreflect.FileDescriptor
+
+const file_proto_easyvirt_proto_rawDesc = "" +
+	"\n" +
+	"\x14proto/easyvirt.proto\"\xf0\x01\n" +
+	"\bVMConfig\x12\x12\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
+	"\x04uuid\x18\x02 \x01(\tR\x04uuid\x12\x1b\n" +
+	"\tmemory_mb\x18\x03 \x01(\x05R\bmemoryMb\x12\x1d\n" +
+	"\n" +
+	"vcpu_count\x18\x04 \x01(\x05R\tvcpuCount\x12\x14\n" +
+	"\x05disks\x18\x05 \x03(\tR\x05disks\x12\x1a\n" +
+	"\bnetworks\x18\x06 \x03(\tR\bnetworks\x12\x17\n" +
+	"\aos_type\x18\a \x01(\tR\x06osType\x12\x12\n" +
+	"\x04arch\x18\b \x01(\tR\x04arch\x12!\n" +
+	"\fmachine_type\x18\t \x01(\tR\vmachineType\"\x9d\x03\n" +
+	"\x0eVirtualMachine\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
+	"\x04uuid\x18\x03 \x01(\tR\x04uuid\x12\x1e\n" +
+	"\x05state\x18\x04 \x01(\x0e2\b.VMStateR\x05state\x12\x1b\n" +
+	"\tmemory_mb\x18\x05 \x01(\x05R\bmemoryMb\x12\x1d\n" +
+	"\n" +
+	"vcpu_count\x18\x06 \x01(\x05R\tvcpuCount\x12\x1e\n" +
+	"\vcpu_time_ns\x18\a \x01(\x03R\tcpuTimeNs\x12\"\n" +
+	"\rmax_memory_kb\x18\b \x01(\x03R\vmaxMemoryKb\x12$\n" +
+	"\x0eused_memory_kb\x18\t \x01(\x03R\fusedMemoryKb\x12\x1a\n" +
+	"\bnetworks\x18\n" +
+	" \x03(\tR\bnetworks\x12\x14\n" +
+	"\x05disks\x18\v \x03(\tR\x05disks\x12\x1d\n" +
+	"\n" +
+	"xml_config\x18\f \x01(\tR\txmlConfig\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\r \x01(\x03R\tcreatedAt\x12\x1d\n" +
+	"\n" +
+	"updated_at\x18\x0e \x01(\x03R\tupdatedAt\"W\n" +
+	"\x0fCreateVMRequest\x12!\n" +
+	"\x06config\x18\x01 \x01(\v2\t.VMConfigR\x06config\x12!\n" +
+	"\fxml_template\x18\x02 \x01(\tR\vxmlTemplate\"g\n" +
+	"\x10CreateVMResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1f\n" +
+	"\x02vm\x18\x03 \x01(\v2\x0f.VirtualMachineR\x02vm\"F\n" +
+	"\fGetVMRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
+	"\x04uuid\x18\x03 \x01(\tR\x04uuid\"d\n" +
+	"\rGetVMResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1f\n" +
+	"\x02vm\x18\x03 \x01(\v2\x0f.VirtualMachineR\x02vm\"\"\n" +
+	"\x0eListVMsRequest\x12\x10\n" +
+	"\x03all\x18\x01 \x01(\bR\x03all\"h\n" +
+	"\x0fListVMsResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12!\n" +
+	"\x03vms\x18\x03 \x03(\v2\x0f.VirtualMachineR\x03vms\"H\n" +
+	"\x0eStartVMRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
+	"\x04uuid\x18\x03 \x01(\tR\x04uuid\"E\n" +
+	"\x0fStartVMResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"]\n" +
+	"\rStopVMRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
+	"\x04uuid\x18\x03 \x01(\tR\x04uuid\x12\x14\n" +
+	"\x05force\x18\x04 \x01(\bR\x05force\"D\n" +
+	"\x0eStopVMResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"`\n" +
+	"\x10RestartVMRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
+	"\x04uuid\x18\x03 \x01(\tR\x04uuid\x12\x14\n" +
+	"\x05force\x18\x04 \x01(\bR\x05force\"G\n" +
+	"\x11RestartVMResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"H\n" +
+	"\x0ePauseVMRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
+	"\x04uuid\x18\x03 \x01(\tR\x04uuid\"E\n" +
+	"\x0fPauseVMResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"I\n" +
+	"\x0fResumeVMRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
+	"\x04uuid\x18\x03 \x01(\tR\x04uuid\"F\n" +
+	"\x10ResumeVMResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"l\n" +
+	"\x0fDeleteVMRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
+	"\x04uuid\x18\x03 \x01(\tR\x04uuid\x12!\n" +
+	"\fdelete_disks\x18\x04 \x01(\bR\vdeleteDisks\"F\n" +
+	"\x10DeleteVMResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\"K\n" +
+	"\x11GetVMStatsRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
+	"\x04uuid\x18\x03 \x01(\tR\x04uuid\"\xe3\x02\n" +
+	"\aVMStats\x12*\n" +
+	"\x11cpu_usage_percent\x18\x01 \x01(\x01R\x0fcpuUsagePercent\x12$\n" +
+	"\x0ememory_used_kb\x18\x02 \x01(\x03R\fmemoryUsedKb\x12.\n" +
+	"\x13memory_available_kb\x18\x03 \x01(\x03R\x11memoryAvailableKb\x120\n" +
+	"\x14memory_usage_percent\x18\x04 \x01(\x01R\x12memoryUsagePercent\x12&\n" +
+	"\x0fdisk_read_bytes\x18\x05 \x01(\x03R\rdiskReadBytes\x12(\n" +
+	"\x10disk_write_bytes\x18\x06 \x01(\x03R\x0ediskWriteBytes\x12(\n" +
+	"\x10network_rx_bytes\x18\a \x01(\x03R\x0enetworkRxBytes\x12(\n" +
+	"\x10network_tx_bytes\x18\b \x01(\x03R\x0enetworkTxBytes\"h\n" +
+	"\x12GetVMStatsResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1e\n" +
+	"\x05stats\x18\x03 \x01(\v2\b.VMStatsR\x05stats\"\x0e\n" +
+	"\fEmptyRequest\"\xba\x01\n" +
+	"\x16ConnectionInfoResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1a\n" +
+	"\bhostname\x18\x03 \x01(\tR\bhostname\x12'\n" +
+	"\x0flibvirt_version\x18\x04 \x01(\tR\x0elibvirtVersion\x12'\n" +
+	"\x0fhypervisor_type\x18\x05 \x01(\tR\x0ehypervisorType*\xd5\x01\n" +
+	"\aVMState\x12\x16\n" +
+	"\x12VM_STATE_UNDEFINED\x10\x00\x12\x14\n" +
+	"\x10VM_STATE_NOSTATE\x10\x01\x12\x14\n" +
+	"\x10VM_STATE_RUNNING\x10\x02\x12\x14\n" +
+	"\x10VM_STATE_BLOCKED\x10\x03\x12\x13\n" +
+	"\x0fVM_STATE_PAUSED\x10\x04\x12\x15\n" +
+	"\x11VM_STATE_SHUTDOWN\x10\x05\x12\x14\n" +
+	"\x10VM_STATE_SHUTOFF\x10\x06\x12\x14\n" +
+	"\x10VM_STATE_CRASHED\x10\a\x12\x18\n" +
+	"\x14VM_STATE_PMSUSPENDED\x10\b2\xe6\x04\n" +
+	"\bEasyVirt\x123\n" +
+	"\aConnect\x12\r.EmptyRequest\x1a\x17.ConnectionInfoResponse\"\x00\x126\n" +
+	"\n" +
+	"Disconnect\x12\r.EmptyRequest\x1a\x17.ConnectionInfoResponse\"\x00\x121\n" +
+	"\bCreateVM\x12\x10.CreateVMRequest\x1a\x11.CreateVMResponse\"\x00\x12(\n" +
+	"\x05GetVM\x12\r.GetVMRequest\x1a\x0e.GetVMResponse\"\x00\x12.\n" +
+	"\aListVMs\x12\x0f.ListVMsRequest\x1a\x10.ListVMsResponse\"\x00\x121\n" +
+	"\bDeleteVM\x12\x10.DeleteVMRequest\x1a\x11.DeleteVMResponse\"\x00\x12.\n" +
+	"\aStartVM\x12\x0f.StartVMRequest\x1a\x10.StartVMResponse\"\x00\x12+\n" +
+	"\x06StopVM\x12\x0e.StopVMRequest\x1a\x0f.StopVMResponse\"\x00\x124\n" +
+	"\tRestartVM\x12\x11.RestartVMRequest\x1a\x12.RestartVMResponse\"\x00\x12.\n" +
+	"\aPauseVM\x12\x0f.PauseVMRequest\x1a\x10.PauseVMResponse\"\x00\x121\n" +
+	"\bResumeVM\x12\x10.ResumeVMRequest\x1a\x11.ResumeVMResponse\"\x00\x127\n" +
+	"\n" +
+	"GetVMStats\x12\x12.GetVMStatsRequest\x1a\x13.GetVMStatsResponse\"\x00B%Z#github.com/fanyang89/easyvirt/protob\x06proto3"
+
+var (
+	file_proto_easyvirt_proto_rawDescOnce sync.Once
+	file_proto_easyvirt_proto_rawDescData []byte
+)
+
+func file_proto_easyvirt_proto_rawDescGZIP() []byte {
+	file_proto_easyvirt_proto_rawDescOnce.Do(func() {
+		file_proto_easyvirt_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_proto_easyvirt_proto_rawDesc), len(file_proto_easyvirt_proto_rawDesc)))
 	})
-	return file_easyvirt_proto_rawDescData
+	return file_proto_easyvirt_proto_rawDescData
 }
 
-var file_easyvirt_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_easyvirt_proto_goTypes = []any{
-	(*Point)(nil),   // 0: Point
-	(*Feature)(nil), // 1: Feature
+var file_proto_easyvirt_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_proto_easyvirt_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
+var file_proto_easyvirt_proto_goTypes = []any{
+	(VMState)(0),                   // 0: VMState
+	(*VMConfig)(nil),               // 1: VMConfig
+	(*VirtualMachine)(nil),         // 2: VirtualMachine
+	(*CreateVMRequest)(nil),        // 3: CreateVMRequest
+	(*CreateVMResponse)(nil),       // 4: CreateVMResponse
+	(*GetVMRequest)(nil),           // 5: GetVMRequest
+	(*GetVMResponse)(nil),          // 6: GetVMResponse
+	(*ListVMsRequest)(nil),         // 7: ListVMsRequest
+	(*ListVMsResponse)(nil),        // 8: ListVMsResponse
+	(*StartVMRequest)(nil),         // 9: StartVMRequest
+	(*StartVMResponse)(nil),        // 10: StartVMResponse
+	(*StopVMRequest)(nil),          // 11: StopVMRequest
+	(*StopVMResponse)(nil),         // 12: StopVMResponse
+	(*RestartVMRequest)(nil),       // 13: RestartVMRequest
+	(*RestartVMResponse)(nil),      // 14: RestartVMResponse
+	(*PauseVMRequest)(nil),         // 15: PauseVMRequest
+	(*PauseVMResponse)(nil),        // 16: PauseVMResponse
+	(*ResumeVMRequest)(nil),        // 17: ResumeVMRequest
+	(*ResumeVMResponse)(nil),       // 18: ResumeVMResponse
+	(*DeleteVMRequest)(nil),        // 19: DeleteVMRequest
+	(*DeleteVMResponse)(nil),       // 20: DeleteVMResponse
+	(*GetVMStatsRequest)(nil),      // 21: GetVMStatsRequest
+	(*VMStats)(nil),                // 22: VMStats
+	(*GetVMStatsResponse)(nil),     // 23: GetVMStatsResponse
+	(*EmptyRequest)(nil),           // 24: EmptyRequest
+	(*ConnectionInfoResponse)(nil), // 25: ConnectionInfoResponse
 }
-var file_easyvirt_proto_depIdxs = []int32{
-	0, // 0: RouteGuide.GetFeature:input_type -> Point
-	1, // 1: RouteGuide.GetFeature:output_type -> Feature
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+var file_proto_easyvirt_proto_depIdxs = []int32{
+	0,  // 0: VirtualMachine.state:type_name -> VMState
+	1,  // 1: CreateVMRequest.config:type_name -> VMConfig
+	2,  // 2: CreateVMResponse.vm:type_name -> VirtualMachine
+	2,  // 3: GetVMResponse.vm:type_name -> VirtualMachine
+	2,  // 4: ListVMsResponse.vms:type_name -> VirtualMachine
+	22, // 5: GetVMStatsResponse.stats:type_name -> VMStats
+	24, // 6: EasyVirt.Connect:input_type -> EmptyRequest
+	24, // 7: EasyVirt.Disconnect:input_type -> EmptyRequest
+	3,  // 8: EasyVirt.CreateVM:input_type -> CreateVMRequest
+	5,  // 9: EasyVirt.GetVM:input_type -> GetVMRequest
+	7,  // 10: EasyVirt.ListVMs:input_type -> ListVMsRequest
+	19, // 11: EasyVirt.DeleteVM:input_type -> DeleteVMRequest
+	9,  // 12: EasyVirt.StartVM:input_type -> StartVMRequest
+	11, // 13: EasyVirt.StopVM:input_type -> StopVMRequest
+	13, // 14: EasyVirt.RestartVM:input_type -> RestartVMRequest
+	15, // 15: EasyVirt.PauseVM:input_type -> PauseVMRequest
+	17, // 16: EasyVirt.ResumeVM:input_type -> ResumeVMRequest
+	21, // 17: EasyVirt.GetVMStats:input_type -> GetVMStatsRequest
+	25, // 18: EasyVirt.Connect:output_type -> ConnectionInfoResponse
+	25, // 19: EasyVirt.Disconnect:output_type -> ConnectionInfoResponse
+	4,  // 20: EasyVirt.CreateVM:output_type -> CreateVMResponse
+	6,  // 21: EasyVirt.GetVM:output_type -> GetVMResponse
+	8,  // 22: EasyVirt.ListVMs:output_type -> ListVMsResponse
+	20, // 23: EasyVirt.DeleteVM:output_type -> DeleteVMResponse
+	10, // 24: EasyVirt.StartVM:output_type -> StartVMResponse
+	12, // 25: EasyVirt.StopVM:output_type -> StopVMResponse
+	14, // 26: EasyVirt.RestartVM:output_type -> RestartVMResponse
+	16, // 27: EasyVirt.PauseVM:output_type -> PauseVMResponse
+	18, // 28: EasyVirt.ResumeVM:output_type -> ResumeVMResponse
+	23, // 29: EasyVirt.GetVMStats:output_type -> GetVMStatsResponse
+	18, // [18:30] is the sub-list for method output_type
+	6,  // [6:18] is the sub-list for method input_type
+	6,  // [6:6] is the sub-list for extension type_name
+	6,  // [6:6] is the sub-list for extension extendee
+	0,  // [0:6] is the sub-list for field type_name
 }
 
-func init() { file_easyvirt_proto_init() }
-func file_easyvirt_proto_init() {
-	if File_easyvirt_proto != nil {
+func init() { file_proto_easyvirt_proto_init() }
+func file_proto_easyvirt_proto_init() {
+	if File_proto_easyvirt_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_easyvirt_proto_rawDesc), len(file_easyvirt_proto_rawDesc)),
-			NumEnums:      0,
-			NumMessages:   2,
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_easyvirt_proto_rawDesc), len(file_proto_easyvirt_proto_rawDesc)),
+			NumEnums:      1,
+			NumMessages:   25,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_easyvirt_proto_goTypes,
-		DependencyIndexes: file_easyvirt_proto_depIdxs,
-		MessageInfos:      file_easyvirt_proto_msgTypes,
+		GoTypes:           file_proto_easyvirt_proto_goTypes,
+		DependencyIndexes: file_proto_easyvirt_proto_depIdxs,
+		EnumInfos:         file_proto_easyvirt_proto_enumTypes,
+		MessageInfos:      file_proto_easyvirt_proto_msgTypes,
 	}.Build()
-	File_easyvirt_proto = out.File
-	file_easyvirt_proto_goTypes = nil
-	file_easyvirt_proto_depIdxs = nil
+	File_proto_easyvirt_proto = out.File
+	file_proto_easyvirt_proto_goTypes = nil
+	file_proto_easyvirt_proto_depIdxs = nil
 }
