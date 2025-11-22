@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option go_package = "github.com/fanyang89/easyvirt/proto";
+
+message Point {}
+
+message Feature {}
+
+service RouteGuide {
+  rpc GetFeature(Point) returns (Feature) {}
+}
