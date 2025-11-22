@@ -63,7 +63,7 @@ func newPtrFromValue[T any](value T) *T {
 	return &value
 }
 
-func NewFindDomainParam(finder *proto.FindDomain) FindDomainParam {
+func NewFindDomainParam(finder *proto.DomainID) FindDomainParam {
 	return FindDomainParam{
 		ID:   newPtrFromValue(finder.Id),
 		Name: newPtrFromValue(finder.Name),

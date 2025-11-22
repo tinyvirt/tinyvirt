@@ -5,7 +5,7 @@ import (
 	"github.com/libvirt/libvirt-go"
 )
 
-func convertDomain(d *libvirt.Domain) *proto.VirtualMachine {
-	vm := &proto.VirtualMachine{}
+func convertDomain(d *libvirt.Domain) *proto.VM {
+	vm := &proto.VM{}
 	return vm
 }

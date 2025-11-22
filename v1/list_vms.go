@@ -27,7 +27,7 @@ func (s *EasyVirtServer) ListVMs(ctx context.Context, req *proto.ListVMsRequest)
 		return nil, err
 	}
 
-	vms := make([]*proto.VirtualMachine, 0, len(domains))
+	vms := make([]*proto.VM, 0, len(domains))
 	for _, domain := range domains {
 		vm := convertDomain(&domain)
 		vms = append(vms, vm)
