@@ -2,6 +2,8 @@ syntax = "proto3";
 
 option go_package = "github.com/fanyang89/easyvirt/proto";
 
+message Void {}
+
 enum VMState {
   VM_STATE_UNDEFINED = 0;
   VM_STATE_NOSTATE = 1;
@@ -76,119 +78,55 @@ message ListVMsResponse {
   repeated VirtualMachine vms = 3;
 }
 
-message StartVMRequest {
+message FindDomain {
   uint32 id = 1;
   string name = 2;
   string uuid = 3;
 }
 
-message StartVMResponse {
-  bool success = 1;
-  string message = 2;
+message StartVMRequest {
+  FindDomain domain = 1;
 }
 
 message StopVMRequest {
-  uint32 id = 1;
-  string name = 2;
-  string uuid = 3;
-  bool force = 4;
-}
-
-message StopVMResponse {
-  bool success = 1;
-  string message = 2;
+  FindDomain domain = 1;
+  bool force = 2; // destory domain or not
 }
 
 message RestartVMRequest {
-  uint32 id = 1;
-  string name = 2;
-  string uuid = 3;
-  bool force = 4;
-}
-
-message RestartVMResponse {
-  bool success = 1;
-  string message = 2;
+  FindDomain domain = 1;
+  bool force = 2;
 }
 
 message PauseVMRequest {
-  uint32 id = 1;
-  string name = 2;
-  string uuid = 3;
-}
-
-message PauseVMResponse {
-  bool success = 1;
-  string message = 2;
+  FindDomain domain = 1;
 }
 
 message ResumeVMRequest {
-  uint32 id = 1;
-  string name = 2;
-  string uuid = 3;
-}
-
-message ResumeVMResponse {
-  bool success = 1;
-  string message = 2;
+  FindDomain domain = 1;
 }
 
 message DeleteVMRequest {
-  uint32 id = 1;
-  string name = 2;
-  string uuid = 3;
-  bool delete_disks = 4;
+  FindDomain domain = 1;
+  bool delete_disks = 2;
 }
 
-message DeleteVMResponse {
-  bool success = 1;
-  string message = 2;
-}
-
-message GetVMStatsRequest {
-  uint32 id = 1;
-  string name = 2;
-  string uuid = 3;
-}
-
-message VMStats {
-  double cpu_usage_percent = 1;
-  int64 memory_used_kb = 2;
-  int64 memory_available_kb = 3;
-  double memory_usage_percent = 4;
-  int64 disk_read_bytes = 5;
-  int64 disk_write_bytes = 6;
-  int64 network_rx_bytes = 7;
-  int64 network_tx_bytes = 8;
-}
-
-message GetVMStatsResponse {
-  bool success = 1;
-  string message = 2;
-  VMStats stats = 3;
-}
-
-message Void {}
-
-message ConnectionInfoResponse {
-  bool success = 1;
-  string message = 2;
-  string hostname = 3;
-  string libvirt_version = 4;
-  string hypervisor_type = 5;
+message UpdateVMRequest {
+  FindDomain domain = 1;
 }
 
 service EasyVirt {
-  rpc CreateVM(CreateVMRequest) returns (CreateVMResponse) {}
+  // domain CRUD
+  rpc CreateVM(CreateVMRequest) returns (Void) {}
+  rpc DeleteVM(DeleteVMRequest) returns (Void) {}
+  rpc UpdateVM(UpdateVMRequest) returns (Void) {}
   rpc GetVM(GetVMRequest) returns (GetVMResponse) {}
   rpc ListVMs(ListVMsRequest) returns (ListVMsResponse) {}
-  rpc DeleteVM(DeleteVMRequest) returns (DeleteVMResponse) {}
 
-  rpc StartVM(StartVMRequest) returns (StartVMResponse) {}
-  rpc StopVM(StopVMRequest) returns (StopVMResponse) {}
-  rpc RestartVM(RestartVMRequest) returns (RestartVMResponse) {}
-  rpc PauseVM(PauseVMRequest) returns (PauseVMResponse) {}
-  rpc ResumeVM(ResumeVMRequest) returns (ResumeVMResponse) {}
-
-  rpc GetVMStats(GetVMStatsRequest) returns (GetVMStatsResponse) {}
+  // operations
+  rpc StartVM(StartVMRequest) returns (Void) {}
+  rpc StopVM(StopVMRequest) returns (Void) {}
+  rpc RestartVM(RestartVMRequest) returns (Void) {}
+  rpc SuspendVM(PauseVMRequest) returns (Void) {}
+  rpc ResumeVM(ResumeVMRequest) returns (Void) {}
 }

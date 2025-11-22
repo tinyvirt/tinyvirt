@@ -88,6 +88,42 @@ func (VMState) EnumDescriptor() ([]byte, []int) {
 	return file_proto_easyvirt_proto_rawDescGZIP(), []int{0}
 }
 
+type Void struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Void) Reset() {
+	*x = Void{}
+	mi := &file_proto_easyvirt_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Void) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Void) ProtoMessage() {}
+
+func (x *Void) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Void.ProtoReflect.Descriptor instead.
+func (*Void) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{0}
+}
+
 type VMConfig struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
@@ -105,7 +141,7 @@ type VMConfig struct {
 
 func (x *VMConfig) Reset() {
 	*x = VMConfig{}
-	mi := &file_proto_easyvirt_proto_msgTypes[0]
+	mi := &file_proto_easyvirt_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -117,7 +153,7 @@ func (x *VMConfig) String() string {
 func (*VMConfig) ProtoMessage() {}
 
 func (x *VMConfig) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[0]
+	mi := &file_proto_easyvirt_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -130,7 +166,7 @@ func (x *VMConfig) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VMConfig.ProtoReflect.Descriptor instead.
 func (*VMConfig) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{0}
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *VMConfig) GetName() string {
@@ -218,7 +254,7 @@ type VirtualMachine struct {
 
 func (x *VirtualMachine) Reset() {
 	*x = VirtualMachine{}
-	mi := &file_proto_easyvirt_proto_msgTypes[1]
+	mi := &file_proto_easyvirt_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -230,7 +266,7 @@ func (x *VirtualMachine) String() string {
 func (*VirtualMachine) ProtoMessage() {}
 
 func (x *VirtualMachine) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[1]
+	mi := &file_proto_easyvirt_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -243,7 +279,7 @@ func (x *VirtualMachine) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VirtualMachine.ProtoReflect.Descriptor instead.
 func (*VirtualMachine) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{1}
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *VirtualMachine) GetId() uint32 {
@@ -354,7 +390,7 @@ type CreateVMRequest struct {
 
 func (x *CreateVMRequest) Reset() {
 	*x = CreateVMRequest{}
-	mi := &file_proto_easyvirt_proto_msgTypes[2]
+	mi := &file_proto_easyvirt_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -366,7 +402,7 @@ func (x *CreateVMRequest) String() string {
 func (*CreateVMRequest) ProtoMessage() {}
 
 func (x *CreateVMRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[2]
+	mi := &file_proto_easyvirt_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -379,7 +415,7 @@ func (x *CreateVMRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateVMRequest.ProtoReflect.Descriptor instead.
 func (*CreateVMRequest) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{2}
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *CreateVMRequest) GetConfig() *VMConfig {
@@ -407,7 +443,7 @@ type CreateVMResponse struct {
 
 func (x *CreateVMResponse) Reset() {
 	*x = CreateVMResponse{}
-	mi := &file_proto_easyvirt_proto_msgTypes[3]
+	mi := &file_proto_easyvirt_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -419,7 +455,7 @@ func (x *CreateVMResponse) String() string {
 func (*CreateVMResponse) ProtoMessage() {}
 
 func (x *CreateVMResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[3]
+	mi := &file_proto_easyvirt_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -432,7 +468,7 @@ func (x *CreateVMResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateVMResponse.ProtoReflect.Descriptor instead.
 func (*CreateVMResponse) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{3}
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *CreateVMResponse) GetSuccess() bool {
@@ -467,7 +503,7 @@ type GetVMRequest struct {
 
 func (x *GetVMRequest) Reset() {
 	*x = GetVMRequest{}
-	mi := &file_proto_easyvirt_proto_msgTypes[4]
+	mi := &file_proto_easyvirt_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -479,7 +515,7 @@ func (x *GetVMRequest) String() string {
 func (*GetVMRequest) ProtoMessage() {}
 
 func (x *GetVMRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[4]
+	mi := &file_proto_easyvirt_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -492,7 +528,7 @@ func (x *GetVMRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetVMRequest.ProtoReflect.Descriptor instead.
 func (*GetVMRequest) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{4}
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *GetVMRequest) GetId() uint32 {
@@ -527,7 +563,7 @@ type GetVMResponse struct {
 
 func (x *GetVMResponse) Reset() {
 	*x = GetVMResponse{}
-	mi := &file_proto_easyvirt_proto_msgTypes[5]
+	mi := &file_proto_easyvirt_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -539,7 +575,7 @@ func (x *GetVMResponse) String() string {
 func (*GetVMResponse) ProtoMessage() {}
 
 func (x *GetVMResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[5]
+	mi := &file_proto_easyvirt_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -552,7 +588,7 @@ func (x *GetVMResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetVMResponse.ProtoReflect.Descriptor instead.
 func (*GetVMResponse) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{5}
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *GetVMResponse) GetSuccess() bool {
@@ -585,7 +621,7 @@ type ListVMsRequest struct {
 
 func (x *ListVMsRequest) Reset() {
 	*x = ListVMsRequest{}
-	mi := &file_proto_easyvirt_proto_msgTypes[6]
+	mi := &file_proto_easyvirt_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -597,7 +633,7 @@ func (x *ListVMsRequest) String() string {
 func (*ListVMsRequest) ProtoMessage() {}
 
 func (x *ListVMsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[6]
+	mi := &file_proto_easyvirt_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -610,7 +646,7 @@ func (x *ListVMsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListVMsRequest.ProtoReflect.Descriptor instead.
 func (*ListVMsRequest) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{6}
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *ListVMsRequest) GetAll() bool {
@@ -631,7 +667,7 @@ type ListVMsResponse struct {
 
 func (x *ListVMsResponse) Reset() {
 	*x = ListVMsResponse{}
-	mi := &file_proto_easyvirt_proto_msgTypes[7]
+	mi := &file_proto_easyvirt_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -643,7 +679,7 @@ func (x *ListVMsResponse) String() string {
 func (*ListVMsResponse) ProtoMessage() {}
 
 func (x *ListVMsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[7]
+	mi := &file_proto_easyvirt_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -656,7 +692,7 @@ func (x *ListVMsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListVMsResponse.ProtoReflect.Descriptor instead.
 func (*ListVMsResponse) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{7}
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *ListVMsResponse) GetSuccess() bool {
@@ -680,7 +716,7 @@ func (x *ListVMsResponse) GetVms() []*VirtualMachine {
 	return nil
 }
 
-type StartVMRequest struct {
+type FindDomain struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
@@ -689,9 +725,67 @@ type StartVMRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
+func (x *FindDomain) Reset() {
+	*x = FindDomain{}
+	mi := &file_proto_easyvirt_proto_msgTypes[9]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *FindDomain) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*FindDomain) ProtoMessage() {}
+
+func (x *FindDomain) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[9]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use FindDomain.ProtoReflect.Descriptor instead.
+func (*FindDomain) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *FindDomain) GetId() uint32 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *FindDomain) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *FindDomain) GetUuid() string {
+	if x != nil {
+		return x.Uuid
+	}
+	return ""
+}
+
+type StartVMRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Domain        *FindDomain            `protobuf:"bytes,1,opt,name=domain,proto3" json:"domain,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
 func (x *StartVMRequest) Reset() {
 	*x = StartVMRequest{}
-	mi := &file_proto_easyvirt_proto_msgTypes[8]
+	mi := &file_proto_easyvirt_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -703,7 +797,7 @@ func (x *StartVMRequest) String() string {
 func (*StartVMRequest) ProtoMessage() {}
 
 func (x *StartVMRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[8]
+	mi := &file_proto_easyvirt_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -716,95 +810,27 @@ func (x *StartVMRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StartVMRequest.ProtoReflect.Descriptor instead.
 func (*StartVMRequest) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{8}
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{10}
 }
 
-func (x *StartVMRequest) GetId() uint32 {
+func (x *StartVMRequest) GetDomain() *FindDomain {
 	if x != nil {
-		return x.Id
+		return x.Domain
 	}
-	return 0
-}
-
-func (x *StartVMRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *StartVMRequest) GetUuid() string {
-	if x != nil {
-		return x.Uuid
-	}
-	return ""
-}
-
-type StartVMResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *StartVMResponse) Reset() {
-	*x = StartVMResponse{}
-	mi := &file_proto_easyvirt_proto_msgTypes[9]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *StartVMResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StartVMResponse) ProtoMessage() {}
-
-func (x *StartVMResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[9]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StartVMResponse.ProtoReflect.Descriptor instead.
-func (*StartVMResponse) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *StartVMResponse) GetSuccess() bool {
-	if x != nil {
-		return x.Success
-	}
-	return false
-}
-
-func (x *StartVMResponse) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
+	return nil
 }
 
 type StopVMRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Uuid          string                 `protobuf:"bytes,3,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	Force         bool                   `protobuf:"varint,4,opt,name=force,proto3" json:"force,omitempty"`
+	Domain        *FindDomain            `protobuf:"bytes,1,opt,name=domain,proto3" json:"domain,omitempty"`
+	Force         bool                   `protobuf:"varint,2,opt,name=force,proto3" json:"force,omitempty"` // destory domain or not
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *StopVMRequest) Reset() {
 	*x = StopVMRequest{}
-	mi := &file_proto_easyvirt_proto_msgTypes[10]
+	mi := &file_proto_easyvirt_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -816,7 +842,7 @@ func (x *StopVMRequest) String() string {
 func (*StopVMRequest) ProtoMessage() {}
 
 func (x *StopVMRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[10]
+	mi := &file_proto_easyvirt_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -829,28 +855,14 @@ func (x *StopVMRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StopVMRequest.ProtoReflect.Descriptor instead.
 func (*StopVMRequest) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{10}
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{11}
 }
 
-func (x *StopVMRequest) GetId() uint32 {
+func (x *StopVMRequest) GetDomain() *FindDomain {
 	if x != nil {
-		return x.Id
+		return x.Domain
 	}
-	return 0
-}
-
-func (x *StopVMRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *StopVMRequest) GetUuid() string {
-	if x != nil {
-		return x.Uuid
-	}
-	return ""
+	return nil
 }
 
 func (x *StopVMRequest) GetForce() bool {
@@ -860,64 +872,10 @@ func (x *StopVMRequest) GetForce() bool {
 	return false
 }
 
-type StopVMResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *StopVMResponse) Reset() {
-	*x = StopVMResponse{}
-	mi := &file_proto_easyvirt_proto_msgTypes[11]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *StopVMResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StopVMResponse) ProtoMessage() {}
-
-func (x *StopVMResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[11]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StopVMResponse.ProtoReflect.Descriptor instead.
-func (*StopVMResponse) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{11}
-}
-
-func (x *StopVMResponse) GetSuccess() bool {
-	if x != nil {
-		return x.Success
-	}
-	return false
-}
-
-func (x *StopVMResponse) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
-
 type RestartVMRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Uuid          string                 `protobuf:"bytes,3,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	Force         bool                   `protobuf:"varint,4,opt,name=force,proto3" json:"force,omitempty"`
+	Domain        *FindDomain            `protobuf:"bytes,1,opt,name=domain,proto3" json:"domain,omitempty"`
+	Force         bool                   `protobuf:"varint,2,opt,name=force,proto3" json:"force,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -952,25 +910,11 @@ func (*RestartVMRequest) Descriptor() ([]byte, []int) {
 	return file_proto_easyvirt_proto_rawDescGZIP(), []int{12}
 }
 
-func (x *RestartVMRequest) GetId() uint32 {
+func (x *RestartVMRequest) GetDomain() *FindDomain {
 	if x != nil {
-		return x.Id
+		return x.Domain
 	}
-	return 0
-}
-
-func (x *RestartVMRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *RestartVMRequest) GetUuid() string {
-	if x != nil {
-		return x.Uuid
-	}
-	return ""
+	return nil
 }
 
 func (x *RestartVMRequest) GetForce() bool {
@@ -980,70 +924,16 @@ func (x *RestartVMRequest) GetForce() bool {
 	return false
 }
 
-type RestartVMResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RestartVMResponse) Reset() {
-	*x = RestartVMResponse{}
-	mi := &file_proto_easyvirt_proto_msgTypes[13]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RestartVMResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RestartVMResponse) ProtoMessage() {}
-
-func (x *RestartVMResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[13]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RestartVMResponse.ProtoReflect.Descriptor instead.
-func (*RestartVMResponse) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{13}
-}
-
-func (x *RestartVMResponse) GetSuccess() bool {
-	if x != nil {
-		return x.Success
-	}
-	return false
-}
-
-func (x *RestartVMResponse) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
-
 type PauseVMRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Uuid          string                 `protobuf:"bytes,3,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	Domain        *FindDomain            `protobuf:"bytes,1,opt,name=domain,proto3" json:"domain,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *PauseVMRequest) Reset() {
 	*x = PauseVMRequest{}
-	mi := &file_proto_easyvirt_proto_msgTypes[14]
+	mi := &file_proto_easyvirt_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1055,7 +945,7 @@ func (x *PauseVMRequest) String() string {
 func (*PauseVMRequest) ProtoMessage() {}
 
 func (x *PauseVMRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[14]
+	mi := &file_proto_easyvirt_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1068,94 +958,26 @@ func (x *PauseVMRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PauseVMRequest.ProtoReflect.Descriptor instead.
 func (*PauseVMRequest) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{14}
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{13}
 }
 
-func (x *PauseVMRequest) GetId() uint32 {
+func (x *PauseVMRequest) GetDomain() *FindDomain {
 	if x != nil {
-		return x.Id
+		return x.Domain
 	}
-	return 0
-}
-
-func (x *PauseVMRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *PauseVMRequest) GetUuid() string {
-	if x != nil {
-		return x.Uuid
-	}
-	return ""
-}
-
-type PauseVMResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *PauseVMResponse) Reset() {
-	*x = PauseVMResponse{}
-	mi := &file_proto_easyvirt_proto_msgTypes[15]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *PauseVMResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PauseVMResponse) ProtoMessage() {}
-
-func (x *PauseVMResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[15]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PauseVMResponse.ProtoReflect.Descriptor instead.
-func (*PauseVMResponse) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{15}
-}
-
-func (x *PauseVMResponse) GetSuccess() bool {
-	if x != nil {
-		return x.Success
-	}
-	return false
-}
-
-func (x *PauseVMResponse) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
+	return nil
 }
 
 type ResumeVMRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Uuid          string                 `protobuf:"bytes,3,opt,name=uuid,proto3" json:"uuid,omitempty"`
+	Domain        *FindDomain            `protobuf:"bytes,1,opt,name=domain,proto3" json:"domain,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ResumeVMRequest) Reset() {
 	*x = ResumeVMRequest{}
-	mi := &file_proto_easyvirt_proto_msgTypes[16]
+	mi := &file_proto_easyvirt_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1167,7 +989,7 @@ func (x *ResumeVMRequest) String() string {
 func (*ResumeVMRequest) ProtoMessage() {}
 
 func (x *ResumeVMRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[16]
+	mi := &file_proto_easyvirt_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1180,95 +1002,27 @@ func (x *ResumeVMRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResumeVMRequest.ProtoReflect.Descriptor instead.
 func (*ResumeVMRequest) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{16}
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{14}
 }
 
-func (x *ResumeVMRequest) GetId() uint32 {
+func (x *ResumeVMRequest) GetDomain() *FindDomain {
 	if x != nil {
-		return x.Id
+		return x.Domain
 	}
-	return 0
-}
-
-func (x *ResumeVMRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *ResumeVMRequest) GetUuid() string {
-	if x != nil {
-		return x.Uuid
-	}
-	return ""
-}
-
-type ResumeVMResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ResumeVMResponse) Reset() {
-	*x = ResumeVMResponse{}
-	mi := &file_proto_easyvirt_proto_msgTypes[17]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ResumeVMResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ResumeVMResponse) ProtoMessage() {}
-
-func (x *ResumeVMResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[17]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ResumeVMResponse.ProtoReflect.Descriptor instead.
-func (*ResumeVMResponse) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{17}
-}
-
-func (x *ResumeVMResponse) GetSuccess() bool {
-	if x != nil {
-		return x.Success
-	}
-	return false
-}
-
-func (x *ResumeVMResponse) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
+	return nil
 }
 
 type DeleteVMRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Uuid          string                 `protobuf:"bytes,3,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	DeleteDisks   bool                   `protobuf:"varint,4,opt,name=delete_disks,json=deleteDisks,proto3" json:"delete_disks,omitempty"`
+	Domain        *FindDomain            `protobuf:"bytes,1,opt,name=domain,proto3" json:"domain,omitempty"`
+	DeleteDisks   bool                   `protobuf:"varint,2,opt,name=delete_disks,json=deleteDisks,proto3" json:"delete_disks,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *DeleteVMRequest) Reset() {
 	*x = DeleteVMRequest{}
-	mi := &file_proto_easyvirt_proto_msgTypes[18]
+	mi := &file_proto_easyvirt_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1280,7 +1034,7 @@ func (x *DeleteVMRequest) String() string {
 func (*DeleteVMRequest) ProtoMessage() {}
 
 func (x *DeleteVMRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[18]
+	mi := &file_proto_easyvirt_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1293,28 +1047,14 @@ func (x *DeleteVMRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteVMRequest.ProtoReflect.Descriptor instead.
 func (*DeleteVMRequest) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{18}
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{15}
 }
 
-func (x *DeleteVMRequest) GetId() uint32 {
+func (x *DeleteVMRequest) GetDomain() *FindDomain {
 	if x != nil {
-		return x.Id
+		return x.Domain
 	}
-	return 0
-}
-
-func (x *DeleteVMRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *DeleteVMRequest) GetUuid() string {
-	if x != nil {
-		return x.Uuid
-	}
-	return ""
+	return nil
 }
 
 func (x *DeleteVMRequest) GetDeleteDisks() bool {
@@ -1324,29 +1064,28 @@ func (x *DeleteVMRequest) GetDeleteDisks() bool {
 	return false
 }
 
-type DeleteVMResponse struct {
+type UpdateVMRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
+	Domain        *FindDomain            `protobuf:"bytes,1,opt,name=domain,proto3" json:"domain,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *DeleteVMResponse) Reset() {
-	*x = DeleteVMResponse{}
-	mi := &file_proto_easyvirt_proto_msgTypes[19]
+func (x *UpdateVMRequest) Reset() {
+	*x = UpdateVMRequest{}
+	mi := &file_proto_easyvirt_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *DeleteVMResponse) String() string {
+func (x *UpdateVMRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DeleteVMResponse) ProtoMessage() {}
+func (*UpdateVMRequest) ProtoMessage() {}
 
-func (x *DeleteVMResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[19]
+func (x *UpdateVMRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_easyvirt_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1357,362 +1096,24 @@ func (x *DeleteVMResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DeleteVMResponse.ProtoReflect.Descriptor instead.
-func (*DeleteVMResponse) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{19}
+// Deprecated: Use UpdateVMRequest.ProtoReflect.Descriptor instead.
+func (*UpdateVMRequest) Descriptor() ([]byte, []int) {
+	return file_proto_easyvirt_proto_rawDescGZIP(), []int{16}
 }
 
-func (x *DeleteVMResponse) GetSuccess() bool {
+func (x *UpdateVMRequest) GetDomain() *FindDomain {
 	if x != nil {
-		return x.Success
-	}
-	return false
-}
-
-func (x *DeleteVMResponse) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
-
-type GetVMStatsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint32                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Uuid          string                 `protobuf:"bytes,3,opt,name=uuid,proto3" json:"uuid,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetVMStatsRequest) Reset() {
-	*x = GetVMStatsRequest{}
-	mi := &file_proto_easyvirt_proto_msgTypes[20]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetVMStatsRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetVMStatsRequest) ProtoMessage() {}
-
-func (x *GetVMStatsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[20]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetVMStatsRequest.ProtoReflect.Descriptor instead.
-func (*GetVMStatsRequest) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{20}
-}
-
-func (x *GetVMStatsRequest) GetId() uint32 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *GetVMStatsRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *GetVMStatsRequest) GetUuid() string {
-	if x != nil {
-		return x.Uuid
-	}
-	return ""
-}
-
-type VMStats struct {
-	state              protoimpl.MessageState `protogen:"open.v1"`
-	CpuUsagePercent    float64                `protobuf:"fixed64,1,opt,name=cpu_usage_percent,json=cpuUsagePercent,proto3" json:"cpu_usage_percent,omitempty"`
-	MemoryUsedKb       int64                  `protobuf:"varint,2,opt,name=memory_used_kb,json=memoryUsedKb,proto3" json:"memory_used_kb,omitempty"`
-	MemoryAvailableKb  int64                  `protobuf:"varint,3,opt,name=memory_available_kb,json=memoryAvailableKb,proto3" json:"memory_available_kb,omitempty"`
-	MemoryUsagePercent float64                `protobuf:"fixed64,4,opt,name=memory_usage_percent,json=memoryUsagePercent,proto3" json:"memory_usage_percent,omitempty"`
-	DiskReadBytes      int64                  `protobuf:"varint,5,opt,name=disk_read_bytes,json=diskReadBytes,proto3" json:"disk_read_bytes,omitempty"`
-	DiskWriteBytes     int64                  `protobuf:"varint,6,opt,name=disk_write_bytes,json=diskWriteBytes,proto3" json:"disk_write_bytes,omitempty"`
-	NetworkRxBytes     int64                  `protobuf:"varint,7,opt,name=network_rx_bytes,json=networkRxBytes,proto3" json:"network_rx_bytes,omitempty"`
-	NetworkTxBytes     int64                  `protobuf:"varint,8,opt,name=network_tx_bytes,json=networkTxBytes,proto3" json:"network_tx_bytes,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
-}
-
-func (x *VMStats) Reset() {
-	*x = VMStats{}
-	mi := &file_proto_easyvirt_proto_msgTypes[21]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *VMStats) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*VMStats) ProtoMessage() {}
-
-func (x *VMStats) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[21]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use VMStats.ProtoReflect.Descriptor instead.
-func (*VMStats) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{21}
-}
-
-func (x *VMStats) GetCpuUsagePercent() float64 {
-	if x != nil {
-		return x.CpuUsagePercent
-	}
-	return 0
-}
-
-func (x *VMStats) GetMemoryUsedKb() int64 {
-	if x != nil {
-		return x.MemoryUsedKb
-	}
-	return 0
-}
-
-func (x *VMStats) GetMemoryAvailableKb() int64 {
-	if x != nil {
-		return x.MemoryAvailableKb
-	}
-	return 0
-}
-
-func (x *VMStats) GetMemoryUsagePercent() float64 {
-	if x != nil {
-		return x.MemoryUsagePercent
-	}
-	return 0
-}
-
-func (x *VMStats) GetDiskReadBytes() int64 {
-	if x != nil {
-		return x.DiskReadBytes
-	}
-	return 0
-}
-
-func (x *VMStats) GetDiskWriteBytes() int64 {
-	if x != nil {
-		return x.DiskWriteBytes
-	}
-	return 0
-}
-
-func (x *VMStats) GetNetworkRxBytes() int64 {
-	if x != nil {
-		return x.NetworkRxBytes
-	}
-	return 0
-}
-
-func (x *VMStats) GetNetworkTxBytes() int64 {
-	if x != nil {
-		return x.NetworkTxBytes
-	}
-	return 0
-}
-
-type GetVMStatsResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	Message       string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	Stats         *VMStats               `protobuf:"bytes,3,opt,name=stats,proto3" json:"stats,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetVMStatsResponse) Reset() {
-	*x = GetVMStatsResponse{}
-	mi := &file_proto_easyvirt_proto_msgTypes[22]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetVMStatsResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetVMStatsResponse) ProtoMessage() {}
-
-func (x *GetVMStatsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[22]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetVMStatsResponse.ProtoReflect.Descriptor instead.
-func (*GetVMStatsResponse) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{22}
-}
-
-func (x *GetVMStatsResponse) GetSuccess() bool {
-	if x != nil {
-		return x.Success
-	}
-	return false
-}
-
-func (x *GetVMStatsResponse) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
-
-func (x *GetVMStatsResponse) GetStats() *VMStats {
-	if x != nil {
-		return x.Stats
+		return x.Domain
 	}
 	return nil
-}
-
-type Void struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Void) Reset() {
-	*x = Void{}
-	mi := &file_proto_easyvirt_proto_msgTypes[23]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Void) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Void) ProtoMessage() {}
-
-func (x *Void) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[23]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Void.ProtoReflect.Descriptor instead.
-func (*Void) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{23}
-}
-
-type ConnectionInfoResponse struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	Success        bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
-	Message        string                 `protobuf:"bytes,2,opt,name=message,proto3" json:"message,omitempty"`
-	Hostname       string                 `protobuf:"bytes,3,opt,name=hostname,proto3" json:"hostname,omitempty"`
-	LibvirtVersion string                 `protobuf:"bytes,4,opt,name=libvirt_version,json=libvirtVersion,proto3" json:"libvirt_version,omitempty"`
-	HypervisorType string                 `protobuf:"bytes,5,opt,name=hypervisor_type,json=hypervisorType,proto3" json:"hypervisor_type,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
-}
-
-func (x *ConnectionInfoResponse) Reset() {
-	*x = ConnectionInfoResponse{}
-	mi := &file_proto_easyvirt_proto_msgTypes[24]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ConnectionInfoResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ConnectionInfoResponse) ProtoMessage() {}
-
-func (x *ConnectionInfoResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[24]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ConnectionInfoResponse.ProtoReflect.Descriptor instead.
-func (*ConnectionInfoResponse) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{24}
-}
-
-func (x *ConnectionInfoResponse) GetSuccess() bool {
-	if x != nil {
-		return x.Success
-	}
-	return false
-}
-
-func (x *ConnectionInfoResponse) GetMessage() string {
-	if x != nil {
-		return x.Message
-	}
-	return ""
-}
-
-func (x *ConnectionInfoResponse) GetHostname() string {
-	if x != nil {
-		return x.Hostname
-	}
-	return ""
-}
-
-func (x *ConnectionInfoResponse) GetLibvirtVersion() string {
-	if x != nil {
-		return x.LibvirtVersion
-	}
-	return ""
-}
-
-func (x *ConnectionInfoResponse) GetHypervisorType() string {
-	if x != nil {
-		return x.HypervisorType
-	}
-	return ""
 }
 
 var File_proto_easyvirt_proto protoreflect.FileDescriptor
 
 const file_proto_easyvirt_proto_rawDesc = "" +
 	"\n" +
-	"\x14proto/easyvirt.proto\"\xf0\x01\n" +
+	"\x14proto/easyvirt.proto\"\x06\n" +
+	"\x04Void\"\xf0\x01\n" +
 	"\bVMConfig\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x12\n" +
 	"\x04uuid\x18\x02 \x01(\tR\x04uuid\x12\x1b\n" +
@@ -1764,76 +1165,29 @@ const file_proto_easyvirt_proto_rawDesc = "" +
 	"\x0fListVMsResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
 	"\amessage\x18\x02 \x01(\tR\amessage\x12!\n" +
-	"\x03vms\x18\x03 \x03(\v2\x0f.VirtualMachineR\x03vms\"H\n" +
-	"\x0eStartVMRequest\x12\x0e\n" +
+	"\x03vms\x18\x03 \x03(\v2\x0f.VirtualMachineR\x03vms\"D\n" +
+	"\n" +
+	"FindDomain\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\rR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
-	"\x04uuid\x18\x03 \x01(\tR\x04uuid\"E\n" +
-	"\x0fStartVMResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"]\n" +
-	"\rStopVMRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\rR\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
-	"\x04uuid\x18\x03 \x01(\tR\x04uuid\x12\x14\n" +
-	"\x05force\x18\x04 \x01(\bR\x05force\"D\n" +
-	"\x0eStopVMResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"`\n" +
-	"\x10RestartVMRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\rR\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
-	"\x04uuid\x18\x03 \x01(\tR\x04uuid\x12\x14\n" +
-	"\x05force\x18\x04 \x01(\bR\x05force\"G\n" +
-	"\x11RestartVMResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"H\n" +
-	"\x0ePauseVMRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\rR\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
-	"\x04uuid\x18\x03 \x01(\tR\x04uuid\"E\n" +
-	"\x0fPauseVMResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"I\n" +
-	"\x0fResumeVMRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\rR\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
-	"\x04uuid\x18\x03 \x01(\tR\x04uuid\"F\n" +
-	"\x10ResumeVMResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"l\n" +
-	"\x0fDeleteVMRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\rR\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
-	"\x04uuid\x18\x03 \x01(\tR\x04uuid\x12!\n" +
-	"\fdelete_disks\x18\x04 \x01(\bR\vdeleteDisks\"F\n" +
-	"\x10DeleteVMResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\"K\n" +
-	"\x11GetVMStatsRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\rR\x02id\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
-	"\x04uuid\x18\x03 \x01(\tR\x04uuid\"\xe3\x02\n" +
-	"\aVMStats\x12*\n" +
-	"\x11cpu_usage_percent\x18\x01 \x01(\x01R\x0fcpuUsagePercent\x12$\n" +
-	"\x0ememory_used_kb\x18\x02 \x01(\x03R\fmemoryUsedKb\x12.\n" +
-	"\x13memory_available_kb\x18\x03 \x01(\x03R\x11memoryAvailableKb\x120\n" +
-	"\x14memory_usage_percent\x18\x04 \x01(\x01R\x12memoryUsagePercent\x12&\n" +
-	"\x0fdisk_read_bytes\x18\x05 \x01(\x03R\rdiskReadBytes\x12(\n" +
-	"\x10disk_write_bytes\x18\x06 \x01(\x03R\x0ediskWriteBytes\x12(\n" +
-	"\x10network_rx_bytes\x18\a \x01(\x03R\x0enetworkRxBytes\x12(\n" +
-	"\x10network_tx_bytes\x18\b \x01(\x03R\x0enetworkTxBytes\"h\n" +
-	"\x12GetVMStatsResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1e\n" +
-	"\x05stats\x18\x03 \x01(\v2\b.VMStatsR\x05stats\"\x06\n" +
-	"\x04Void\"\xba\x01\n" +
-	"\x16ConnectionInfoResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage\x12\x1a\n" +
-	"\bhostname\x18\x03 \x01(\tR\bhostname\x12'\n" +
-	"\x0flibvirt_version\x18\x04 \x01(\tR\x0elibvirtVersion\x12'\n" +
-	"\x0fhypervisor_type\x18\x05 \x01(\tR\x0ehypervisorType*\xd5\x01\n" +
+	"\x04uuid\x18\x03 \x01(\tR\x04uuid\"5\n" +
+	"\x0eStartVMRequest\x12#\n" +
+	"\x06domain\x18\x01 \x01(\v2\v.FindDomainR\x06domain\"J\n" +
+	"\rStopVMRequest\x12#\n" +
+	"\x06domain\x18\x01 \x01(\v2\v.FindDomainR\x06domain\x12\x14\n" +
+	"\x05force\x18\x02 \x01(\bR\x05force\"M\n" +
+	"\x10RestartVMRequest\x12#\n" +
+	"\x06domain\x18\x01 \x01(\v2\v.FindDomainR\x06domain\x12\x14\n" +
+	"\x05force\x18\x02 \x01(\bR\x05force\"5\n" +
+	"\x0ePauseVMRequest\x12#\n" +
+	"\x06domain\x18\x01 \x01(\v2\v.FindDomainR\x06domain\"6\n" +
+	"\x0fResumeVMRequest\x12#\n" +
+	"\x06domain\x18\x01 \x01(\v2\v.FindDomainR\x06domain\"Y\n" +
+	"\x0fDeleteVMRequest\x12#\n" +
+	"\x06domain\x18\x01 \x01(\v2\v.FindDomainR\x06domain\x12!\n" +
+	"\fdelete_disks\x18\x02 \x01(\bR\vdeleteDisks\"6\n" +
+	"\x0fUpdateVMRequest\x12#\n" +
+	"\x06domain\x18\x01 \x01(\v2\v.FindDomainR\x06domain*\xd5\x01\n" +
 	"\aVMState\x12\x16\n" +
 	"\x12VM_STATE_UNDEFINED\x10\x00\x12\x14\n" +
 	"\x10VM_STATE_NOSTATE\x10\x01\x12\x14\n" +
@@ -1843,19 +1197,18 @@ const file_proto_easyvirt_proto_rawDesc = "" +
 	"\x11VM_STATE_SHUTDOWN\x10\x05\x12\x14\n" +
 	"\x10VM_STATE_SHUTOFF\x10\x06\x12\x14\n" +
 	"\x10VM_STATE_CRASHED\x10\a\x12\x18\n" +
-	"\x14VM_STATE_PMSUSPENDED\x10\b2\xf9\x03\n" +
-	"\bEasyVirt\x121\n" +
-	"\bCreateVM\x12\x10.CreateVMRequest\x1a\x11.CreateVMResponse\"\x00\x12(\n" +
+	"\x14VM_STATE_PMSUSPENDED\x10\b2\x98\x03\n" +
+	"\bEasyVirt\x12%\n" +
+	"\bCreateVM\x12\x10.CreateVMRequest\x1a\x05.Void\"\x00\x12%\n" +
+	"\bDeleteVM\x12\x10.DeleteVMRequest\x1a\x05.Void\"\x00\x12%\n" +
+	"\bUpdateVM\x12\x10.UpdateVMRequest\x1a\x05.Void\"\x00\x12(\n" +
 	"\x05GetVM\x12\r.GetVMRequest\x1a\x0e.GetVMResponse\"\x00\x12.\n" +
-	"\aListVMs\x12\x0f.ListVMsRequest\x1a\x10.ListVMsResponse\"\x00\x121\n" +
-	"\bDeleteVM\x12\x10.DeleteVMRequest\x1a\x11.DeleteVMResponse\"\x00\x12.\n" +
-	"\aStartVM\x12\x0f.StartVMRequest\x1a\x10.StartVMResponse\"\x00\x12+\n" +
-	"\x06StopVM\x12\x0e.StopVMRequest\x1a\x0f.StopVMResponse\"\x00\x124\n" +
-	"\tRestartVM\x12\x11.RestartVMRequest\x1a\x12.RestartVMResponse\"\x00\x12.\n" +
-	"\aPauseVM\x12\x0f.PauseVMRequest\x1a\x10.PauseVMResponse\"\x00\x121\n" +
-	"\bResumeVM\x12\x10.ResumeVMRequest\x1a\x11.ResumeVMResponse\"\x00\x127\n" +
-	"\n" +
-	"GetVMStats\x12\x12.GetVMStatsRequest\x1a\x13.GetVMStatsResponse\"\x00B%Z#github.com/fanyang89/easyvirt/protob\x06proto3"
+	"\aListVMs\x12\x0f.ListVMsRequest\x1a\x10.ListVMsResponse\"\x00\x12#\n" +
+	"\aStartVM\x12\x0f.StartVMRequest\x1a\x05.Void\"\x00\x12!\n" +
+	"\x06StopVM\x12\x0e.StopVMRequest\x1a\x05.Void\"\x00\x12'\n" +
+	"\tRestartVM\x12\x11.RestartVMRequest\x1a\x05.Void\"\x00\x12%\n" +
+	"\tSuspendVM\x12\x0f.PauseVMRequest\x1a\x05.Void\"\x00\x12%\n" +
+	"\bResumeVM\x12\x10.ResumeVMRequest\x1a\x05.Void\"\x00B%Z#github.com/fanyang89/easyvirt/protob\x06proto3"
 
 var (
 	file_proto_easyvirt_proto_rawDescOnce sync.Once
@@ -1870,67 +1223,65 @@ func file_proto_easyvirt_proto_rawDescGZIP() []byte {
 }
 
 var file_proto_easyvirt_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_proto_easyvirt_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
+var file_proto_easyvirt_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
 var file_proto_easyvirt_proto_goTypes = []any{
-	(VMState)(0),                   // 0: VMState
-	(*VMConfig)(nil),               // 1: VMConfig
-	(*VirtualMachine)(nil),         // 2: VirtualMachine
-	(*CreateVMRequest)(nil),        // 3: CreateVMRequest
-	(*CreateVMResponse)(nil),       // 4: CreateVMResponse
-	(*GetVMRequest)(nil),           // 5: GetVMRequest
-	(*GetVMResponse)(nil),          // 6: GetVMResponse
-	(*ListVMsRequest)(nil),         // 7: ListVMsRequest
-	(*ListVMsResponse)(nil),        // 8: ListVMsResponse
-	(*StartVMRequest)(nil),         // 9: StartVMRequest
-	(*StartVMResponse)(nil),        // 10: StartVMResponse
-	(*StopVMRequest)(nil),          // 11: StopVMRequest
-	(*StopVMResponse)(nil),         // 12: StopVMResponse
-	(*RestartVMRequest)(nil),       // 13: RestartVMRequest
-	(*RestartVMResponse)(nil),      // 14: RestartVMResponse
-	(*PauseVMRequest)(nil),         // 15: PauseVMRequest
-	(*PauseVMResponse)(nil),        // 16: PauseVMResponse
-	(*ResumeVMRequest)(nil),        // 17: ResumeVMRequest
-	(*ResumeVMResponse)(nil),       // 18: ResumeVMResponse
-	(*DeleteVMRequest)(nil),        // 19: DeleteVMRequest
-	(*DeleteVMResponse)(nil),       // 20: DeleteVMResponse
-	(*GetVMStatsRequest)(nil),      // 21: GetVMStatsRequest
-	(*VMStats)(nil),                // 22: VMStats
-	(*GetVMStatsResponse)(nil),     // 23: GetVMStatsResponse
-	(*Void)(nil),                   // 24: Void
-	(*ConnectionInfoResponse)(nil), // 25: ConnectionInfoResponse
+	(VMState)(0),             // 0: VMState
+	(*Void)(nil),             // 1: Void
+	(*VMConfig)(nil),         // 2: VMConfig
+	(*VirtualMachine)(nil),   // 3: VirtualMachine
+	(*CreateVMRequest)(nil),  // 4: CreateVMRequest
+	(*CreateVMResponse)(nil), // 5: CreateVMResponse
+	(*GetVMRequest)(nil),     // 6: GetVMRequest
+	(*GetVMResponse)(nil),    // 7: GetVMResponse
+	(*ListVMsRequest)(nil),   // 8: ListVMsRequest
+	(*ListVMsResponse)(nil),  // 9: ListVMsResponse
+	(*FindDomain)(nil),       // 10: FindDomain
+	(*StartVMRequest)(nil),   // 11: StartVMRequest
+	(*StopVMRequest)(nil),    // 12: StopVMRequest
+	(*RestartVMRequest)(nil), // 13: RestartVMRequest
+	(*PauseVMRequest)(nil),   // 14: PauseVMRequest
+	(*ResumeVMRequest)(nil),  // 15: ResumeVMRequest
+	(*DeleteVMRequest)(nil),  // 16: DeleteVMRequest
+	(*UpdateVMRequest)(nil),  // 17: UpdateVMRequest
 }
 var file_proto_easyvirt_proto_depIdxs = []int32{
 	0,  // 0: VirtualMachine.state:type_name -> VMState
-	1,  // 1: CreateVMRequest.config:type_name -> VMConfig
-	2,  // 2: CreateVMResponse.vm:type_name -> VirtualMachine
-	2,  // 3: GetVMResponse.vm:type_name -> VirtualMachine
-	2,  // 4: ListVMsResponse.vms:type_name -> VirtualMachine
-	22, // 5: GetVMStatsResponse.stats:type_name -> VMStats
-	3,  // 6: EasyVirt.CreateVM:input_type -> CreateVMRequest
-	5,  // 7: EasyVirt.GetVM:input_type -> GetVMRequest
-	7,  // 8: EasyVirt.ListVMs:input_type -> ListVMsRequest
-	19, // 9: EasyVirt.DeleteVM:input_type -> DeleteVMRequest
-	9,  // 10: EasyVirt.StartVM:input_type -> StartVMRequest
-	11, // 11: EasyVirt.StopVM:input_type -> StopVMRequest
-	13, // 12: EasyVirt.RestartVM:input_type -> RestartVMRequest
-	15, // 13: EasyVirt.PauseVM:input_type -> PauseVMRequest
-	17, // 14: EasyVirt.ResumeVM:input_type -> ResumeVMRequest
-	21, // 15: EasyVirt.GetVMStats:input_type -> GetVMStatsRequest
-	4,  // 16: EasyVirt.CreateVM:output_type -> CreateVMResponse
-	6,  // 17: EasyVirt.GetVM:output_type -> GetVMResponse
-	8,  // 18: EasyVirt.ListVMs:output_type -> ListVMsResponse
-	20, // 19: EasyVirt.DeleteVM:output_type -> DeleteVMResponse
-	10, // 20: EasyVirt.StartVM:output_type -> StartVMResponse
-	12, // 21: EasyVirt.StopVM:output_type -> StopVMResponse
-	14, // 22: EasyVirt.RestartVM:output_type -> RestartVMResponse
-	16, // 23: EasyVirt.PauseVM:output_type -> PauseVMResponse
-	18, // 24: EasyVirt.ResumeVM:output_type -> ResumeVMResponse
-	23, // 25: EasyVirt.GetVMStats:output_type -> GetVMStatsResponse
-	16, // [16:26] is the sub-list for method output_type
-	6,  // [6:16] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	2,  // 1: CreateVMRequest.config:type_name -> VMConfig
+	3,  // 2: CreateVMResponse.vm:type_name -> VirtualMachine
+	3,  // 3: GetVMResponse.vm:type_name -> VirtualMachine
+	3,  // 4: ListVMsResponse.vms:type_name -> VirtualMachine
+	10, // 5: StartVMRequest.domain:type_name -> FindDomain
+	10, // 6: StopVMRequest.domain:type_name -> FindDomain
+	10, // 7: RestartVMRequest.domain:type_name -> FindDomain
+	10, // 8: PauseVMRequest.domain:type_name -> FindDomain
+	10, // 9: ResumeVMRequest.domain:type_name -> FindDomain
+	10, // 10: DeleteVMRequest.domain:type_name -> FindDomain
+	10, // 11: UpdateVMRequest.domain:type_name -> FindDomain
+	4,  // 12: EasyVirt.CreateVM:input_type -> CreateVMRequest
+	16, // 13: EasyVirt.DeleteVM:input_type -> DeleteVMRequest
+	17, // 14: EasyVirt.UpdateVM:input_type -> UpdateVMRequest
+	6,  // 15: EasyVirt.GetVM:input_type -> GetVMRequest
+	8,  // 16: EasyVirt.ListVMs:input_type -> ListVMsRequest
+	11, // 17: EasyVirt.StartVM:input_type -> StartVMRequest
+	12, // 18: EasyVirt.StopVM:input_type -> StopVMRequest
+	13, // 19: EasyVirt.RestartVM:input_type -> RestartVMRequest
+	14, // 20: EasyVirt.SuspendVM:input_type -> PauseVMRequest
+	15, // 21: EasyVirt.ResumeVM:input_type -> ResumeVMRequest
+	1,  // 22: EasyVirt.CreateVM:output_type -> Void
+	1,  // 23: EasyVirt.DeleteVM:output_type -> Void
+	1,  // 24: EasyVirt.UpdateVM:output_type -> Void
+	7,  // 25: EasyVirt.GetVM:output_type -> GetVMResponse
+	9,  // 26: EasyVirt.ListVMs:output_type -> ListVMsResponse
+	1,  // 27: EasyVirt.StartVM:output_type -> Void
+	1,  // 28: EasyVirt.StopVM:output_type -> Void
+	1,  // 29: EasyVirt.RestartVM:output_type -> Void
+	1,  // 30: EasyVirt.SuspendVM:output_type -> Void
+	1,  // 31: EasyVirt.ResumeVM:output_type -> Void
+	22, // [22:32] is the sub-list for method output_type
+	12, // [12:22] is the sub-list for method input_type
+	12, // [12:12] is the sub-list for extension type_name
+	12, // [12:12] is the sub-list for extension extendee
+	0,  // [0:12] is the sub-list for field type_name
 }
 
 func init() { file_proto_easyvirt_proto_init() }
@@ -1944,7 +1295,7 @@ func file_proto_easyvirt_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_easyvirt_proto_rawDesc), len(file_proto_easyvirt_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   25,
+			NumMessages:   17,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

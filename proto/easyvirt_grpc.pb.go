@@ -19,32 +19,34 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	EasyVirt_CreateVM_FullMethodName   = "/EasyVirt/CreateVM"
-	EasyVirt_GetVM_FullMethodName      = "/EasyVirt/GetVM"
-	EasyVirt_ListVMs_FullMethodName    = "/EasyVirt/ListVMs"
-	EasyVirt_DeleteVM_FullMethodName   = "/EasyVirt/DeleteVM"
-	EasyVirt_StartVM_FullMethodName    = "/EasyVirt/StartVM"
-	EasyVirt_StopVM_FullMethodName     = "/EasyVirt/StopVM"
-	EasyVirt_RestartVM_FullMethodName  = "/EasyVirt/RestartVM"
-	EasyVirt_PauseVM_FullMethodName    = "/EasyVirt/PauseVM"
-	EasyVirt_ResumeVM_FullMethodName   = "/EasyVirt/ResumeVM"
-	EasyVirt_GetVMStats_FullMethodName = "/EasyVirt/GetVMStats"
+	EasyVirt_CreateVM_FullMethodName  = "/EasyVirt/CreateVM"
+	EasyVirt_DeleteVM_FullMethodName  = "/EasyVirt/DeleteVM"
+	EasyVirt_UpdateVM_FullMethodName  = "/EasyVirt/UpdateVM"
+	EasyVirt_GetVM_FullMethodName     = "/EasyVirt/GetVM"
+	EasyVirt_ListVMs_FullMethodName   = "/EasyVirt/ListVMs"
+	EasyVirt_StartVM_FullMethodName   = "/EasyVirt/StartVM"
+	EasyVirt_StopVM_FullMethodName    = "/EasyVirt/StopVM"
+	EasyVirt_RestartVM_FullMethodName = "/EasyVirt/RestartVM"
+	EasyVirt_SuspendVM_FullMethodName = "/EasyVirt/SuspendVM"
+	EasyVirt_ResumeVM_FullMethodName  = "/EasyVirt/ResumeVM"
 )
 
 // EasyVirtClient is the client API for EasyVirt service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type EasyVirtClient interface {
-	CreateVM(ctx context.Context, in *CreateVMRequest, opts ...grpc.CallOption) (*CreateVMResponse, error)
+	// domain CRUD
+	CreateVM(ctx context.Context, in *CreateVMRequest, opts ...grpc.CallOption) (*Void, error)
+	DeleteVM(ctx context.Context, in *DeleteVMRequest, opts ...grpc.CallOption) (*Void, error)
+	UpdateVM(ctx context.Context, in *UpdateVMRequest, opts ...grpc.CallOption) (*Void, error)
 	GetVM(ctx context.Context, in *GetVMRequest, opts ...grpc.CallOption) (*GetVMResponse, error)
 	ListVMs(ctx context.Context, in *ListVMsRequest, opts ...grpc.CallOption) (*ListVMsResponse, error)
-	DeleteVM(ctx context.Context, in *DeleteVMRequest, opts ...grpc.CallOption) (*DeleteVMResponse, error)
-	StartVM(ctx context.Context, in *StartVMRequest, opts ...grpc.CallOption) (*StartVMResponse, error)
-	StopVM(ctx context.Context, in *StopVMRequest, opts ...grpc.CallOption) (*StopVMResponse, error)
-	RestartVM(ctx context.Context, in *RestartVMRequest, opts ...grpc.CallOption) (*RestartVMResponse, error)
-	PauseVM(ctx context.Context, in *PauseVMRequest, opts ...grpc.CallOption) (*PauseVMResponse, error)
-	ResumeVM(ctx context.Context, in *ResumeVMRequest, opts ...grpc.CallOption) (*ResumeVMResponse, error)
-	GetVMStats(ctx context.Context, in *GetVMStatsRequest, opts ...grpc.CallOption) (*GetVMStatsResponse, error)
+	// operations
+	StartVM(ctx context.Context, in *StartVMRequest, opts ...grpc.CallOption) (*Void, error)
+	StopVM(ctx context.Context, in *StopVMRequest, opts ...grpc.CallOption) (*Void, error)
+	RestartVM(ctx context.Context, in *RestartVMRequest, opts ...grpc.CallOption) (*Void, error)
+	SuspendVM(ctx context.Context, in *PauseVMRequest, opts ...grpc.CallOption) (*Void, error)
+	ResumeVM(ctx context.Context, in *ResumeVMRequest, opts ...grpc.CallOption) (*Void, error)
 }
 
 type easyVirtClient struct {
@@ -55,10 +57,30 @@ func NewEasyVirtClient(cc grpc.ClientConnInterface) EasyVirtClient {
 	return &easyVirtClient{cc}
 }
 
-func (c *easyVirtClient) CreateVM(ctx context.Context, in *CreateVMRequest, opts ...grpc.CallOption) (*CreateVMResponse, error) {
+func (c *easyVirtClient) CreateVM(ctx context.Context, in *CreateVMRequest, opts ...grpc.CallOption) (*Void, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(CreateVMResponse)
+	out := new(Void)
 	err := c.cc.Invoke(ctx, EasyVirt_CreateVM_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *easyVirtClient) DeleteVM(ctx context.Context, in *DeleteVMRequest, opts ...grpc.CallOption) (*Void, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Void)
+	err := c.cc.Invoke(ctx, EasyVirt_DeleteVM_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *easyVirtClient) UpdateVM(ctx context.Context, in *UpdateVMRequest, opts ...grpc.CallOption) (*Void, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Void)
+	err := c.cc.Invoke(ctx, EasyVirt_UpdateVM_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -85,19 +107,9 @@ func (c *easyVirtClient) ListVMs(ctx context.Context, in *ListVMsRequest, opts .
 	return out, nil
 }
 
-func (c *easyVirtClient) DeleteVM(ctx context.Context, in *DeleteVMRequest, opts ...grpc.CallOption) (*DeleteVMResponse, error) {
+func (c *easyVirtClient) StartVM(ctx context.Context, in *StartVMRequest, opts ...grpc.CallOption) (*Void, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DeleteVMResponse)
-	err := c.cc.Invoke(ctx, EasyVirt_DeleteVM_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *easyVirtClient) StartVM(ctx context.Context, in *StartVMRequest, opts ...grpc.CallOption) (*StartVMResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(StartVMResponse)
+	out := new(Void)
 	err := c.cc.Invoke(ctx, EasyVirt_StartVM_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -105,9 +117,9 @@ func (c *easyVirtClient) StartVM(ctx context.Context, in *StartVMRequest, opts .
 	return out, nil
 }
 
-func (c *easyVirtClient) StopVM(ctx context.Context, in *StopVMRequest, opts ...grpc.CallOption) (*StopVMResponse, error) {
+func (c *easyVirtClient) StopVM(ctx context.Context, in *StopVMRequest, opts ...grpc.CallOption) (*Void, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(StopVMResponse)
+	out := new(Void)
 	err := c.cc.Invoke(ctx, EasyVirt_StopVM_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -115,9 +127,9 @@ func (c *easyVirtClient) StopVM(ctx context.Context, in *StopVMRequest, opts ...
 	return out, nil
 }
 
-func (c *easyVirtClient) RestartVM(ctx context.Context, in *RestartVMRequest, opts ...grpc.CallOption) (*RestartVMResponse, error) {
+func (c *easyVirtClient) RestartVM(ctx context.Context, in *RestartVMRequest, opts ...grpc.CallOption) (*Void, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(RestartVMResponse)
+	out := new(Void)
 	err := c.cc.Invoke(ctx, EasyVirt_RestartVM_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -125,30 +137,20 @@ func (c *easyVirtClient) RestartVM(ctx context.Context, in *RestartVMRequest, op
 	return out, nil
 }
 
-func (c *easyVirtClient) PauseVM(ctx context.Context, in *PauseVMRequest, opts ...grpc.CallOption) (*PauseVMResponse, error) {
+func (c *easyVirtClient) SuspendVM(ctx context.Context, in *PauseVMRequest, opts ...grpc.CallOption) (*Void, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(PauseVMResponse)
-	err := c.cc.Invoke(ctx, EasyVirt_PauseVM_FullMethodName, in, out, cOpts...)
+	out := new(Void)
+	err := c.cc.Invoke(ctx, EasyVirt_SuspendVM_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *easyVirtClient) ResumeVM(ctx context.Context, in *ResumeVMRequest, opts ...grpc.CallOption) (*ResumeVMResponse, error) {
+func (c *easyVirtClient) ResumeVM(ctx context.Context, in *ResumeVMRequest, opts ...grpc.CallOption) (*Void, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ResumeVMResponse)
+	out := new(Void)
 	err := c.cc.Invoke(ctx, EasyVirt_ResumeVM_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *easyVirtClient) GetVMStats(ctx context.Context, in *GetVMStatsRequest, opts ...grpc.CallOption) (*GetVMStatsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetVMStatsResponse)
-	err := c.cc.Invoke(ctx, EasyVirt_GetVMStats_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -159,16 +161,18 @@ func (c *easyVirtClient) GetVMStats(ctx context.Context, in *GetVMStatsRequest, 
 // All implementations must embed UnimplementedEasyVirtServer
 // for forward compatibility.
 type EasyVirtServer interface {
-	CreateVM(context.Context, *CreateVMRequest) (*CreateVMResponse, error)
+	// domain CRUD
+	CreateVM(context.Context, *CreateVMRequest) (*Void, error)
+	DeleteVM(context.Context, *DeleteVMRequest) (*Void, error)
+	UpdateVM(context.Context, *UpdateVMRequest) (*Void, error)
 	GetVM(context.Context, *GetVMRequest) (*GetVMResponse, error)
 	ListVMs(context.Context, *ListVMsRequest) (*ListVMsResponse, error)
-	DeleteVM(context.Context, *DeleteVMRequest) (*DeleteVMResponse, error)
-	StartVM(context.Context, *StartVMRequest) (*StartVMResponse, error)
-	StopVM(context.Context, *StopVMRequest) (*StopVMResponse, error)
-	RestartVM(context.Context, *RestartVMRequest) (*RestartVMResponse, error)
-	PauseVM(context.Context, *PauseVMRequest) (*PauseVMResponse, error)
-	ResumeVM(context.Context, *ResumeVMRequest) (*ResumeVMResponse, error)
-	GetVMStats(context.Context, *GetVMStatsRequest) (*GetVMStatsResponse, error)
+	// operations
+	StartVM(context.Context, *StartVMRequest) (*Void, error)
+	StopVM(context.Context, *StopVMRequest) (*Void, error)
+	RestartVM(context.Context, *RestartVMRequest) (*Void, error)
+	SuspendVM(context.Context, *PauseVMRequest) (*Void, error)
+	ResumeVM(context.Context, *ResumeVMRequest) (*Void, error)
 	mustEmbedUnimplementedEasyVirtServer()
 }
 
@@ -179,8 +183,14 @@ type EasyVirtServer interface {
 // pointer dereference when methods are called.
 type UnimplementedEasyVirtServer struct{}
 
-func (UnimplementedEasyVirtServer) CreateVM(context.Context, *CreateVMRequest) (*CreateVMResponse, error) {
+func (UnimplementedEasyVirtServer) CreateVM(context.Context, *CreateVMRequest) (*Void, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateVM not implemented")
+}
+func (UnimplementedEasyVirtServer) DeleteVM(context.Context, *DeleteVMRequest) (*Void, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteVM not implemented")
+}
+func (UnimplementedEasyVirtServer) UpdateVM(context.Context, *UpdateVMRequest) (*Void, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateVM not implemented")
 }
 func (UnimplementedEasyVirtServer) GetVM(context.Context, *GetVMRequest) (*GetVMResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetVM not implemented")
@@ -188,26 +198,20 @@ func (UnimplementedEasyVirtServer) GetVM(context.Context, *GetVMRequest) (*GetVM
 func (UnimplementedEasyVirtServer) ListVMs(context.Context, *ListVMsRequest) (*ListVMsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListVMs not implemented")
 }
-func (UnimplementedEasyVirtServer) DeleteVM(context.Context, *DeleteVMRequest) (*DeleteVMResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteVM not implemented")
-}
-func (UnimplementedEasyVirtServer) StartVM(context.Context, *StartVMRequest) (*StartVMResponse, error) {
+func (UnimplementedEasyVirtServer) StartVM(context.Context, *StartVMRequest) (*Void, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StartVM not implemented")
 }
-func (UnimplementedEasyVirtServer) StopVM(context.Context, *StopVMRequest) (*StopVMResponse, error) {
+func (UnimplementedEasyVirtServer) StopVM(context.Context, *StopVMRequest) (*Void, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StopVM not implemented")
 }
-func (UnimplementedEasyVirtServer) RestartVM(context.Context, *RestartVMRequest) (*RestartVMResponse, error) {
+func (UnimplementedEasyVirtServer) RestartVM(context.Context, *RestartVMRequest) (*Void, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RestartVM not implemented")
 }
-func (UnimplementedEasyVirtServer) PauseVM(context.Context, *PauseVMRequest) (*PauseVMResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method PauseVM not implemented")
+func (UnimplementedEasyVirtServer) SuspendVM(context.Context, *PauseVMRequest) (*Void, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SuspendVM not implemented")
 }
-func (UnimplementedEasyVirtServer) ResumeVM(context.Context, *ResumeVMRequest) (*ResumeVMResponse, error) {
+func (UnimplementedEasyVirtServer) ResumeVM(context.Context, *ResumeVMRequest) (*Void, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ResumeVM not implemented")
-}
-func (UnimplementedEasyVirtServer) GetVMStats(context.Context, *GetVMStatsRequest) (*GetVMStatsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetVMStats not implemented")
 }
 func (UnimplementedEasyVirtServer) mustEmbedUnimplementedEasyVirtServer() {}
 func (UnimplementedEasyVirtServer) testEmbeddedByValue()                  {}
@@ -248,6 +252,42 @@ func _EasyVirt_CreateVM_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _EasyVirt_DeleteVM_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteVMRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EasyVirtServer).DeleteVM(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EasyVirt_DeleteVM_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EasyVirtServer).DeleteVM(ctx, req.(*DeleteVMRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EasyVirt_UpdateVM_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateVMRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EasyVirtServer).UpdateVM(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EasyVirt_UpdateVM_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EasyVirtServer).UpdateVM(ctx, req.(*UpdateVMRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _EasyVirt_GetVM_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetVMRequest)
 	if err := dec(in); err != nil {
@@ -280,24 +320,6 @@ func _EasyVirt_ListVMs_Handler(srv interface{}, ctx context.Context, dec func(in
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(EasyVirtServer).ListVMs(ctx, req.(*ListVMsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _EasyVirt_DeleteVM_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteVMRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EasyVirtServer).DeleteVM(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: EasyVirt_DeleteVM_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EasyVirtServer).DeleteVM(ctx, req.(*DeleteVMRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -356,20 +378,20 @@ func _EasyVirt_RestartVM_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
-func _EasyVirt_PauseVM_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _EasyVirt_SuspendVM_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(PauseVMRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EasyVirtServer).PauseVM(ctx, in)
+		return srv.(EasyVirtServer).SuspendVM(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: EasyVirt_PauseVM_FullMethodName,
+		FullMethod: EasyVirt_SuspendVM_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EasyVirtServer).PauseVM(ctx, req.(*PauseVMRequest))
+		return srv.(EasyVirtServer).SuspendVM(ctx, req.(*PauseVMRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -392,24 +414,6 @@ func _EasyVirt_ResumeVM_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
-func _EasyVirt_GetVMStats_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetVMStatsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(EasyVirtServer).GetVMStats(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: EasyVirt_GetVMStats_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EasyVirtServer).GetVMStats(ctx, req.(*GetVMStatsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // EasyVirt_ServiceDesc is the grpc.ServiceDesc for EasyVirt service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -422,16 +426,20 @@ var EasyVirt_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _EasyVirt_CreateVM_Handler,
 		},
 		{
+			MethodName: "DeleteVM",
+			Handler:    _EasyVirt_DeleteVM_Handler,
+		},
+		{
+			MethodName: "UpdateVM",
+			Handler:    _EasyVirt_UpdateVM_Handler,
+		},
+		{
 			MethodName: "GetVM",
 			Handler:    _EasyVirt_GetVM_Handler,
 		},
 		{
 			MethodName: "ListVMs",
 			Handler:    _EasyVirt_ListVMs_Handler,
-		},
-		{
-			MethodName: "DeleteVM",
-			Handler:    _EasyVirt_DeleteVM_Handler,
 		},
 		{
 			MethodName: "StartVM",
@@ -446,16 +454,12 @@ var EasyVirt_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _EasyVirt_RestartVM_Handler,
 		},
 		{
-			MethodName: "PauseVM",
-			Handler:    _EasyVirt_PauseVM_Handler,
+			MethodName: "SuspendVM",
+			Handler:    _EasyVirt_SuspendVM_Handler,
 		},
 		{
 			MethodName: "ResumeVM",
 			Handler:    _EasyVirt_ResumeVM_Handler,
-		},
-		{
-			MethodName: "GetVMStats",
-			Handler:    _EasyVirt_GetVMStats_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
