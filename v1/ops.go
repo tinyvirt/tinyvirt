@@ -17,7 +17,7 @@ func (s *EasyVirtServer) StartVM(ctx context.Context, req *proto.StartVMRequest)
 	}
 
 	var domain *libvirt.Domain
-	domain, err = s.findDomain(NewFindDomainParam(req.Domain))
+	domain, err = s.findDomain(req.Domain)
 	if err != nil {
 		return nil, err
 	}
@@ -32,7 +32,7 @@ func (s *EasyVirtServer) StopVM(ctx context.Context, req *proto.StopVMRequest) (
 	}
 
 	var domain *libvirt.Domain
-	domain, err = s.findDomain(NewFindDomainParam(req.Domain))
+	domain, err = s.findDomain(req.Domain)
 	if err != nil {
 		return nil, err
 	}
@@ -53,7 +53,7 @@ func (s *EasyVirtServer) RestartVM(ctx context.Context, req *proto.RestartVMRequ
 	}
 
 	var domain *libvirt.Domain
-	domain, err = s.findDomain(NewFindDomainParam(req.Domain))
+	domain, err = s.findDomain(req.Domain)
 	if err != nil {
 		return nil, err
 	}
@@ -74,7 +74,7 @@ func (s *EasyVirtServer) SuspendVM(ctx context.Context, req *proto.PauseVMReques
 	}
 
 	var domain *libvirt.Domain
-	domain, err = s.findDomain(NewFindDomainParam(req.Domain))
+	domain, err = s.findDomain(req.Domain)
 	if err != nil {
 		return nil, err
 	}
@@ -89,7 +89,7 @@ func (s *EasyVirtServer) ResumeVM(ctx context.Context, req *proto.ResumeVMReques
 	}
 
 	var domain *libvirt.Domain
-	domain, err = s.findDomain(NewFindDomainParam(req.Domain))
+	domain, err = s.findDomain(req.Domain)
 	if err != nil {
 		return nil, err
 	}
@@ -104,7 +104,7 @@ func (s *EasyVirtServer) DeleteVM(ctx context.Context, req *proto.DeleteVMReques
 	}
 
 	var domain *libvirt.Domain
-	domain, err = s.findDomain(NewFindDomainParam(req.Domain))
+	domain, err = s.findDomain(req.Domain)
 	if err != nil {
 		return nil, err
 	}

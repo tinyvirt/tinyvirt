@@ -35,8 +35,8 @@ message Device {
 
 message VM {
   DomainID domain_id = 1;
-  uint32 vcpu_count = 2;
-  uint32 memory = 3;
+  uint64 vcpu_count = 2;
+  uint64 memory = 3;
 
   repeated string boot_devices = 10;
   repeated Device devices = 11;

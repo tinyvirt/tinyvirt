@@ -12,7 +12,7 @@ func (s *EasyVirtServer) GetVM(ctx context.Context, req *proto.GetVMRequest) (*p
 		return nil, err
 	}
 
-	domain, err := s.findDomain(NewFindDomainParam(req.Domain))
+	domain, err := s.findDomain(req.Domain)
 	if err != nil {
 		return nil, err
 	}

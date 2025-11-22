@@ -446,8 +446,8 @@ func (*Device_VideoCard) isDevice_Descriptor_() {}
 type VM struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	DomainId      *DomainID              `protobuf:"bytes,1,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
-	VcpuCount     uint32                 `protobuf:"varint,2,opt,name=vcpu_count,json=vcpuCount,proto3" json:"vcpu_count,omitempty"`
-	Memory        uint32                 `protobuf:"varint,3,opt,name=memory,proto3" json:"memory,omitempty"`
+	VcpuCount     uint64                 `protobuf:"varint,2,opt,name=vcpu_count,json=vcpuCount,proto3" json:"vcpu_count,omitempty"`
+	Memory        uint64                 `protobuf:"varint,3,opt,name=memory,proto3" json:"memory,omitempty"`
 	BootDevices   []string               `protobuf:"bytes,10,rep,name=boot_devices,json=bootDevices,proto3" json:"boot_devices,omitempty"`
 	Devices       []*Device              `protobuf:"bytes,11,rep,name=devices,proto3" json:"devices,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -491,14 +491,14 @@ func (x *VM) GetDomainId() *DomainID {
 	return nil
 }
 
-func (x *VM) GetVcpuCount() uint32 {
+func (x *VM) GetVcpuCount() uint64 {
 	if x != nil {
 		return x.VcpuCount
 	}
 	return 0
 }
 
-func (x *VM) GetMemory() uint32 {
+func (x *VM) GetMemory() uint64 {
 	if x != nil {
 		return x.Memory
 	}
@@ -1117,8 +1117,8 @@ const file_proto_easyvirt_proto_rawDesc = "" +
 	"\x02VM\x12&\n" +
 	"\tdomain_id\x18\x01 \x01(\v2\t.DomainIDR\bdomainId\x12\x1d\n" +
 	"\n" +
-	"vcpu_count\x18\x02 \x01(\rR\tvcpuCount\x12\x16\n" +
-	"\x06memory\x18\x03 \x01(\rR\x06memory\x12!\n" +
+	"vcpu_count\x18\x02 \x01(\x04R\tvcpuCount\x12\x16\n" +
+	"\x06memory\x18\x03 \x01(\x04R\x06memory\x12!\n" +
 	"\fboot_devices\x18\n" +
 	" \x03(\tR\vbootDevices\x12!\n" +
 	"\adevices\x18\v \x03(\v2\a.DeviceR\adevices\"&\n" +

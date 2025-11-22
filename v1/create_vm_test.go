@@ -3,15 +3,16 @@ package ev
 import (
 	"testing"
 
+	"github.com/fanyang89/easyvirt/proto"
 	"libvirt.org/go/libvirtxml"
 )
 
-func createVmXml(r *DomainRequest) *libvirtxml.Domain {
+func createVmXml(r *proto.VM) *libvirtxml.Domain {
 	return &libvirtxml.Domain{
 		Type:   "kvm",
-		Name:   r.Name,
-		UUID:   r.UUID,
-		VCPU:   &libvirtxml.DomainVCPU{Value: r.CPUs},
+		Name:   r.DomainId.Name,
+		UUID:   "", // libvirt auto-fill on create
+		VCPU:   &libvirtxml.DomainVCPU{Value: uint(r.VcpuCount)},
 		Memory: &libvirtxml.DomainMemory{Value: r.MemoryMiB, Unit: "MiB"},
 		OS: &libvirtxml.DomainOS{
 			Type: &libvirtxml.DomainOSType{

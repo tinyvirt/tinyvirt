@@ -53,46 +53,28 @@ func (s *EasyVirtServer) checkConnected() error {
 	return nil
 }
 
-type FindDomainParam struct {
-	ID   *uint32
-	Name *string
-	UUID *string
-}
-
-func newPtrFromValue[T any](value T) *T {
-	return &value
-}
-
-func NewFindDomainParam(finder *proto.DomainID) FindDomainParam {
-	return FindDomainParam{
-		ID:   newPtrFromValue(finder.Id),
-		Name: newPtrFromValue(finder.Name),
-		UUID: newPtrFromValue(finder.Uuid),
-	}
-}
-
-func (s *EasyVirtServer) findDomain(p FindDomainParam) (domain *libvirt.Domain, err error) {
+func (s *EasyVirtServer) findDomain(p *proto.DomainID) (domain *libvirt.Domain, err error) {
 	err = s.checkConnected()
 	if err != nil {
 		return
 	}
 
-	if p.ID != nil {
-		domain, err = s.conn.LookupDomainById(*p.ID)
+	if p.Id != 0 {
+		domain, err = s.conn.LookupDomainById(uint32(p.Id))
 		if err == nil {
 			return
 		}
 	}
 
-	if p.UUID != nil {
-		domain, err = s.conn.LookupDomainByUUIDString(*p.UUID)
+	if p.Uuid != "" {
+		domain, err = s.conn.LookupDomainByUUIDString(p.Uuid)
 		if err == nil {
 			return
 		}
 	}
 
-	if p.Name != nil {
-		domain, err = s.conn.LookupDomainByName(*p.Name)
+	if p.Name != "" {
+		domain, err = s.conn.LookupDomainByName(p.Name)
 		if err == nil {
 			return
 		}
