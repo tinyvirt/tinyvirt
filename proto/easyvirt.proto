@@ -4,6 +4,14 @@ option go_package = "github.com/fanyang89/easyvirt/proto";
 
 message Void {}
 
+
+message FindDomain {
+  uint32 id = 1;
+  string name = 2;
+  string uuid = 3;
+}
+
+
 enum VMState {
   VM_STATE_UNDEFINED = 0;
   VM_STATE_NOSTATE = 1;
@@ -57,9 +65,7 @@ message CreateVMResponse {
 }
 
 message GetVMRequest {
-  uint32 id = 1;
-  string name = 2;
-  string uuid = 3;
+  FindDomain domain = 1;
 }
 
 message GetVMResponse {
@@ -69,19 +75,13 @@ message GetVMResponse {
 }
 
 message ListVMsRequest {
-  bool all = 1;
+  bool active = 1;
+  bool inactive = 2;
+  bool all = 3;
 }
 
 message ListVMsResponse {
-  bool success = 1;
-  string message = 2;
   repeated VirtualMachine vms = 3;
-}
-
-message FindDomain {
-  uint32 id = 1;
-  string name = 2;
-  string uuid = 3;
 }
 
 message StartVMRequest {
@@ -90,7 +90,7 @@ message StartVMRequest {
 
 message StopVMRequest {
   FindDomain domain = 1;
-  bool force = 2; // destory domain or not
+  bool force = 2;// destory domain or not
 }
 
 message RestartVMRequest {

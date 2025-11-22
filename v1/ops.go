@@ -46,7 +46,7 @@ func (s *EasyVirtServer) StopVM(ctx context.Context, req *proto.StopVMRequest) (
 	return VOID, err
 }
 
-func (s *EasyVirtServer) RestartVM(ctx context.Context, req *proto.RestartVMRequest) (*proto.RestartVMResponse, error) {
+func (s *EasyVirtServer) RestartVM(ctx context.Context, req *proto.RestartVMRequest) (*proto.Void, error) {
 	err := s.checkConnected()
 	if err != nil {
 		return nil, err
