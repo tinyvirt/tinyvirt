@@ -1,0 +1,56 @@
+syntax = "proto3";
+option go_package = "github.com/fanyang89/easyvirt/v1/disk";
+
+message Void {}
+
+enum DiskFormat {
+  raw = 0;
+  qcow2 = 1;
+}
+
+message Disk {
+  string disk_id = 1;
+  string disk_name = 2;
+  string description = 3;
+  DiskFormat format = 4;
+  uint32 size = 5; // GiB
+}
+
+message CreateDiskRequest {
+  Disk disk = 1;
+}
+
+message CreateDiskResponse {
+  Disk created_disk = 1;
+}
+
+message DeleteDiskRequest {
+  string disk_id = 1;
+}
+
+message UpdateDiskRequest {
+  Disk disk = 1;
+}
+
+message ListDiskRequest {}
+
+message ListDiskResponse {
+  repeated Disk disk = 1;
+}
+
+message GetDiskRequest {
+  string disk_id = 1;
+  string disk_name = 2;
+}
+
+message GetDiskResponse {
+  Disk disk = 1;
+}
+
+service DiskManager {
+  rpc CreateDisk(CreateDiskRequest) returns (CreateDiskResponse) {}
+  rpc DeleteDisk(DeleteDiskRequest) returns (Void) {}
+  rpc UpdateDisk(UpdateDiskRequest) returns (Void) {}
+  rpc ListDisk(ListDiskRequest) returns (ListDiskResponse) {}
+  rpc GetDisk(GetDiskRequest) returns (GetDiskResponse) {}
+}

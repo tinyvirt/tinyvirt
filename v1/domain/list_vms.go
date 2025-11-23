@@ -1,18 +1,12 @@
-package ev
+package domain
 
 import (
 	"context"
 
-	"github.com/fanyang89/easyvirt/proto"
-	"github.com/libvirt/libvirt-go"
+	"libvirt.org/go/libvirt"
 )
 
-func (s *EasyVirtServer) ListVMs(ctx context.Context, req *proto.ListVMsRequest) (*proto.ListVMsResponse, error) {
-	err := s.checkConnected()
-	if err != nil {
-		return nil, err
-	}
-
+func (s *EasyVirtService) ListVMs(ctx context.Context, req *ListVMsRequest) (*ListVMsResponse, error) {
 	var flags libvirt.ConnectListAllDomainsFlags
 	if req.Inactive {
 		flags = libvirt.CONNECT_LIST_DOMAINS_INACTIVE
@@ -27,12 +21,12 @@ func (s *EasyVirtServer) ListVMs(ctx context.Context, req *proto.ListVMsRequest)
 		return nil, err
 	}
 
-	vms := make([]*proto.VM, 0, len(domains))
+	vms := make([]*VM, 0, len(domains))
 	for _, domain := range domains {
 		vm := convertDomain(&domain)
 		vms = append(vms, vm)
 	}
 
-	rsp := &proto.ListVMsResponse{Vms: vms}
+	rsp := &ListVMsResponse{Vms: vms}
 	return rsp, nil
 }

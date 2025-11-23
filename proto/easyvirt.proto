@@ -1,6 +1,5 @@
 syntax = "proto3";
-
-option go_package = "github.com/fanyang89/easyvirt/proto";
+option go_package = "github.com/fanyang89/easyvirt/v1/domain";
 
 message Void {}
 
@@ -10,36 +9,36 @@ message DomainID {
   string uuid = 3;
 }
 
+enum DiskDeviceType {
+  DISK_DEVICE_TYPE_DISK = 0;
+  DISK_DEVICE_TYPE_CDROM = 1;
+}
+
 message DiskDescriptor {
-  string type = 1;
-  string path = 2;
+  DiskDeviceType device_type = 1; 
+  string driver_type = 2; // raw, qcow2
+  string file_path = 3;
+  string device_name = 4;
+  string bus = 5;
+  bool read_only = 6;
 }
 
 message NicDescriptor {}
 
-message CdromDescriptor {}
-
 message VncDescriptor {}
 
 message VideoCardDescriptor {}
-
-message Device {
-  oneof descriptor {
-    DiskDescriptor disk = 10;
-    NicDescriptor nic = 11;
-    CdromDescriptor cdrom = 13;
-    VncDescriptor vnc = 14;
-    VideoCardDescriptor video_card = 15;
-  }
-}
 
 message VM {
   DomainID domain_id = 1;
   uint64 vcpu_count = 2;
   uint64 memory = 3;
 
-  repeated string boot_devices = 10;
-  repeated Device devices = 11;
+  repeated string boot_devices = 9;
+  repeated DiskDescriptor disk_list = 10;
+  repeated NicDescriptor nic_list = 11;
+  repeated VncDescriptor vnc_list = 14;
+  repeated VideoCardDescriptor video_card_list = 15;
 }
 
 message CreateVMRequest {

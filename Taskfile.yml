@@ -9,19 +9,34 @@ tasks:
       - task: build
 
   build:
+    env:
+      CGO_ENABLED: 1
     cmds:
       - go build -o ./bin/easyvirt ./cmd/easyvirt
+
+  test:
+    cmds:
+      - go test ./...
 
   fmt:
     cmds:
       - go fmt ./...
       - bun x prettier -w .
 
+  gen:
+    cmds:
+      - go generate ./ent
+      - task: pb
+
   pb:
     cmds:
       - >
-        protoc --go_out=. --go_opt=paths=source_relative
-        --go-grpc_out=. --go-grpc_opt=paths=source_relative
+        protoc -Iproto --go_out=v1/disk --go_opt=paths=source_relative
+        --go-grpc_out=v1/disk --go-grpc_opt=paths=source_relative
+        proto/disk_manager.proto
+      - >
+        protoc -Iproto --go_out=v1/domain --go_opt=paths=source_relative
+        --go-grpc_out=v1/domain --go-grpc_opt=paths=source_relative
         proto/easyvirt.proto
 
   install-deps:

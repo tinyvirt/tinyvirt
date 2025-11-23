@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v3.19.6
-// source: proto/easyvirt.proto
+// source: easyvirt.proto
 
-package proto
+package domain
 
 import (
 	context "context"
@@ -463,5 +463,5 @@ var EasyVirt_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "proto/easyvirt.proto",
+	Metadata: "easyvirt.proto",
 }

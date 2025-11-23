@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.36.10
 // 	protoc        v3.19.6
-// source: proto/easyvirt.proto
+// source: easyvirt.proto
 
-package proto
+package domain
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -21,6 +21,52 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type DiskDeviceType int32
+
+const (
+	DiskDeviceType_DISK_DEVICE_TYPE_DISK  DiskDeviceType = 0
+	DiskDeviceType_DISK_DEVICE_TYPE_CDROM DiskDeviceType = 1
+)
+
+// Enum value maps for DiskDeviceType.
+var (
+	DiskDeviceType_name = map[int32]string{
+		0: "DISK_DEVICE_TYPE_DISK",
+		1: "DISK_DEVICE_TYPE_CDROM",
+	}
+	DiskDeviceType_value = map[string]int32{
+		"DISK_DEVICE_TYPE_DISK":  0,
+		"DISK_DEVICE_TYPE_CDROM": 1,
+	}
+)
+
+func (x DiskDeviceType) Enum() *DiskDeviceType {
+	p := new(DiskDeviceType)
+	*p = x
+	return p
+}
+
+func (x DiskDeviceType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (DiskDeviceType) Descriptor() protoreflect.EnumDescriptor {
+	return file_easyvirt_proto_enumTypes[0].Descriptor()
+}
+
+func (DiskDeviceType) Type() protoreflect.EnumType {
+	return &file_easyvirt_proto_enumTypes[0]
+}
+
+func (x DiskDeviceType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use DiskDeviceType.Descriptor instead.
+func (DiskDeviceType) EnumDescriptor() ([]byte, []int) {
+	return file_easyvirt_proto_rawDescGZIP(), []int{0}
+}
+
 type Void struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -29,7 +75,7 @@ type Void struct {
 
 func (x *Void) Reset() {
 	*x = Void{}
-	mi := &file_proto_easyvirt_proto_msgTypes[0]
+	mi := &file_easyvirt_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -41,7 +87,7 @@ func (x *Void) String() string {
 func (*Void) ProtoMessage() {}
 
 func (x *Void) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[0]
+	mi := &file_easyvirt_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -54,7 +100,7 @@ func (x *Void) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Void.ProtoReflect.Descriptor instead.
 func (*Void) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{0}
+	return file_easyvirt_proto_rawDescGZIP(), []int{0}
 }
 
 type DomainID struct {
@@ -68,7 +114,7 @@ type DomainID struct {
 
 func (x *DomainID) Reset() {
 	*x = DomainID{}
-	mi := &file_proto_easyvirt_proto_msgTypes[1]
+	mi := &file_easyvirt_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -80,7 +126,7 @@ func (x *DomainID) String() string {
 func (*DomainID) ProtoMessage() {}
 
 func (x *DomainID) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[1]
+	mi := &file_easyvirt_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -93,7 +139,7 @@ func (x *DomainID) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DomainID.ProtoReflect.Descriptor instead.
 func (*DomainID) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{1}
+	return file_easyvirt_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *DomainID) GetId() uint32 {
@@ -119,15 +165,19 @@ func (x *DomainID) GetUuid() string {
 
 type DiskDescriptor struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Type          string                 `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
-	Path          string                 `protobuf:"bytes,2,opt,name=path,proto3" json:"path,omitempty"`
+	DeviceType    DiskDeviceType         `protobuf:"varint,1,opt,name=device_type,json=deviceType,proto3,enum=DiskDeviceType" json:"device_type,omitempty"`
+	DriverType    string                 `protobuf:"bytes,2,opt,name=driver_type,json=driverType,proto3" json:"driver_type,omitempty"` // raw, qcow2
+	FilePath      string                 `protobuf:"bytes,3,opt,name=file_path,json=filePath,proto3" json:"file_path,omitempty"`
+	DeviceName    string                 `protobuf:"bytes,4,opt,name=device_name,json=deviceName,proto3" json:"device_name,omitempty"`
+	Bus           string                 `protobuf:"bytes,5,opt,name=bus,proto3" json:"bus,omitempty"`
+	ReadOnly      bool                   `protobuf:"varint,6,opt,name=read_only,json=readOnly,proto3" json:"read_only,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *DiskDescriptor) Reset() {
 	*x = DiskDescriptor{}
-	mi := &file_proto_easyvirt_proto_msgTypes[2]
+	mi := &file_easyvirt_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -139,7 +189,7 @@ func (x *DiskDescriptor) String() string {
 func (*DiskDescriptor) ProtoMessage() {}
 
 func (x *DiskDescriptor) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[2]
+	mi := &file_easyvirt_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -152,21 +202,49 @@ func (x *DiskDescriptor) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DiskDescriptor.ProtoReflect.Descriptor instead.
 func (*DiskDescriptor) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{2}
+	return file_easyvirt_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *DiskDescriptor) GetType() string {
+func (x *DiskDescriptor) GetDeviceType() DiskDeviceType {
 	if x != nil {
-		return x.Type
+		return x.DeviceType
+	}
+	return DiskDeviceType_DISK_DEVICE_TYPE_DISK
+}
+
+func (x *DiskDescriptor) GetDriverType() string {
+	if x != nil {
+		return x.DriverType
 	}
 	return ""
 }
 
-func (x *DiskDescriptor) GetPath() string {
+func (x *DiskDescriptor) GetFilePath() string {
 	if x != nil {
-		return x.Path
+		return x.FilePath
 	}
 	return ""
+}
+
+func (x *DiskDescriptor) GetDeviceName() string {
+	if x != nil {
+		return x.DeviceName
+	}
+	return ""
+}
+
+func (x *DiskDescriptor) GetBus() string {
+	if x != nil {
+		return x.Bus
+	}
+	return ""
+}
+
+func (x *DiskDescriptor) GetReadOnly() bool {
+	if x != nil {
+		return x.ReadOnly
+	}
+	return false
 }
 
 type NicDescriptor struct {
@@ -177,7 +255,7 @@ type NicDescriptor struct {
 
 func (x *NicDescriptor) Reset() {
 	*x = NicDescriptor{}
-	mi := &file_proto_easyvirt_proto_msgTypes[3]
+	mi := &file_easyvirt_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -189,7 +267,7 @@ func (x *NicDescriptor) String() string {
 func (*NicDescriptor) ProtoMessage() {}
 
 func (x *NicDescriptor) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[3]
+	mi := &file_easyvirt_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -202,43 +280,7 @@ func (x *NicDescriptor) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NicDescriptor.ProtoReflect.Descriptor instead.
 func (*NicDescriptor) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{3}
-}
-
-type CdromDescriptor struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CdromDescriptor) Reset() {
-	*x = CdromDescriptor{}
-	mi := &file_proto_easyvirt_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CdromDescriptor) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CdromDescriptor) ProtoMessage() {}
-
-func (x *CdromDescriptor) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CdromDescriptor.ProtoReflect.Descriptor instead.
-func (*CdromDescriptor) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{4}
+	return file_easyvirt_proto_rawDescGZIP(), []int{3}
 }
 
 type VncDescriptor struct {
@@ -249,7 +291,7 @@ type VncDescriptor struct {
 
 func (x *VncDescriptor) Reset() {
 	*x = VncDescriptor{}
-	mi := &file_proto_easyvirt_proto_msgTypes[5]
+	mi := &file_easyvirt_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -261,7 +303,7 @@ func (x *VncDescriptor) String() string {
 func (*VncDescriptor) ProtoMessage() {}
 
 func (x *VncDescriptor) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[5]
+	mi := &file_easyvirt_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -274,7 +316,7 @@ func (x *VncDescriptor) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VncDescriptor.ProtoReflect.Descriptor instead.
 func (*VncDescriptor) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{5}
+	return file_easyvirt_proto_rawDescGZIP(), []int{4}
 }
 
 type VideoCardDescriptor struct {
@@ -285,7 +327,7 @@ type VideoCardDescriptor struct {
 
 func (x *VideoCardDescriptor) Reset() {
 	*x = VideoCardDescriptor{}
-	mi := &file_proto_easyvirt_proto_msgTypes[6]
+	mi := &file_easyvirt_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -297,7 +339,7 @@ func (x *VideoCardDescriptor) String() string {
 func (*VideoCardDescriptor) ProtoMessage() {}
 
 func (x *VideoCardDescriptor) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[6]
+	mi := &file_easyvirt_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -310,153 +352,26 @@ func (x *VideoCardDescriptor) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VideoCardDescriptor.ProtoReflect.Descriptor instead.
 func (*VideoCardDescriptor) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{6}
+	return file_easyvirt_proto_rawDescGZIP(), []int{5}
 }
-
-type Device struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Types that are valid to be assigned to Descriptor_:
-	//
-	//	*Device_Disk
-	//	*Device_Nic
-	//	*Device_Cdrom
-	//	*Device_Vnc
-	//	*Device_VideoCard
-	Descriptor_   isDevice_Descriptor_ `protobuf_oneof:"descriptor"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Device) Reset() {
-	*x = Device{}
-	mi := &file_proto_easyvirt_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Device) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Device) ProtoMessage() {}
-
-func (x *Device) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Device.ProtoReflect.Descriptor instead.
-func (*Device) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *Device) GetDescriptor_() isDevice_Descriptor_ {
-	if x != nil {
-		return x.Descriptor_
-	}
-	return nil
-}
-
-func (x *Device) GetDisk() *DiskDescriptor {
-	if x != nil {
-		if x, ok := x.Descriptor_.(*Device_Disk); ok {
-			return x.Disk
-		}
-	}
-	return nil
-}
-
-func (x *Device) GetNic() *NicDescriptor {
-	if x != nil {
-		if x, ok := x.Descriptor_.(*Device_Nic); ok {
-			return x.Nic
-		}
-	}
-	return nil
-}
-
-func (x *Device) GetCdrom() *CdromDescriptor {
-	if x != nil {
-		if x, ok := x.Descriptor_.(*Device_Cdrom); ok {
-			return x.Cdrom
-		}
-	}
-	return nil
-}
-
-func (x *Device) GetVnc() *VncDescriptor {
-	if x != nil {
-		if x, ok := x.Descriptor_.(*Device_Vnc); ok {
-			return x.Vnc
-		}
-	}
-	return nil
-}
-
-func (x *Device) GetVideoCard() *VideoCardDescriptor {
-	if x != nil {
-		if x, ok := x.Descriptor_.(*Device_VideoCard); ok {
-			return x.VideoCard
-		}
-	}
-	return nil
-}
-
-type isDevice_Descriptor_ interface {
-	isDevice_Descriptor_()
-}
-
-type Device_Disk struct {
-	Disk *DiskDescriptor `protobuf:"bytes,10,opt,name=disk,proto3,oneof"`
-}
-
-type Device_Nic struct {
-	Nic *NicDescriptor `protobuf:"bytes,11,opt,name=nic,proto3,oneof"`
-}
-
-type Device_Cdrom struct {
-	Cdrom *CdromDescriptor `protobuf:"bytes,13,opt,name=cdrom,proto3,oneof"`
-}
-
-type Device_Vnc struct {
-	Vnc *VncDescriptor `protobuf:"bytes,14,opt,name=vnc,proto3,oneof"`
-}
-
-type Device_VideoCard struct {
-	VideoCard *VideoCardDescriptor `protobuf:"bytes,15,opt,name=video_card,json=videoCard,proto3,oneof"`
-}
-
-func (*Device_Disk) isDevice_Descriptor_() {}
-
-func (*Device_Nic) isDevice_Descriptor_() {}
-
-func (*Device_Cdrom) isDevice_Descriptor_() {}
-
-func (*Device_Vnc) isDevice_Descriptor_() {}
-
-func (*Device_VideoCard) isDevice_Descriptor_() {}
 
 type VM struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	DomainId      *DomainID              `protobuf:"bytes,1,opt,name=domain_id,json=domainId,proto3" json:"domain_id,omitempty"`
 	VcpuCount     uint64                 `protobuf:"varint,2,opt,name=vcpu_count,json=vcpuCount,proto3" json:"vcpu_count,omitempty"`
 	Memory        uint64                 `protobuf:"varint,3,opt,name=memory,proto3" json:"memory,omitempty"`
-	BootDevices   []string               `protobuf:"bytes,10,rep,name=boot_devices,json=bootDevices,proto3" json:"boot_devices,omitempty"`
-	Devices       []*Device              `protobuf:"bytes,11,rep,name=devices,proto3" json:"devices,omitempty"`
+	BootDevices   []string               `protobuf:"bytes,9,rep,name=boot_devices,json=bootDevices,proto3" json:"boot_devices,omitempty"`
+	DiskList      []*DiskDescriptor      `protobuf:"bytes,10,rep,name=disk_list,json=diskList,proto3" json:"disk_list,omitempty"`
+	NicList       []*NicDescriptor       `protobuf:"bytes,11,rep,name=nic_list,json=nicList,proto3" json:"nic_list,omitempty"`
+	VncList       []*VncDescriptor       `protobuf:"bytes,14,rep,name=vnc_list,json=vncList,proto3" json:"vnc_list,omitempty"`
+	VideoCardList []*VideoCardDescriptor `protobuf:"bytes,15,rep,name=video_card_list,json=videoCardList,proto3" json:"video_card_list,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *VM) Reset() {
 	*x = VM{}
-	mi := &file_proto_easyvirt_proto_msgTypes[8]
+	mi := &file_easyvirt_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -468,7 +383,7 @@ func (x *VM) String() string {
 func (*VM) ProtoMessage() {}
 
 func (x *VM) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[8]
+	mi := &file_easyvirt_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -481,7 +396,7 @@ func (x *VM) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use VM.ProtoReflect.Descriptor instead.
 func (*VM) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{8}
+	return file_easyvirt_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *VM) GetDomainId() *DomainID {
@@ -512,9 +427,30 @@ func (x *VM) GetBootDevices() []string {
 	return nil
 }
 
-func (x *VM) GetDevices() []*Device {
+func (x *VM) GetDiskList() []*DiskDescriptor {
 	if x != nil {
-		return x.Devices
+		return x.DiskList
+	}
+	return nil
+}
+
+func (x *VM) GetNicList() []*NicDescriptor {
+	if x != nil {
+		return x.NicList
+	}
+	return nil
+}
+
+func (x *VM) GetVncList() []*VncDescriptor {
+	if x != nil {
+		return x.VncList
+	}
+	return nil
+}
+
+func (x *VM) GetVideoCardList() []*VideoCardDescriptor {
+	if x != nil {
+		return x.VideoCardList
 	}
 	return nil
 }
@@ -528,7 +464,7 @@ type CreateVMRequest struct {
 
 func (x *CreateVMRequest) Reset() {
 	*x = CreateVMRequest{}
-	mi := &file_proto_easyvirt_proto_msgTypes[9]
+	mi := &file_easyvirt_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -540,7 +476,7 @@ func (x *CreateVMRequest) String() string {
 func (*CreateVMRequest) ProtoMessage() {}
 
 func (x *CreateVMRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[9]
+	mi := &file_easyvirt_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -553,7 +489,7 @@ func (x *CreateVMRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateVMRequest.ProtoReflect.Descriptor instead.
 func (*CreateVMRequest) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{9}
+	return file_easyvirt_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *CreateVMRequest) GetVm() *VM {
@@ -572,7 +508,7 @@ type GetVMRequest struct {
 
 func (x *GetVMRequest) Reset() {
 	*x = GetVMRequest{}
-	mi := &file_proto_easyvirt_proto_msgTypes[10]
+	mi := &file_easyvirt_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -584,7 +520,7 @@ func (x *GetVMRequest) String() string {
 func (*GetVMRequest) ProtoMessage() {}
 
 func (x *GetVMRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[10]
+	mi := &file_easyvirt_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -597,7 +533,7 @@ func (x *GetVMRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetVMRequest.ProtoReflect.Descriptor instead.
 func (*GetVMRequest) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{10}
+	return file_easyvirt_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GetVMRequest) GetDomain() *DomainID {
@@ -616,7 +552,7 @@ type GetVMResponse struct {
 
 func (x *GetVMResponse) Reset() {
 	*x = GetVMResponse{}
-	mi := &file_proto_easyvirt_proto_msgTypes[11]
+	mi := &file_easyvirt_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -628,7 +564,7 @@ func (x *GetVMResponse) String() string {
 func (*GetVMResponse) ProtoMessage() {}
 
 func (x *GetVMResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[11]
+	mi := &file_easyvirt_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -641,7 +577,7 @@ func (x *GetVMResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetVMResponse.ProtoReflect.Descriptor instead.
 func (*GetVMResponse) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{11}
+	return file_easyvirt_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *GetVMResponse) GetVm() *VM {
@@ -662,7 +598,7 @@ type ListVMsRequest struct {
 
 func (x *ListVMsRequest) Reset() {
 	*x = ListVMsRequest{}
-	mi := &file_proto_easyvirt_proto_msgTypes[12]
+	mi := &file_easyvirt_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -674,7 +610,7 @@ func (x *ListVMsRequest) String() string {
 func (*ListVMsRequest) ProtoMessage() {}
 
 func (x *ListVMsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[12]
+	mi := &file_easyvirt_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -687,7 +623,7 @@ func (x *ListVMsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListVMsRequest.ProtoReflect.Descriptor instead.
 func (*ListVMsRequest) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{12}
+	return file_easyvirt_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *ListVMsRequest) GetActive() bool {
@@ -720,7 +656,7 @@ type ListVMsResponse struct {
 
 func (x *ListVMsResponse) Reset() {
 	*x = ListVMsResponse{}
-	mi := &file_proto_easyvirt_proto_msgTypes[13]
+	mi := &file_easyvirt_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -732,7 +668,7 @@ func (x *ListVMsResponse) String() string {
 func (*ListVMsResponse) ProtoMessage() {}
 
 func (x *ListVMsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[13]
+	mi := &file_easyvirt_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -745,7 +681,7 @@ func (x *ListVMsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListVMsResponse.ProtoReflect.Descriptor instead.
 func (*ListVMsResponse) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{13}
+	return file_easyvirt_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *ListVMsResponse) GetVms() []*VM {
@@ -764,7 +700,7 @@ type StartVMRequest struct {
 
 func (x *StartVMRequest) Reset() {
 	*x = StartVMRequest{}
-	mi := &file_proto_easyvirt_proto_msgTypes[14]
+	mi := &file_easyvirt_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -776,7 +712,7 @@ func (x *StartVMRequest) String() string {
 func (*StartVMRequest) ProtoMessage() {}
 
 func (x *StartVMRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[14]
+	mi := &file_easyvirt_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -789,7 +725,7 @@ func (x *StartVMRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StartVMRequest.ProtoReflect.Descriptor instead.
 func (*StartVMRequest) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{14}
+	return file_easyvirt_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *StartVMRequest) GetDomain() *DomainID {
@@ -809,7 +745,7 @@ type StopVMRequest struct {
 
 func (x *StopVMRequest) Reset() {
 	*x = StopVMRequest{}
-	mi := &file_proto_easyvirt_proto_msgTypes[15]
+	mi := &file_easyvirt_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -821,7 +757,7 @@ func (x *StopVMRequest) String() string {
 func (*StopVMRequest) ProtoMessage() {}
 
 func (x *StopVMRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[15]
+	mi := &file_easyvirt_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -834,7 +770,7 @@ func (x *StopVMRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StopVMRequest.ProtoReflect.Descriptor instead.
 func (*StopVMRequest) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{15}
+	return file_easyvirt_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *StopVMRequest) GetDomain() *DomainID {
@@ -861,7 +797,7 @@ type RestartVMRequest struct {
 
 func (x *RestartVMRequest) Reset() {
 	*x = RestartVMRequest{}
-	mi := &file_proto_easyvirt_proto_msgTypes[16]
+	mi := &file_easyvirt_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -873,7 +809,7 @@ func (x *RestartVMRequest) String() string {
 func (*RestartVMRequest) ProtoMessage() {}
 
 func (x *RestartVMRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[16]
+	mi := &file_easyvirt_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -886,7 +822,7 @@ func (x *RestartVMRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RestartVMRequest.ProtoReflect.Descriptor instead.
 func (*RestartVMRequest) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{16}
+	return file_easyvirt_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *RestartVMRequest) GetDomain() *DomainID {
@@ -912,7 +848,7 @@ type PauseVMRequest struct {
 
 func (x *PauseVMRequest) Reset() {
 	*x = PauseVMRequest{}
-	mi := &file_proto_easyvirt_proto_msgTypes[17]
+	mi := &file_easyvirt_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -924,7 +860,7 @@ func (x *PauseVMRequest) String() string {
 func (*PauseVMRequest) ProtoMessage() {}
 
 func (x *PauseVMRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[17]
+	mi := &file_easyvirt_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -937,7 +873,7 @@ func (x *PauseVMRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PauseVMRequest.ProtoReflect.Descriptor instead.
 func (*PauseVMRequest) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{17}
+	return file_easyvirt_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *PauseVMRequest) GetDomain() *DomainID {
@@ -956,7 +892,7 @@ type ResumeVMRequest struct {
 
 func (x *ResumeVMRequest) Reset() {
 	*x = ResumeVMRequest{}
-	mi := &file_proto_easyvirt_proto_msgTypes[18]
+	mi := &file_easyvirt_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -968,7 +904,7 @@ func (x *ResumeVMRequest) String() string {
 func (*ResumeVMRequest) ProtoMessage() {}
 
 func (x *ResumeVMRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[18]
+	mi := &file_easyvirt_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -981,7 +917,7 @@ func (x *ResumeVMRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ResumeVMRequest.ProtoReflect.Descriptor instead.
 func (*ResumeVMRequest) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{18}
+	return file_easyvirt_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *ResumeVMRequest) GetDomain() *DomainID {
@@ -1001,7 +937,7 @@ type DeleteVMRequest struct {
 
 func (x *DeleteVMRequest) Reset() {
 	*x = DeleteVMRequest{}
-	mi := &file_proto_easyvirt_proto_msgTypes[19]
+	mi := &file_easyvirt_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1013,7 +949,7 @@ func (x *DeleteVMRequest) String() string {
 func (*DeleteVMRequest) ProtoMessage() {}
 
 func (x *DeleteVMRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[19]
+	mi := &file_easyvirt_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1026,7 +962,7 @@ func (x *DeleteVMRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteVMRequest.ProtoReflect.Descriptor instead.
 func (*DeleteVMRequest) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{19}
+	return file_easyvirt_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *DeleteVMRequest) GetDomain() *DomainID {
@@ -1052,7 +988,7 @@ type UpdateVMRequest struct {
 
 func (x *UpdateVMRequest) Reset() {
 	*x = UpdateVMRequest{}
-	mi := &file_proto_easyvirt_proto_msgTypes[20]
+	mi := &file_easyvirt_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1064,7 +1000,7 @@ func (x *UpdateVMRequest) String() string {
 func (*UpdateVMRequest) ProtoMessage() {}
 
 func (x *UpdateVMRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_easyvirt_proto_msgTypes[20]
+	mi := &file_easyvirt_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1077,7 +1013,7 @@ func (x *UpdateVMRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateVMRequest.ProtoReflect.Descriptor instead.
 func (*UpdateVMRequest) Descriptor() ([]byte, []int) {
-	return file_proto_easyvirt_proto_rawDescGZIP(), []int{20}
+	return file_easyvirt_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *UpdateVMRequest) GetDomain() *DomainID {
@@ -1087,41 +1023,40 @@ func (x *UpdateVMRequest) GetDomain() *DomainID {
 	return nil
 }
 
-var File_proto_easyvirt_proto protoreflect.FileDescriptor
+var File_easyvirt_proto protoreflect.FileDescriptor
 
-const file_proto_easyvirt_proto_rawDesc = "" +
+const file_easyvirt_proto_rawDesc = "" +
 	"\n" +
-	"\x14proto/easyvirt.proto\"\x06\n" +
+	"\x0eeasyvirt.proto\"\x06\n" +
 	"\x04Void\"B\n" +
 	"\bDomainID\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\rR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
-	"\x04uuid\x18\x03 \x01(\tR\x04uuid\"8\n" +
-	"\x0eDiskDescriptor\x12\x12\n" +
-	"\x04type\x18\x01 \x01(\tR\x04type\x12\x12\n" +
-	"\x04path\x18\x02 \x01(\tR\x04path\"\x0f\n" +
-	"\rNicDescriptor\"\x11\n" +
-	"\x0fCdromDescriptor\"\x0f\n" +
+	"\x04uuid\x18\x03 \x01(\tR\x04uuid\"\xd0\x01\n" +
+	"\x0eDiskDescriptor\x120\n" +
+	"\vdevice_type\x18\x01 \x01(\x0e2\x0f.DiskDeviceTypeR\n" +
+	"deviceType\x12\x1f\n" +
+	"\vdriver_type\x18\x02 \x01(\tR\n" +
+	"driverType\x12\x1b\n" +
+	"\tfile_path\x18\x03 \x01(\tR\bfilePath\x12\x1f\n" +
+	"\vdevice_name\x18\x04 \x01(\tR\n" +
+	"deviceName\x12\x10\n" +
+	"\x03bus\x18\x05 \x01(\tR\x03bus\x12\x1b\n" +
+	"\tread_only\x18\x06 \x01(\bR\breadOnly\"\x0f\n" +
+	"\rNicDescriptor\"\x0f\n" +
 	"\rVncDescriptor\"\x15\n" +
-	"\x13VideoCardDescriptor\"\xe6\x01\n" +
-	"\x06Device\x12%\n" +
-	"\x04disk\x18\n" +
-	" \x01(\v2\x0f.DiskDescriptorH\x00R\x04disk\x12\"\n" +
-	"\x03nic\x18\v \x01(\v2\x0e.NicDescriptorH\x00R\x03nic\x12(\n" +
-	"\x05cdrom\x18\r \x01(\v2\x10.CdromDescriptorH\x00R\x05cdrom\x12\"\n" +
-	"\x03vnc\x18\x0e \x01(\v2\x0e.VncDescriptorH\x00R\x03vnc\x125\n" +
-	"\n" +
-	"video_card\x18\x0f \x01(\v2\x14.VideoCardDescriptorH\x00R\tvideoCardB\f\n" +
-	"\n" +
-	"descriptor\"\xa9\x01\n" +
+	"\x13VideoCardDescriptor\"\xc8\x02\n" +
 	"\x02VM\x12&\n" +
 	"\tdomain_id\x18\x01 \x01(\v2\t.DomainIDR\bdomainId\x12\x1d\n" +
 	"\n" +
 	"vcpu_count\x18\x02 \x01(\x04R\tvcpuCount\x12\x16\n" +
 	"\x06memory\x18\x03 \x01(\x04R\x06memory\x12!\n" +
-	"\fboot_devices\x18\n" +
-	" \x03(\tR\vbootDevices\x12!\n" +
-	"\adevices\x18\v \x03(\v2\a.DeviceR\adevices\"&\n" +
+	"\fboot_devices\x18\t \x03(\tR\vbootDevices\x12,\n" +
+	"\tdisk_list\x18\n" +
+	" \x03(\v2\x0f.DiskDescriptorR\bdiskList\x12)\n" +
+	"\bnic_list\x18\v \x03(\v2\x0e.NicDescriptorR\anicList\x12)\n" +
+	"\bvnc_list\x18\x0e \x03(\v2\x0e.VncDescriptorR\avncList\x12<\n" +
+	"\x0fvideo_card_list\x18\x0f \x03(\v2\x14.VideoCardDescriptorR\rvideoCardList\"&\n" +
 	"\x0fCreateVMRequest\x12\x13\n" +
 	"\x02vm\x18\x01 \x01(\v2\x03.VMR\x02vm\"1\n" +
 	"\fGetVMRequest\x12!\n" +
@@ -1150,7 +1085,10 @@ const file_proto_easyvirt_proto_rawDesc = "" +
 	"\x06domain\x18\x01 \x01(\v2\t.DomainIDR\x06domain\x12!\n" +
 	"\fdelete_disks\x18\x02 \x01(\bR\vdeleteDisks\"4\n" +
 	"\x0fUpdateVMRequest\x12!\n" +
-	"\x06domain\x18\x01 \x01(\v2\t.DomainIDR\x06domain2\x98\x03\n" +
+	"\x06domain\x18\x01 \x01(\v2\t.DomainIDR\x06domain*G\n" +
+	"\x0eDiskDeviceType\x12\x19\n" +
+	"\x15DISK_DEVICE_TYPE_DISK\x10\x00\x12\x1a\n" +
+	"\x16DISK_DEVICE_TYPE_CDROM\x10\x012\x98\x03\n" +
 	"\bEasyVirt\x12%\n" +
 	"\bCreateVM\x12\x10.CreateVMRequest\x1a\x05.Void\"\x00\x12%\n" +
 	"\bDeleteVM\x12\x10.DeleteVMRequest\x1a\x05.Void\"\x00\x12%\n" +
@@ -1161,117 +1099,110 @@ const file_proto_easyvirt_proto_rawDesc = "" +
 	"\x06StopVM\x12\x0e.StopVMRequest\x1a\x05.Void\"\x00\x12'\n" +
 	"\tRestartVM\x12\x11.RestartVMRequest\x1a\x05.Void\"\x00\x12%\n" +
 	"\tSuspendVM\x12\x0f.PauseVMRequest\x1a\x05.Void\"\x00\x12%\n" +
-	"\bResumeVM\x12\x10.ResumeVMRequest\x1a\x05.Void\"\x00B%Z#github.com/fanyang89/easyvirt/protob\x06proto3"
+	"\bResumeVM\x12\x10.ResumeVMRequest\x1a\x05.Void\"\x00B)Z'github.com/fanyang89/easyvirt/v1/domainb\x06proto3"
 
 var (
-	file_proto_easyvirt_proto_rawDescOnce sync.Once
-	file_proto_easyvirt_proto_rawDescData []byte
+	file_easyvirt_proto_rawDescOnce sync.Once
+	file_easyvirt_proto_rawDescData []byte
 )
 
-func file_proto_easyvirt_proto_rawDescGZIP() []byte {
-	file_proto_easyvirt_proto_rawDescOnce.Do(func() {
-		file_proto_easyvirt_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_proto_easyvirt_proto_rawDesc), len(file_proto_easyvirt_proto_rawDesc)))
+func file_easyvirt_proto_rawDescGZIP() []byte {
+	file_easyvirt_proto_rawDescOnce.Do(func() {
+		file_easyvirt_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_easyvirt_proto_rawDesc), len(file_easyvirt_proto_rawDesc)))
 	})
-	return file_proto_easyvirt_proto_rawDescData
+	return file_easyvirt_proto_rawDescData
 }
 
-var file_proto_easyvirt_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
-var file_proto_easyvirt_proto_goTypes = []any{
-	(*Void)(nil),                // 0: Void
-	(*DomainID)(nil),            // 1: DomainID
-	(*DiskDescriptor)(nil),      // 2: DiskDescriptor
-	(*NicDescriptor)(nil),       // 3: NicDescriptor
-	(*CdromDescriptor)(nil),     // 4: CdromDescriptor
+var file_easyvirt_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_easyvirt_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
+var file_easyvirt_proto_goTypes = []any{
+	(DiskDeviceType)(0),         // 0: DiskDeviceType
+	(*Void)(nil),                // 1: Void
+	(*DomainID)(nil),            // 2: DomainID
+	(*DiskDescriptor)(nil),      // 3: DiskDescriptor
+	(*NicDescriptor)(nil),       // 4: NicDescriptor
 	(*VncDescriptor)(nil),       // 5: VncDescriptor
 	(*VideoCardDescriptor)(nil), // 6: VideoCardDescriptor
-	(*Device)(nil),              // 7: Device
-	(*VM)(nil),                  // 8: VM
-	(*CreateVMRequest)(nil),     // 9: CreateVMRequest
-	(*GetVMRequest)(nil),        // 10: GetVMRequest
-	(*GetVMResponse)(nil),       // 11: GetVMResponse
-	(*ListVMsRequest)(nil),      // 12: ListVMsRequest
-	(*ListVMsResponse)(nil),     // 13: ListVMsResponse
-	(*StartVMRequest)(nil),      // 14: StartVMRequest
-	(*StopVMRequest)(nil),       // 15: StopVMRequest
-	(*RestartVMRequest)(nil),    // 16: RestartVMRequest
-	(*PauseVMRequest)(nil),      // 17: PauseVMRequest
-	(*ResumeVMRequest)(nil),     // 18: ResumeVMRequest
-	(*DeleteVMRequest)(nil),     // 19: DeleteVMRequest
-	(*UpdateVMRequest)(nil),     // 20: UpdateVMRequest
+	(*VM)(nil),                  // 7: VM
+	(*CreateVMRequest)(nil),     // 8: CreateVMRequest
+	(*GetVMRequest)(nil),        // 9: GetVMRequest
+	(*GetVMResponse)(nil),       // 10: GetVMResponse
+	(*ListVMsRequest)(nil),      // 11: ListVMsRequest
+	(*ListVMsResponse)(nil),     // 12: ListVMsResponse
+	(*StartVMRequest)(nil),      // 13: StartVMRequest
+	(*StopVMRequest)(nil),       // 14: StopVMRequest
+	(*RestartVMRequest)(nil),    // 15: RestartVMRequest
+	(*PauseVMRequest)(nil),      // 16: PauseVMRequest
+	(*ResumeVMRequest)(nil),     // 17: ResumeVMRequest
+	(*DeleteVMRequest)(nil),     // 18: DeleteVMRequest
+	(*UpdateVMRequest)(nil),     // 19: UpdateVMRequest
 }
-var file_proto_easyvirt_proto_depIdxs = []int32{
-	2,  // 0: Device.disk:type_name -> DiskDescriptor
-	3,  // 1: Device.nic:type_name -> NicDescriptor
-	4,  // 2: Device.cdrom:type_name -> CdromDescriptor
-	5,  // 3: Device.vnc:type_name -> VncDescriptor
-	6,  // 4: Device.video_card:type_name -> VideoCardDescriptor
-	1,  // 5: VM.domain_id:type_name -> DomainID
-	7,  // 6: VM.devices:type_name -> Device
-	8,  // 7: CreateVMRequest.vm:type_name -> VM
-	1,  // 8: GetVMRequest.domain:type_name -> DomainID
-	8,  // 9: GetVMResponse.vm:type_name -> VM
-	8,  // 10: ListVMsResponse.vms:type_name -> VM
-	1,  // 11: StartVMRequest.domain:type_name -> DomainID
-	1,  // 12: StopVMRequest.domain:type_name -> DomainID
-	1,  // 13: RestartVMRequest.domain:type_name -> DomainID
-	1,  // 14: PauseVMRequest.domain:type_name -> DomainID
-	1,  // 15: ResumeVMRequest.domain:type_name -> DomainID
-	1,  // 16: DeleteVMRequest.domain:type_name -> DomainID
-	1,  // 17: UpdateVMRequest.domain:type_name -> DomainID
-	9,  // 18: EasyVirt.CreateVM:input_type -> CreateVMRequest
-	19, // 19: EasyVirt.DeleteVM:input_type -> DeleteVMRequest
-	20, // 20: EasyVirt.UpdateVM:input_type -> UpdateVMRequest
-	10, // 21: EasyVirt.GetVM:input_type -> GetVMRequest
-	12, // 22: EasyVirt.ListVMs:input_type -> ListVMsRequest
-	14, // 23: EasyVirt.StartVM:input_type -> StartVMRequest
-	15, // 24: EasyVirt.StopVM:input_type -> StopVMRequest
-	16, // 25: EasyVirt.RestartVM:input_type -> RestartVMRequest
-	17, // 26: EasyVirt.SuspendVM:input_type -> PauseVMRequest
-	18, // 27: EasyVirt.ResumeVM:input_type -> ResumeVMRequest
-	0,  // 28: EasyVirt.CreateVM:output_type -> Void
-	0,  // 29: EasyVirt.DeleteVM:output_type -> Void
-	0,  // 30: EasyVirt.UpdateVM:output_type -> Void
-	11, // 31: EasyVirt.GetVM:output_type -> GetVMResponse
-	13, // 32: EasyVirt.ListVMs:output_type -> ListVMsResponse
-	0,  // 33: EasyVirt.StartVM:output_type -> Void
-	0,  // 34: EasyVirt.StopVM:output_type -> Void
-	0,  // 35: EasyVirt.RestartVM:output_type -> Void
-	0,  // 36: EasyVirt.SuspendVM:output_type -> Void
-	0,  // 37: EasyVirt.ResumeVM:output_type -> Void
-	28, // [28:38] is the sub-list for method output_type
-	18, // [18:28] is the sub-list for method input_type
-	18, // [18:18] is the sub-list for extension type_name
-	18, // [18:18] is the sub-list for extension extendee
-	0,  // [0:18] is the sub-list for field type_name
+var file_easyvirt_proto_depIdxs = []int32{
+	0,  // 0: DiskDescriptor.device_type:type_name -> DiskDeviceType
+	2,  // 1: VM.domain_id:type_name -> DomainID
+	3,  // 2: VM.disk_list:type_name -> DiskDescriptor
+	4,  // 3: VM.nic_list:type_name -> NicDescriptor
+	5,  // 4: VM.vnc_list:type_name -> VncDescriptor
+	6,  // 5: VM.video_card_list:type_name -> VideoCardDescriptor
+	7,  // 6: CreateVMRequest.vm:type_name -> VM
+	2,  // 7: GetVMRequest.domain:type_name -> DomainID
+	7,  // 8: GetVMResponse.vm:type_name -> VM
+	7,  // 9: ListVMsResponse.vms:type_name -> VM
+	2,  // 10: StartVMRequest.domain:type_name -> DomainID
+	2,  // 11: StopVMRequest.domain:type_name -> DomainID
+	2,  // 12: RestartVMRequest.domain:type_name -> DomainID
+	2,  // 13: PauseVMRequest.domain:type_name -> DomainID
+	2,  // 14: ResumeVMRequest.domain:type_name -> DomainID
+	2,  // 15: DeleteVMRequest.domain:type_name -> DomainID
+	2,  // 16: UpdateVMRequest.domain:type_name -> DomainID
+	8,  // 17: EasyVirt.CreateVM:input_type -> CreateVMRequest
+	18, // 18: EasyVirt.DeleteVM:input_type -> DeleteVMRequest
+	19, // 19: EasyVirt.UpdateVM:input_type -> UpdateVMRequest
+	9,  // 20: EasyVirt.GetVM:input_type -> GetVMRequest
+	11, // 21: EasyVirt.ListVMs:input_type -> ListVMsRequest
+	13, // 22: EasyVirt.StartVM:input_type -> StartVMRequest
+	14, // 23: EasyVirt.StopVM:input_type -> StopVMRequest
+	15, // 24: EasyVirt.RestartVM:input_type -> RestartVMRequest
+	16, // 25: EasyVirt.SuspendVM:input_type -> PauseVMRequest
+	17, // 26: EasyVirt.ResumeVM:input_type -> ResumeVMRequest
+	1,  // 27: EasyVirt.CreateVM:output_type -> Void
+	1,  // 28: EasyVirt.DeleteVM:output_type -> Void
+	1,  // 29: EasyVirt.UpdateVM:output_type -> Void
+	10, // 30: EasyVirt.GetVM:output_type -> GetVMResponse
+	12, // 31: EasyVirt.ListVMs:output_type -> ListVMsResponse
+	1,  // 32: EasyVirt.StartVM:output_type -> Void
+	1,  // 33: EasyVirt.StopVM:output_type -> Void
+	1,  // 34: EasyVirt.RestartVM:output_type -> Void
+	1,  // 35: EasyVirt.SuspendVM:output_type -> Void
+	1,  // 36: EasyVirt.ResumeVM:output_type -> Void
+	27, // [27:37] is the sub-list for method output_type
+	17, // [17:27] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
-func init() { file_proto_easyvirt_proto_init() }
-func file_proto_easyvirt_proto_init() {
-	if File_proto_easyvirt_proto != nil {
+func init() { file_easyvirt_proto_init() }
+func file_easyvirt_proto_init() {
+	if File_easyvirt_proto != nil {
 		return
-	}
-	file_proto_easyvirt_proto_msgTypes[7].OneofWrappers = []any{
-		(*Device_Disk)(nil),
-		(*Device_Nic)(nil),
-		(*Device_Cdrom)(nil),
-		(*Device_Vnc)(nil),
-		(*Device_VideoCard)(nil),
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_easyvirt_proto_rawDesc), len(file_proto_easyvirt_proto_rawDesc)),
-			NumEnums:      0,
-			NumMessages:   21,
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_easyvirt_proto_rawDesc), len(file_easyvirt_proto_rawDesc)),
+			NumEnums:      1,
+			NumMessages:   19,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_proto_easyvirt_proto_goTypes,
-		DependencyIndexes: file_proto_easyvirt_proto_depIdxs,
-		MessageInfos:      file_proto_easyvirt_proto_msgTypes,
+		GoTypes:           file_easyvirt_proto_goTypes,
+		DependencyIndexes: file_easyvirt_proto_depIdxs,
+		EnumInfos:         file_easyvirt_proto_enumTypes,
+		MessageInfos:      file_easyvirt_proto_msgTypes,
 	}.Build()
-	File_proto_easyvirt_proto = out.File
-	file_proto_easyvirt_proto_goTypes = nil
-	file_proto_easyvirt_proto_depIdxs = nil
+	File_easyvirt_proto = out.File
+	file_easyvirt_proto_goTypes = nil
+	file_easyvirt_proto_depIdxs = nil
 }
