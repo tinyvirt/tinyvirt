@@ -9,14 +9,14 @@ import (
 	"log"
 	"reflect"
 
-	"github.com/fanyang89/easyvirt/ent/migrate"
 	"github.com/google/uuid"
+	"github.com/tinyvirt/tinyvirt/ent/migrate"
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect"
 	"entgo.io/ent/dialect/sql"
-	"github.com/fanyang89/easyvirt/ent/disk"
-	"github.com/fanyang89/easyvirt/ent/vm"
+	"github.com/tinyvirt/tinyvirt/ent/disk"
+	"github.com/tinyvirt/tinyvirt/ent/vm"
 )
 
 // Client is the client that holds all ent builders.

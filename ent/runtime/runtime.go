@@ -2,7 +2,7 @@
 
 package runtime
 
-// The schema-stitching logic is generated in github.com/fanyang89/easyvirt/ent/runtime.go
+// The schema-stitching logic is generated in github.com/tinyvirt/tinyvirt/ent/runtime.go
 
 const (
 	Version = "v0.14.5"                                         // Version of ent codegen.

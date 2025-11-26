@@ -8,8 +8,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/fanyang89/easyvirt/ent/disk"
-	"github.com/fanyang89/easyvirt/ent/predicate"
+	"github.com/tinyvirt/tinyvirt/ent/disk"
+	"github.com/tinyvirt/tinyvirt/ent/predicate"
 )
 
 // DiskDelete is the builder for deleting a Disk entity.

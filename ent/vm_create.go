@@ -8,7 +8,7 @@ import (
 
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/fanyang89/easyvirt/ent/vm"
+	"github.com/tinyvirt/tinyvirt/ent/vm"
 )
 
 // VMCreate is the builder for creating a VM entity.

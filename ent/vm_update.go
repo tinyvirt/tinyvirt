@@ -10,8 +10,8 @@ import (
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/fanyang89/easyvirt/ent/predicate"
-	"github.com/fanyang89/easyvirt/ent/vm"
+	"github.com/tinyvirt/tinyvirt/ent/predicate"
+	"github.com/tinyvirt/tinyvirt/ent/vm"
 )
 
 // VMUpdate is the builder for updating VM entities.

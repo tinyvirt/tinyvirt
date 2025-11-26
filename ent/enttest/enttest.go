@@ -5,12 +5,12 @@ package enttest
 import (
 	"context"
 
-	"github.com/fanyang89/easyvirt/ent"
+	"github.com/tinyvirt/tinyvirt/ent"
 	// required by schema hooks.
-	_ "github.com/fanyang89/easyvirt/ent/runtime"
+	_ "github.com/tinyvirt/tinyvirt/ent/runtime"
 
 	"entgo.io/ent/dialect/sql/schema"
-	"github.com/fanyang89/easyvirt/ent/migrate"
+	"github.com/tinyvirt/tinyvirt/ent/migrate"
 )
 
 type (

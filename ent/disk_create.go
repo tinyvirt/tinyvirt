@@ -9,8 +9,8 @@ import (
 
 	"entgo.io/ent/dialect/sql/sqlgraph"
 	"entgo.io/ent/schema/field"
-	"github.com/fanyang89/easyvirt/ent/disk"
 	"github.com/google/uuid"
+	"github.com/tinyvirt/tinyvirt/ent/disk"
 )
 
 // DiskCreate is the builder for creating a Disk entity.

@@ -12,8 +12,8 @@ import (
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
 	"entgo.io/ent/dialect/sql/sqlgraph"
-	"github.com/fanyang89/easyvirt/ent/disk"
-	"github.com/fanyang89/easyvirt/ent/vm"
+	"github.com/tinyvirt/tinyvirt/ent/disk"
+	"github.com/tinyvirt/tinyvirt/ent/vm"
 )
 
 // ent aliases to avoid import conflicts in user's code.

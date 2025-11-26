@@ -8,8 +8,8 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/fanyang89/easyvirt/ent/disk"
 	"github.com/google/uuid"
+	"github.com/tinyvirt/tinyvirt/ent/disk"
 )
 
 // Disk is the model entity for the Disk schema.

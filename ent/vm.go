@@ -8,7 +8,7 @@ import (
 
 	"entgo.io/ent"
 	"entgo.io/ent/dialect/sql"
-	"github.com/fanyang89/easyvirt/ent/vm"
+	"github.com/tinyvirt/tinyvirt/ent/vm"
 )
 
 // VM is the model entity for the VM schema.

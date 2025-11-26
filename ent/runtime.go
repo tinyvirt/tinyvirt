@@ -3,9 +3,9 @@
 package ent
 
 import (
-	"github.com/fanyang89/easyvirt/ent/disk"
-	"github.com/fanyang89/easyvirt/ent/schema"
 	"github.com/google/uuid"
+	"github.com/tinyvirt/tinyvirt/ent/disk"
+	"github.com/tinyvirt/tinyvirt/ent/schema"
 )
 
 // The init function reads all schema descriptors with runtime code

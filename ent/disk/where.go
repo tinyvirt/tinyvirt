@@ -4,8 +4,8 @@ package disk
 
 import (
 	"entgo.io/ent/dialect/sql"
-	"github.com/fanyang89/easyvirt/ent/predicate"
 	"github.com/google/uuid"
+	"github.com/tinyvirt/tinyvirt/ent/predicate"
 )
 
 // ID filters vertices based on their ID field.

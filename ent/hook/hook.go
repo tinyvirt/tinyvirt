@@ -6,7 +6,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/fanyang89/easyvirt/ent"
+	"github.com/tinyvirt/tinyvirt/ent"
 )
 
 // The DiskFunc type is an adapter to allow the use of ordinary
