@@ -1,4 +1,4 @@
-module github.com/fanyang89/easyvirt
+module github.com/tinyvirt/tinyvirt
 
 go 1.25.4
 

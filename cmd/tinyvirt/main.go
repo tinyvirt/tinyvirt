@@ -12,7 +12,7 @@ import (
 )
 
 var rootCmd = &cli.Command{
-	Name: "easyvirt",
+	Name: "tinyvirt",
 	Commands: []*cli.Command{
 		serverCmd,
 	},

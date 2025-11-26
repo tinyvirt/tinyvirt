@@ -9,8 +9,8 @@ import (
 	"path/filepath"
 
 	"github.com/cockroachdb/errors"
-	"github.com/fanyang89/easyvirt/ent"
 	"github.com/google/uuid"
+	"github.com/tinyvirt/tinyvirt/ent"
 )
 
 type Manager struct {

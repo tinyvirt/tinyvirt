@@ -1,5 +1,6 @@
 syntax = "proto3";
-option go_package = "github.com/fanyang89/easyvirt/v1/disk";
+
+option go_package = "github.com/fanyang89/tinyvirt/v1/disk";
 
 message Void {}
 

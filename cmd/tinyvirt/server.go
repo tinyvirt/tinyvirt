@@ -7,10 +7,10 @@ import (
 	"net"
 	"os"
 
-	"github.com/fanyang89/easyvirt/ent"
-	"github.com/fanyang89/easyvirt/v1/disk"
-	"github.com/fanyang89/easyvirt/v1/domain"
 	_ "github.com/mattn/go-sqlite3"
+	"github.com/tinyvirt/tinyvirt/ent"
+	"github.com/tinyvirt/tinyvirt/v1/disk"
+	"github.com/tinyvirt/tinyvirt/v1/domain"
 	"github.com/urfave/cli/v3"
 	"google.golang.org/grpc"
 )
@@ -56,7 +56,7 @@ var serverCmd = &cli.Command{
 		if err != nil {
 			return err
 		}
-		domain.RegisterEasyVirtServer(server, virtService)
+		domain.RegisterTinyVirtServer(server, virtService)
 
 		// disk service
 		diskService := disk.NewService(db)

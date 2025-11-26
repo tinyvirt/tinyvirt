@@ -3,8 +3,8 @@ package disk
 import (
 	"context"
 
-	"github.com/fanyang89/easyvirt/ent"
 	"github.com/google/uuid"
+	"github.com/tinyvirt/tinyvirt/ent"
 	"google.golang.org/protobuf/proto"
 )
 

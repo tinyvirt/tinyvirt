@@ -12,7 +12,7 @@ tasks:
     env:
       CGO_ENABLED: 1
     cmds:
-      - go build -o ./bin/easyvirt ./cmd/easyvirt
+      - go build -o ./bin/tinyvirt ./cmd/tinyvirt
 
   test:
     cmds:
@@ -37,11 +37,11 @@ tasks:
       - >
         protoc -Iproto --go_out=v1/domain --go_opt=paths=source_relative
         --go-grpc_out=v1/domain --go-grpc_opt=paths=source_relative
-        proto/easyvirt.proto
+        proto/virt.proto
 
   install-deps:
     cmds:
-      - sudo dnf install -y libvirt libvirt-devel
+      # - sudo dnf install -y libvirt libvirt-devel
       - go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
       - go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
       - go install entgo.io/ent/cmd/ent@latest

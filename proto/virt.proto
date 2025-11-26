@@ -1,5 +1,6 @@
 syntax = "proto3";
-option go_package = "github.com/fanyang89/easyvirt/v1/domain";
+
+option go_package = "github.com/fanyang89/tinyvirt/v1/domain";
 
 message Void {}
 
@@ -94,7 +95,7 @@ message UpdateVMRequest {
   DomainID domain = 1;
 }
 
-service EasyVirt {
+service TinyVirt {
   // domain CRUD
   rpc CreateVM(CreateVMRequest) returns (Void) {}
   rpc DeleteVM(DeleteVMRequest) returns (Void) {}

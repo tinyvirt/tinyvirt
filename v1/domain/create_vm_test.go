@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/fanyang89/easyvirt/v1"
 	"github.com/stretchr/testify/assert"
+	"github.com/tinyvirt/tinyvirt/v1"
 	"libvirt.org/go/libvirtxml"
 )
 

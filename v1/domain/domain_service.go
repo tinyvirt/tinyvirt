@@ -3,12 +3,12 @@ package domain
 import (
 	"fmt"
 
-	"github.com/fanyang89/easyvirt/ent"
+	"github.com/tinyvirt/tinyvirt/ent"
 	"libvirt.org/go/libvirt"
 )
 
 type EasyVirtService struct {
-	UnimplementedEasyVirtServer
+	UnimplementedTinyVirtServer
 
 	conn *libvirt.Connect
 	db   *ent.Client
